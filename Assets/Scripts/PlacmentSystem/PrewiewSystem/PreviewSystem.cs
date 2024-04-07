@@ -4,14 +4,14 @@ using UnityEngine;
 
 namespace RiftDefense.PlacmentSystem.Presenter
 {
-    public class PreviewPresenter
+    public class PreviewSystem
     {
         private DataPreviewSystem _previewSystemData;
         private EdificePlacmentMainView _previewObject;
 
         private const float _previewYOffset = 0.2f;
 
-        public PreviewPresenter(DataPreviewSystem previewSystemData)
+        public PreviewSystem(DataPreviewSystem previewSystemData)
         {
             _previewSystemData = previewSystemData;
         }

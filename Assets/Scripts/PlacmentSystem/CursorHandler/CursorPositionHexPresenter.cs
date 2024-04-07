@@ -1,23 +1,27 @@
 using RiftDefense.InputSustem;
 using RiftDefense.PlacmentSystem.Model;
 using UnityEngine;
-using Zenject;
+using UnityEngine.Tilemaps;
 
 namespace RiftDefense.PlacmentSystem.Presenter
+
 {
-    public class CursorPositionPresenter : ICursorPositionPresenter
+    public class CursorPositionHexPresenter : ICursorPositionPresenter
     {
         private DataCursor _dataCursor;
+        private Tilemap _tilemap;
 
         private Vector3 _lastPostion = Vector3.zero;
+        private Vector3Int _lastPositionTileMap = Vector3Int.zero;
         private const float _maxDistanceRaycast = 100f;
 
         private IInputPlacement _inputPlacement;
 
-        public CursorPositionPresenter(DataCursor dataCursor, IInputPlacement inputPlacement)
+        public CursorPositionHexPresenter(DataCursor dataCursor, IInputPlacement inputPlacement, Tilemap tileMap)
         {
-            _inputPlacement = inputPlacement;
             _dataCursor = dataCursor;
+            _tilemap = tileMap;
+            _inputPlacement = inputPlacement;
         }
 
         public Vector3 GetSelectedMapPosition()
@@ -39,7 +43,13 @@ namespace RiftDefense.PlacmentSystem.Presenter
             Vector3 mousePosition = GetSelectedMapPosition();
             Vector3Int gridPosition = grid.WorldToCell(mousePosition);
 
-            return gridPosition;
+            if (_tilemap.GetTile(gridPosition))
+            {
+                _lastPositionTileMap = gridPosition;
+                return gridPosition;
+            }
+            else
+                return _lastPositionTileMap;
         }
     }
 }

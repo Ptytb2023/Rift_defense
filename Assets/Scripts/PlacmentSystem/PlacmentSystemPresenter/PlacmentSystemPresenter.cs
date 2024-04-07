@@ -14,15 +14,12 @@ namespace RiftDefense.PlacmentSystem.Presenter
         private IInputPlacement _input;
 
         private PlacmentSystemView _placmentSystemView;
-        private CursorPositionPresenter _cursorPositionPresenter;
-        private PreviewPresenter _preview;
+        private ICursorPositionPresenter _cursorPositionPresenter;
+        private PreviewSystem _preview;
 
-        [Inject]
         private GridData _gridData;
         private IPlacementState _currentState;
 
-        private RemovePlacementState _removeState;
-        private CreatePlacementState _creatState;
 
         private EdificePlacmentMainView _currentEdifice;
         private Vector3Int _lastDetectedPosition = Vector3Int.zero;
@@ -36,10 +33,9 @@ namespace RiftDefense.PlacmentSystem.Presenter
         {
             _placmentSystemView = GetComponent<PlacmentSystemView>();
 
-            _cursorPositionPresenter = new CursorPositionPresenter(_placmentSystemView.DataCursor, _input);
-            _preview = new PreviewPresenter(_placmentSystemView.DataPreviewSystem);
-            _removeState = new RemovePlacementState(_gridData);
-            _creatState = new CreatePlacementState(_gridData, _placmentSystemView.PlacmentSystemData.Grid);
+            _gridData = _placmentSystemView.GridData;
+            _cursorPositionPresenter = _placmentSystemView.GetCursorPositionPresenter();
+            _preview = new PreviewSystem(_placmentSystemView.DataPreviewSystem);
 
             StopPlacement();
         }
@@ -62,7 +58,7 @@ namespace RiftDefense.PlacmentSystem.Presenter
 
         private void SetState(TypePlacement type)
         {
-            _currentState = type == TypePlacement.Creat ? _creatState : _removeState;
+            _currentState = _placmentSystemView.GetPlacementState(type);
         }
 
         private void PlaceStructure()
