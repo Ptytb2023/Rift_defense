@@ -2333,7 +2333,7 @@ MonoBehaviour:
   _previewSystemData:
     <GridVisualization>k__BackingField: {fileID: 657417226}
     <CursorIndicator>k__BackingField: {fileID: 4189581720755650310}
-    <ColorAvailableForPlacement>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+    <ColorAvailableForPlacement>k__BackingField: {r: 0.25977325, g: 1, b: 0, a: 1}
     <ColorNotAvailableForPlacement>k__BackingField: {r: 1, g: 0, b: 0, a: 1}
   _placmentSystemData:
     <Grid>k__BackingField: {fileID: 1804902496}
