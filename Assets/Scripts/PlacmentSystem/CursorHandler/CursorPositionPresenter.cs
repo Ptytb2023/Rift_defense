@@ -12,17 +12,17 @@ namespace RiftDefense.PlacmentSystem.Presenter
         private Vector3 _lastPostion = Vector3.zero;
         private const float _maxDistanceRaycast = 100f;
 
-        [Inject]
         private IInputPlacement _inputPlacement;
 
-        public CursorPositionPresenter(DataCursor dataCursor)
+        public CursorPositionPresenter(DataCursor dataCursor,IInputPlacement inputPlacement)
         {
+            _inputPlacement = inputPlacement;
             _dataCursor = dataCursor;
         }
 
         public Vector3 GetSelectedMapPosition()
         {
-            var mousePosition = _inputPlacement.GetMousePosition();
+            var mousePosition = Input.mousePosition;
             mousePosition.z = _dataCursor.Camera.nearClipPlane;
 
             Ray ray = _dataCursor.Camera.ScreenPointToRay(mousePosition);

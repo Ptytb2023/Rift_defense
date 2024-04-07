@@ -17,9 +17,12 @@ namespace RiftDefense.PlacmentSystem.Presenter
         private CursorPositionPresenter _cursorPositionPresenter;
         private PreviewPresenter _preview;
 
-
+        [Inject]
         private GridData _gridData;
         private IPlacementState _currentState;
+
+        private RemovePlacementState _removeState;
+        private CreatePlacementState _creatState;
 
         private EdificePlacmentMainView _currentEdifice;
         private Vector3Int _lastDetectedPosition = Vector3Int.zero;
@@ -32,8 +35,11 @@ namespace RiftDefense.PlacmentSystem.Presenter
         private void Start()
         {
             _placmentSystemView = GetComponent<PlacmentSystemView>();
-            _cursorPositionPresenter = new CursorPositionPresenter(_placmentSystemView.DataCursor);
+
+            _cursorPositionPresenter = new CursorPositionPresenter(_placmentSystemView.DataCursor, _input);
             _preview = new PreviewPresenter(_placmentSystemView.DataPreviewSystem);
+            _removeState = new RemovePlacementState(_gridData);
+            _creatState = new CreatePlacementState(_gridData, _placmentSystemView.PlacmentSystemData.Grid);
 
             StopPlacement();
         }
@@ -46,6 +52,7 @@ namespace RiftDefense.PlacmentSystem.Presenter
             _placementSystemUpdate = StartCoroutine(UpdatePlacement());
 
             SetState(type);
+            _preview.SetEdificePlacment(edifice);
             _preview.StartShowingPlacementPreview();
 
             _input.SetActive(true);
@@ -55,22 +62,21 @@ namespace RiftDefense.PlacmentSystem.Presenter
 
         private void SetState(TypePlacement type)
         {
-            var removeState = _placmentSystemView.PlacmentSystemData.RemoveState;
-            var createState = _placmentSystemView.PlacmentSystemData.CreatState;
-
-            _currentState = type == TypePlacement.Creat ? createState : removeState;
+            _currentState = type == TypePlacement.Creat ? _creatState : _removeState;
         }
 
         private void PlaceStructure()
         {
             Vector3Int gridPosition = _cursorPositionPresenter.GetSelectedGridPosition(_grid);
+
             _currentState.OnAction(gridPosition, _currentEdifice);
+            UpdateState(gridPosition);
         }
 
         private void StopPlacement()
         {
-            if(_placementSystemUpdate is not null)
-               StopCoroutine(_placementSystemUpdate);
+            if (_placementSystemUpdate is not null)
+                StopCoroutine(_placementSystemUpdate);
 
             _currentEdifice = null;
 

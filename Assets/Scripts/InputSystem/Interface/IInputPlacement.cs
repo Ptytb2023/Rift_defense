@@ -8,7 +8,7 @@ namespace RiftDefense.InputSustem
         public event Action ClickAction;
         public event Action ClickExit;
 
-        public Vector3 GetMousePosition();
+        public Vector2 GetMousePosition();
 
     }
 }

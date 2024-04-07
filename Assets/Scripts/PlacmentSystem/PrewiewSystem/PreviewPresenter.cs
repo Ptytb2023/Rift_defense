@@ -9,7 +9,7 @@ namespace RiftDefense.PlacmentSystem.Presenter
         private DataPreviewSystem _previewSystemData;
         private EdificePlacmentMainView _previewObject;
 
-        private const float _previewYOffset = 0.05f;
+        private const float _previewYOffset = 0.2f;
 
         public PreviewPresenter(DataPreviewSystem previewSystemData)
         {
@@ -52,7 +52,7 @@ namespace RiftDefense.PlacmentSystem.Presenter
 
         private void ApplyFeedbackToPreview(bool validity, Material material)
         {
-            Color ColorAvailable = _previewSystemData.ColorNotAvailableForPlacement;
+            Color ColorAvailable = _previewSystemData.ColorAvailableForPlacement;
             Color ColorNotAvailable = _previewSystemData.ColorNotAvailableForPlacement;
 
             Color newColor = validity ? ColorAvailable : ColorNotAvailable;

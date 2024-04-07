@@ -1,5 +1,6 @@
 using RiftDefense.Edifice;
 using UnityEngine;
+using Zenject;
 
 namespace RiftDefense.PlacmentSystem.Presenter
 {
@@ -14,7 +15,7 @@ namespace RiftDefense.PlacmentSystem.Presenter
 
         public void OnAction(Vector3Int gridPosition, EdificePlacmentMainView edifice)
         {
-            bool isRemove = _gridData.CanPlaceObjectAt(gridPosition) && edifice is not null;
+            bool isRemove = _gridData.CanPlaceObjectAt(gridPosition);
 
             if (isRemove)
                 return;

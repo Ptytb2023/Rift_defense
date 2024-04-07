@@ -5,13 +5,14 @@ using Zenject;
 
 namespace RiftDefense.InputSustem
 {
-    public abstract class InputBase : IInputBase, IActive, IDisposable 
+    public abstract class InputBase : IInputBase, IActive, IDisposable
     {
-        [Inject]
         protected InputMap InputMap;
 
-        public InputBase()
+        [Inject]
+        public InputBase(InputMap inputMap)
         {
+            InputMap = inputMap;
             Enable();
         }
 

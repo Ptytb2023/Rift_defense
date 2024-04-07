@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace RiftDefense.Edifice
 {
-    public abstract class EdificePlacmentMainView : MonoBehaviour
+    public  class EdificePlacmentMainView : MonoBehaviour
     {
         [SerializeField] private PlacementEdifice _placementObject;
         [SerializeField] private GameObject _postedObject;
@@ -26,6 +26,13 @@ namespace RiftDefense.Edifice
         {
             _placementObject?.gameObject.SetActive(false);
             _postedObject?.SetActive(false);
+        }
+
+        public GameObject SpawnObject(Vector3 position)
+        {
+           var gameObject =  Instantiate(_postedObject);
+            gameObject.transform.position = position;
+            return gameObject;
         }
     }
 }
