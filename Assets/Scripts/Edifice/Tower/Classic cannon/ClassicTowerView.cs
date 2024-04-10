@@ -3,15 +3,16 @@ using RiftDefense.Edifice.Tower.View;
 using RiftDefense.Generic;
 using RiftDefense.Beatle;
 using UnityEngine;
+using RiftDefense.Generic.Interface;
 
 namespace RiftDefense.Edifice.Tower
 {
     [RequireComponent(typeof(HandlerZoneTriger))]
-    public class ClassicCannonBehaviour : BaseTowerBehaviour
+    public class ClassicTowerView : BaseTowerView
     {
         [SerializeField] private Transform _head;
 
-        private ClassiCannonTower _classicCannonTower;
+        private ClassiTower _classicCannonTower;
 
         private HandlerZoneTriger _hadlerSeatch;
 
@@ -27,16 +28,6 @@ namespace RiftDefense.Edifice.Tower
         }
 
 
-        private void OnEnable()
-        {
-            _classicCannonTower?.SetActive(true);
-        }
-
-        private void OnDisable()
-        {
-            _classicCannonTower?.SetActive(false);
-        }
-
         private void Initialization()
         {
             _hadlerSeatch = GetComponent<HandlerZoneTriger>();
@@ -47,7 +38,19 @@ namespace RiftDefense.Edifice.Tower
             _targetSystem = new TargetSystem<IBeatle>(_dataEnemu, _searchBeatle, transform);
             _attackSystem = new AttackSystemClassic(DataAtack);
 
-            _classicCannonTower = new ClassiCannonTower(this, _targetSystem, _attackSystem, _head);
+            // HACK update
+           // _classicCannonTower = new ClassiCannonTower(this, _targetSystem, _attackSystem, _head);
+        }
+
+        protected override void UpdateView()
+        {
+            throw new System.NotImplementedException();
+        }
+
+
+        public override void PreviewAtack(IEnemy enemy)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

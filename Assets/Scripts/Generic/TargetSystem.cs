@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace RiftDefense.Generic
 {
-    public class TargetSystem<T> where T : IEnemy
+    public class TargetSystem<T> : ITargetSystem<T> where T : IEnemy
     {
         private IDataEnemy<T> _dataEnemu;
         private IHandlerSearchObject<T> _handlerSearchObject;
@@ -16,8 +16,8 @@ namespace RiftDefense.Generic
         private bool _isSetTarget;
 
 
-        public event Action<T> NewTarget;
-        public event Action TargetDiedOrExitZone;
+        public event Action<T> TargetDiscovered;
+        public event Action TargetLost;
 
 
         public TargetSystem(IDataEnemy<T> dataEnemu, IHandlerSearchObject<T> handlerSearchObject, Transform transform)
@@ -55,21 +55,25 @@ namespace RiftDefense.Generic
             if (_dataEnemu.FindNearbyEnemyFromPosition(_transform.position, out T enemu))
             {
                 CurrentTarget = enemu;
-                NewTarget(CurrentTarget);
+                CurrentTarget.Died += OnDiedAndExitZoneTarget;
+
+
                 _isSetTarget = true;
+                TargetDiscovered?.Invoke(CurrentTarget);
             }
         }
 
         private void OnDiedAndExitZoneTarget()
         {
+            _isSetTarget = false;
+
             CurrentTarget.Died -= OnDiedAndExitZoneTarget;
             CurrentTarget = default(T);
 
-            _isSetTarget = false;
-            TargetDiedOrExitZone?.Invoke();
-
             TrySetTarget();
-        }
 
+            if (_isSetTarget == false)
+                TargetLost?.Invoke();
+        }
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace RiftDefense.Beatle
 {
-    public class ClassicBeatle : MonoBehaviour, IBeatle
+    public class ClassicBeatleView : MonoBehaviour, IBeatle
     {
         [SerializeField] private DataHealf _dataHealf;
         [SerializeField] private float _speed;

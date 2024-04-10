@@ -33,19 +33,7 @@ public class GridData
         var eidifce = _placedObject[position];
         eidifce.gameObject.SetActive(false);
         _placedObject.Remove(position);
-
-
-
-        //foreach (var position in _placedObject.Keys)
-        //{
-        //    if (position == gridPosition)
-        //    {
-        //        var edifice = _placedObject[position];
-        //        edifice.gameObject.SetActive(false);
-
-        //        _placedObject.Remove(position);
-        //    }
-        //}
+       
     }
 }
 

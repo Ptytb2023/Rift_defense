@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace RiftDefense.Generic.Interface
 {
-    public interface IDataEnemy<T>
+    public interface IDataEnemy<T> where T : IEnemy
     {
         public IEnumerable<T> GetEnemies();
         public void AddEnemy(T enemy);

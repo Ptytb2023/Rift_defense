@@ -5,7 +5,7 @@ using RiftDefense.Generic.Interface;
 namespace RiftDefense.Generic
 {
     [Serializable]
-    public class DataHealf : IDamageable, IDataHealf
+    public class DataHealf :  IDataHealf
     {
         [field: SerializeField] public float MaxHealf { get; private set; }
 

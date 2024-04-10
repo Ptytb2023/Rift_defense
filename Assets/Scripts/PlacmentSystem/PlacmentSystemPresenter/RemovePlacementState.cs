@@ -1,6 +1,5 @@
 using RiftDefense.Edifice;
 using UnityEngine;
-using Zenject;
 
 namespace RiftDefense.PlacmentSystem.Presenter
 {
