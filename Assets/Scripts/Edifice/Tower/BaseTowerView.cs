@@ -14,7 +14,7 @@ namespace RiftDefense.Edifice.Tower.View
         public DataHealf DataHealf => _dataHealf;
         public DataTowerAtack DataAtack => _dataTowerAtack;
 
-        public event Action Died;
+        public event Action Dead;
 
         protected abstract void UpdateView();
         public abstract void PreviewAtack(IEnemy enemy);

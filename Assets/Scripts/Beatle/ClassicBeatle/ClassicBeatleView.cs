@@ -9,7 +9,7 @@ namespace RiftDefense.Beatle
         [SerializeField] private DataHealf _dataHealf;
         [SerializeField] private float _speed;
 
-        public event Action Died;
+        public event Action Dead;
 
         private void Update()
         {

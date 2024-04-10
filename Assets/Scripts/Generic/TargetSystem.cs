@@ -7,7 +7,7 @@ namespace RiftDefense.Generic
 {
     public class TargetSystem<T> : ITargetSystem<T> where T : IEnemy
     {
-        private IDataEnemy<T> _dataEnemu;
+        private IDataEnemy _dataEnemu;
         private IHandlerSearchObject<T> _handlerSearchObject;
 
         private Transform _transform;
@@ -20,7 +20,7 @@ namespace RiftDefense.Generic
         public event Action TargetLost;
 
 
-        public TargetSystem(IDataEnemy<T> dataEnemu, IHandlerSearchObject<T> handlerSearchObject, Transform transform)
+        public TargetSystem(IDataEnemy dataEnemu, IHandlerSearchObject<T> handlerSearchObject, Transform transform)
         {
             _dataEnemu = dataEnemu;
             _handlerSearchObject = handlerSearchObject;
@@ -52,28 +52,27 @@ namespace RiftDefense.Generic
 
         private void TrySetTarget()
         {
-            if (_dataEnemu.FindNearbyEnemyFromPosition(_transform.position, out T enemu))
+            if (_dataEnemu.FindNearbyEnemyFromPosition(_transform.position, out IEnemy enemu))
             {
-                CurrentTarget = enemu;
-                CurrentTarget.Died += OnDiedAndExitZoneTarget;
-
-
                 _isSetTarget = true;
-                TargetDiscovered?.Invoke(CurrentTarget);
+
+                CurrentTarget = (T)enemu;
+                TargetDiscovered?.Invoke((T)enemu);
+
+                enemu.Dead += OnDiedAndExitZoneTarget;
             }
         }
 
         private void OnDiedAndExitZoneTarget()
         {
-            _isSetTarget = false;
+            CurrentTarget.Dead -= OnDiedAndExitZoneTarget;
 
-            CurrentTarget.Died -= OnDiedAndExitZoneTarget;
             CurrentTarget = default(T);
+            _isSetTarget = false;
+            TargetLost?.Invoke();
 
             TrySetTarget();
-
-            if (_isSetTarget == false)
-                TargetLost?.Invoke();
         }
+
     }
 }

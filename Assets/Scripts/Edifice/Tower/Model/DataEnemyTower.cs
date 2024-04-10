@@ -7,16 +7,16 @@ using UnityEngine;
 
 namespace RiftDefense.Edifice.Tower.Model
 {
-    public class DataEnemyTower : IDataEnemy<IBeatle>
+    public class DataEnemyTower : IDataEnemy
     {
-        private List<IBeatle> _beatles = new List<IBeatle>();
+        private List<IEnemy> _beatles = new List<IEnemy>();
 
-        public IEnumerable<IBeatle> GetEnemies()
+        public IEnumerable<IEnemy> GetEnemies()
         {
            return _beatles;
         }
 
-        public void AddEnemy(IBeatle enemy)
+        public void AddEnemy(IEnemy enemy)
         {
             if (enemy is null)
                 throw new ArgumentNullException($"Argumet:{enemy} Null");
@@ -24,12 +24,12 @@ namespace RiftDefense.Edifice.Tower.Model
            _beatles.Add(enemy);
         }
 
-        public bool RemoveEnemy(IBeatle enemy)
+        public bool RemoveEnemy(IEnemy enemy)
         {
             return _beatles.Remove(enemy);
         }
 
-        public bool FindNearbyEnemyFromPosition(Vector3 position,out IBeatle enemu)
+        public bool FindNearbyEnemyFromPosition(Vector3 position,out IEnemy enemu)
         {
             enemu = null;
 

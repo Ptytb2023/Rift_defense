@@ -3,11 +3,11 @@ using UnityEngine;
 
 namespace RiftDefense.Generic.Interface
 {
-    public interface IDataEnemy<T> where T : IEnemy
+    public interface IDataEnemy 
     {
-        public IEnumerable<T> GetEnemies();
-        public void AddEnemy(T enemy);
-        public bool RemoveEnemy(T enemy);
-        public bool FindNearbyEnemyFromPosition(Vector3 position, out T enemu);
+        public IEnumerable<IEnemy> GetEnemies();
+        public void AddEnemy(IEnemy enemy);
+        public bool RemoveEnemy(IEnemy enemy);
+        public bool FindNearbyEnemyFromPosition(Vector3 position, out IEnemy enemu);
     }
 }

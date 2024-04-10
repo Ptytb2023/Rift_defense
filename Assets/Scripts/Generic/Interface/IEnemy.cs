@@ -5,7 +5,7 @@ namespace RiftDefense.Generic.Interface
 {
     public interface IEnemy : IDamageable
     {
-        public event Action Died;
+        public event Action Dead;
         public Vector3 GetPosition();
     }
 }

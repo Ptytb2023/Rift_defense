@@ -9,15 +9,12 @@ namespace RiftDefense.Edifice.Tower
     {
         private IPreviewTower _prewierTower;
         private ITargetSystem<IBeatle> _targetSystem;
-        private IAttackSystem<IBeatle> _attackSystem;
 
         protected BaseTower(IPreviewTower prewierTower,
-            ITargetSystem<IBeatle> targetSystem,
-            IAttackSystem<IBeatle> attackSystem)
+            ITargetSystem<IBeatle> targetSystem)
         {
             _prewierTower = prewierTower;
             _targetSystem = targetSystem;
-            _attackSystem = attackSystem;
         }
 
         protected virtual void OnEnable()
