@@ -1,9 +1,9 @@
 using RiftDefense.Generic.Interface;
-using Unity.VisualScripting;
+using System;
 
 namespace RiftDefense.FSM
 {
-    public abstract class BaseState : IActive
+    public abstract class BaseState : IActive, IDisposable
     {
         protected StateMachine StateMachine { get; private set; }
 
@@ -20,6 +20,14 @@ namespace RiftDefense.FSM
         public virtual void Enter() { }
         public virtual void Exit() { }
 
-        public abstract void SetActive(bool active);
+        public virtual void SetActive(bool active)
+        {
+            Enabel = active;
+        }
+
+        public void Dispose()
+        {
+            SetActive(false);
+        }
     }
 }

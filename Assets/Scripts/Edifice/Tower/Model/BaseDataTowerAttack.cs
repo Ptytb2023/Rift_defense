@@ -11,7 +11,7 @@ namespace RiftDefense.Edifice.Tower.Model
         [field: SerializeField] public int AmountAmmunition { get; private set; }
         [field: SerializeField] public float Damage { get; private set; }
         [field: SerializeField] public float RadiusAtack { get; private set; }
-        [field: SerializeField] public TimeSpan DelayBetweenSeatchTarget { get; private set; }
+        [field: SerializeField] public float DelayBetweenSeatchTarget { get; private set; }
         [field: SerializeField] public LayerMask Obstacle { get; private set; }
         [field: SerializeField] public bool ShootThroughObstacle { get; private set; }
     }

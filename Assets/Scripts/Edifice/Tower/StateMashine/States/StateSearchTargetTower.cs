@@ -1,15 +1,15 @@
-using RiftDefense.Beatle;
+using RiftDefense.Edifice.Tower.Model;
 using RiftDefense.Edifice.Tower.View;
 using RiftDefense.Generic.Interface;
-using RiftDefense.Edifice.Tower.Model;
+using RiftDefense.Beatle;
 using RiftDefense.FSM;
-using RiftDefense.Edifice.Tower.FSM;
-using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
+using System;
 
 
-namespace RiftDefense.Edifice.Tower
+namespace RiftDefense.Edifice.Tower.FSM
 {
-    public class StateSearchTargetTower : BaseState, IActive
+    public class StateSearchTargetTower : BaseState
     {
         private BaseTowerView _viewBaseTower;
         private ITargetSystem<IBeatle> _targetSystem;
@@ -30,6 +30,8 @@ namespace RiftDefense.Edifice.Tower
 
         public override void Enter()
         {
+            SetActive(true);
+
             var animator = _viewBaseTower.Animator;
             var modeSearch = _viewBaseTower.DataAnimator.ModeSearch;
             animator.Play(modeSearch);
@@ -46,20 +48,18 @@ namespace RiftDefense.Edifice.Tower
             SetActive(false);
         }
 
-        public async void Update()
+        private async void Update()
         {
             while (Enabel)
             {
                 if (_targetSystem.CheakTargetsInRadius())
                     StateMachine.SetState<BaseStateAttackTower>();
-
-                await Task.Delay(_dataAttack.DelayBetweenSeatchTarget);
+                else
+                {
+                    var deleay = TimeSpan.FromSeconds(_dataAttack.DelayBetweenSeatchTarget);
+                    await UniTask.Delay(deleay, DelayType.DeltaTime, PlayerLoopTiming.Update);
+                }
             }
-        }
-
-        public override void SetActive(bool active)
-        {
-            Enabel = active;
         }
     }
 }

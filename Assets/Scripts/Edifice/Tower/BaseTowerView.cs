@@ -21,7 +21,6 @@ namespace RiftDefense.Edifice.Tower.View
 
         public event Action Dead;
 
-        protected abstract void UpdateView();
         public abstract void PreviewAtack(IEnemy enemy);
 
         public void ApplyDamage(float damage)
@@ -33,11 +32,5 @@ namespace RiftDefense.Edifice.Tower.View
         {
             return transform.position;
         }
-
-        private void Update()
-        {
-            UpdateView();
-        }
-
     }
 }
