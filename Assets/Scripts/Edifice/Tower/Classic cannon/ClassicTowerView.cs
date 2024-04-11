@@ -20,7 +20,7 @@ namespace RiftDefense.Edifice.Tower
         private TargetSystem<IBeatle> _targetSystem;
         private AttackSystemClassic _attackSystem;
 
-        private DataEnemyTower _dataEnemu;
+        private DataEnemy _dataEnemu;
 
         private void Start()
         {
@@ -34,7 +34,7 @@ namespace RiftDefense.Edifice.Tower
             _hadlerSeatch.Init(DataAtack.RadiusAtack);
 
             _searchBeatle = new SearchEnemyFromCollider<IBeatle>(_hadlerSeatch);
-            _dataEnemu = new DataEnemyTower();
+            _dataEnemu = new DataEnemy();
             _targetSystem = new TargetSystem<IBeatle>(_dataEnemu, _searchBeatle, transform);
             _attackSystem = new AttackSystemClassic(DataAtack);
 

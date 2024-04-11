@@ -1,10 +1,15 @@
-﻿namespace RiftDefense.Generic.Interface
+﻿using System;
+
+namespace RiftDefense.Generic.Interface
 {
     public interface IDataHealf : IDamageable
     {
-        float CurrentHealf { get; }
-        float MaxHealf { get; }
+        public event Action<float> CheangeHealf;
+        public event Action Dead;
 
-        void ResetDataHealf();
+        public float CurrentHealf { get; }
+        public float MaxHealf { get; }
+
+        public void ResetDataHealf();
     }
 }

@@ -9,7 +9,8 @@ namespace RiftDefense.Generic
     {
         [field: SerializeField] public float MaxHealf { get; private set; }
 
-        public Action<float> ChenageHealf;
+        public event Action<float> CheangeHealf;
+        public event Action Dead;
 
         private float _currentHealf;
 
@@ -18,17 +19,20 @@ namespace RiftDefense.Generic
         public void ApplyDamage(float damage)
         {
             if (damage > _currentHealf)
+            {
                 _currentHealf = 0f;
+                Dead?.Invoke();
+            }
             else
                 _currentHealf -= damage;
 
-            ChenageHealf?.Invoke(_currentHealf);
+            CheangeHealf?.Invoke(_currentHealf);
         }
 
         public void ResetDataHealf()
         {
             _currentHealf = MaxHealf;
-            ChenageHealf?.Invoke(_currentHealf);
+            CheangeHealf?.Invoke(_currentHealf);
         }
     }
 }

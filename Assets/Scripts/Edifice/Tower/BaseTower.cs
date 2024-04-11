@@ -1,28 +1,26 @@
 using RiftDefense.Generic;
-using RiftDefense.Generic.Interface;
 using RiftDefense.Beatle;
 using System;
+using UnityEngine;
+using RiftDefense.Edifice.Tower.View;
 
 namespace RiftDefense.Edifice.Tower
 {
-    public abstract class BaseTower : IActive, IDisposable
+    [RequireComponent(typeof(BaseTowerView))]
+    public abstract class BaseTower : MonoBehaviour, ITower
     {
-        private IPreviewTower _prewierTower;
+        private BaseTowerView _viewBaseTower;
+
         private ITargetSystem<IBeatle> _targetSystem;
 
-        protected BaseTower(IPreviewTower prewierTower,
-            ITargetSystem<IBeatle> targetSystem)
-        {
-            _prewierTower = prewierTower;
-            _targetSystem = targetSystem;
-        }
+        protected IBeatle CurentTarget { get; private set; }
+
+        public event Action Dead;
 
         protected virtual void OnEnable()
         {
             _targetSystem.TargetDiscovered += OnTargetDiscovered;
             _targetSystem.TargetLost += OnTargetLost;
-
-            _attackSystem.OnAttack += ShowAttack;
         }
 
         protected virtual void OnDisable()
@@ -30,26 +28,18 @@ namespace RiftDefense.Edifice.Tower
             _targetSystem.TargetDiscovered -= OnTargetDiscovered;
             _targetSystem.TargetLost -= OnTargetLost;
 
-            _attackSystem.OnAttack -= ShowAttack;
         }
 
-        private void OnTargetDiscovered(IBeatle target) => _attackSystem.StartAttackTarget(target);
-        private void OnTargetLost() => _attackSystem.StopAttackTarget();
-
-        private void ShowAttack(IBeatle beatle) => _prewierTower.PreviewAtack(beatle);
+        private void OnTargetDiscovered(IBeatle target) => CurentTarget = target;
+        private void OnTargetLost() => CurentTarget = null;
 
 
-        public void SetActive(bool active)
+        public Vector3 GetPosition() => transform.position;
+
+
+        public void ApplyDamage(float damage)
         {
-            if (active)
-                OnEnable();
-            else
-                OnDisable();
-        }
-
-        public void Dispose()
-        {
-            SetActive(false);
+            _viewBaseTower.DataHealf.ApplyDamage(damage);
         }
     }
 }

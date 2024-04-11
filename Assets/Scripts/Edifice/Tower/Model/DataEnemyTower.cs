@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace RiftDefense.Edifice.Tower.Model
 {
-    public class DataEnemyTower : IDataEnemy
+    public class DataEnemy : IDataEnemy
     {
         private List<IEnemy> _beatles = new List<IEnemy>();
 
@@ -32,6 +32,9 @@ namespace RiftDefense.Edifice.Tower.Model
         public bool FindNearbyEnemyFromPosition(Vector3 position,out IEnemy enemu)
         {
             enemu = null;
+
+            if (_beatles.Count==0) 
+                return false;
 
             float squaredClosestDistance = Mathf.Infinity;
 
