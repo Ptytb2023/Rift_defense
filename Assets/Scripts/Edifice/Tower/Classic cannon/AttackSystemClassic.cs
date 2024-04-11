@@ -7,13 +7,13 @@ namespace RiftDefense.Edifice.Tower
 {
     public class AttackSystemClassic : IAttackSystem<IBeatle>
     {
-        private DataTowerAtack _data;
+        private BaseDataTowerAttack _data;
 
         public event Action<IBeatle> OnAttack;
 
-        private float _damage => _data.DamageOneHit;
+        private float _damage => _data.Damage;
 
-        public AttackSystemClassic(DataTowerAtack data)
+        public AttackSystemClassic(BaseDataTowerAttack data)
         {
             _data = data;
         }

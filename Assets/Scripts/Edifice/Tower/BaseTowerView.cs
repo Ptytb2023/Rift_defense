@@ -6,19 +6,23 @@ using UnityEngine;
 
 namespace RiftDefense.Edifice.Tower.View
 {
+    [RequireComponent(typeof(Animator))]
     public abstract class BaseTowerView : MonoBehaviour, ITower, IPreviewTower
     {
-        [SerializeField] private DataTowerAtack _dataTowerAtack;
+        [SerializeField] private BaseDataTowerAttack _dataTowerAtack;
         [SerializeField] private DataHealf _dataHealf;
+        [SerializeField] private DataAnimator _dataAnimator;
 
         public DataHealf DataHealf => _dataHealf;
-        public DataTowerAtack DataAtack => _dataTowerAtack;
+        public BaseDataTowerAttack DataAtack => _dataTowerAtack;
+        public DataAnimator DataAnimator => _dataAnimator;
+
+        public Animator Animator { get; private set; }
 
         public event Action Dead;
 
         protected abstract void UpdateView();
         public abstract void PreviewAtack(IEnemy enemy);
-
 
         public void ApplyDamage(float damage)
         {
@@ -34,6 +38,6 @@ namespace RiftDefense.Edifice.Tower.View
         {
             UpdateView();
         }
-               
+
     }
 }

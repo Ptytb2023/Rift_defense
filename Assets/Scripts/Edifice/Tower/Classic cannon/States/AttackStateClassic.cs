@@ -12,7 +12,7 @@ public class AttackStateClassic : BaseState
     {
     }
     private BaseState _nextState;
-    private DataTowerAtack _data;
+    private BaseDataTowerAttack _data;
 
     private ITargetSystem<IBeatle> _targetSystem;
     private IAttackSystem<IBeatle> _attackSystem;

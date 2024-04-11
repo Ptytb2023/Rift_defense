@@ -6,7 +6,7 @@ using RiftDefense.Generic;
 
 namespace RiftDefense.Edifice.Tower
 {
-    public class ClassiTower : BaseTower
+    public class ClassiTower : StateSearchTargetTower
     {
         public ClassiTower(
             BaseTowerView  prewierTower, 

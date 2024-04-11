@@ -1,16 +1,25 @@
+using RiftDefense.Generic.Interface;
+using Unity.VisualScripting;
+
 namespace RiftDefense.FSM
 {
-    public abstract class BaseState
+    public abstract class BaseState : IActive
     {
-        protected StateMachine StateMashine;
+        protected StateMachine StateMachine { get; private set; }
 
-        public BaseState(StateMachine stateMashine)
+        public bool Enabel { get; protected set; }
+
+        protected BaseState NextState;
+
+        public BaseState(StateMachine stateMachine, BaseState nextState)
         {
-            StateMashine = stateMashine;
+            StateMachine = stateMachine;
+            NextState = nextState;
         }
-      
+
         public virtual void Enter() { }
         public virtual void Exit() { }
-        public virtual void Update() { }
+
+        public abstract void SetActive(bool active);
     }
 }
