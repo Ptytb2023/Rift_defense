@@ -1,29 +1,42 @@
+using RiftDefense.Generic.Interface;
 using System;
 using System.Collections.Generic;
 
 namespace RiftDefense.FSM
 {
-    public abstract class StateMachine
+    public class StateMachine : IActive
     {
-        protected Dictionary<Type, BaseState> State;
+        protected HashSet<BaseState> States;
+        protected BaseState StartState;
 
         public BaseState CurrentState { get; private set; }
 
-        public void SetState<T>() where T : BaseState
+        public bool Enabel { get; private set; }
+
+        public void SetActive(bool active)
         {
-            var type = typeof(T);
+            Enabel = active;
 
-            if (CurrentState.GetType() == type)
-                throw new Exception($"{type}, Already enabel");
+            if (active)
+                SetState(StartState);
+            else
+                CurrentState?.Exit();
 
-            if (State.TryGetValue(type, out BaseState baseState))
+        }
+
+        public void SetState(BaseState state)
+        {
+            if (CurrentState == state)
+                throw new Exception($"{state}, Already enabel");
+
+            if (States.TryGetValue(state, out var newState))
             {
                 CurrentState?.Exit();
-                CurrentState = baseState;
+                CurrentState = newState;
                 CurrentState.Enter();
             }
             else
-                throw new ArgumentException($"{type}, Not included in the dictionary: {CurrentState}");
+                throw new ArgumentException($"{state}, Not included in the dictionary: {CurrentState}");
         }
     }
 }

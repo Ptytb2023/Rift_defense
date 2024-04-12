@@ -9,20 +9,18 @@ using System;
 
 namespace RiftDefense.Edifice.Tower.FSM
 {
-    public class StateSearchTargetTower : BaseState
+    public class StateSearchTargetTower : BaseState, IStateSearchTargetTower
     {
         private BaseTowerView _viewBaseTower;
         private ITargetSystem<IBeatle> _targetSystem;
 
         private BaseDataTowerAttack _dataAttack => _viewBaseTower.DataAtack;
 
-        protected StateSearchTargetTower(StateMachineTower stateMachine,
-                                         BaseStateAttackTower nextState,
+        public StateSearchTargetTower(StateMachine stateMachine,
                                          BaseTowerView viewBaseTower,
                                          ITargetSystem<IBeatle> targetSystem)
-            : base(stateMachine, nextState)
+            : base(stateMachine)
         {
-            NextState = nextState;
             _viewBaseTower = viewBaseTower;
             _targetSystem = targetSystem;
         }
@@ -34,7 +32,7 @@ namespace RiftDefense.Edifice.Tower.FSM
 
             var animator = _viewBaseTower.Animator;
             var modeSearch = _viewBaseTower.DataAnimator.ModeSearch;
-            animator.Play(modeSearch);
+            //  animator.Play(modeSearch);
 
             Update();
         }
@@ -43,7 +41,7 @@ namespace RiftDefense.Edifice.Tower.FSM
         {
             var animator = _viewBaseTower.Animator;
             var Idel = _viewBaseTower.DataAnimator.Idel;
-            animator.Play(Idel);
+            // animator.Play(Idel);
 
             SetActive(false);
         }
@@ -53,7 +51,7 @@ namespace RiftDefense.Edifice.Tower.FSM
             while (Enabel)
             {
                 if (_targetSystem.CheakTargetsInRadius())
-                    StateMachine.SetState<BaseStateAttackTower>();
+                    GoOverNextOrExitState();
                 else
                 {
                     var deleay = TimeSpan.FromSeconds(_dataAttack.DelayBetweenSeatchTarget);

@@ -2,6 +2,7 @@ using RiftDefense.Edifice.Tower.Model;
 using RiftDefense.Generic;
 using RiftDefense.Generic.Interface;
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace RiftDefense.Edifice.Tower.View
@@ -19,7 +20,9 @@ namespace RiftDefense.Edifice.Tower.View
 
         public Animator Animator { get; private set; }
 
-        public event Action Dead;
+        public bool Enabel => gameObject.activeSelf;
+
+        public event Action<IEnemy> Dead;
 
         public abstract void PreviewAtack(IEnemy enemy);
 
@@ -31,6 +34,21 @@ namespace RiftDefense.Edifice.Tower.View
         public Vector3 GetPosition()
         {
             return transform.position;
+        }
+
+        protected virtual void OnEnable()
+        {
+            _dataHealf.ResetDataHealf();
+            _dataHealf.Dead += OnDead;
+        }
+        protected virtual void OnDisable()
+        {
+            _dataHealf.Dead -= OnDead;
+        }
+
+        private void OnDead()
+        {
+            gameObject.SetActive(false);
         }
     }
 }

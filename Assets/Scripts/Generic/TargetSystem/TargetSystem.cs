@@ -46,7 +46,7 @@ namespace RiftDefense.Generic
 
         public bool TryGetAllTargetsInRadius(out List<T> targets)
         {
-            targets = null;
+            targets = new List<T>();
 
             TrySearchTargetInRadius();
 
@@ -56,7 +56,7 @@ namespace RiftDefense.Generic
                     targets.Add(enemy);
             }
 
-            return targets != null;
+            return targets.Count > 0;
         }
 
         private bool TrySearchTargetInRadius()
@@ -76,12 +76,12 @@ namespace RiftDefense.Generic
             foreach (var enemy in enemys)
             {
                 Vector3 directionToTarget = pointPosition - enemy.GetPosition();
-                float squaredMagnitudeToTarget = directionToTarget.sqrMagnitude;
+                float squaredDirection = directionToTarget.sqrMagnitude;
 
-                if (squaredClosestDistance < squaredMagnitudeToTarget)
+                if (squaredDirection < squaredClosestDistance)
                 {
                     closestEnemy = enemy;
-                    squaredClosestDistance = squaredMagnitudeToTarget;
+                    squaredClosestDistance = squaredDirection;
                 }
             }
 

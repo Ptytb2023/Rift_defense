@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3051188556059168023}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -182,7 +182,7 @@ GameObject:
   - component: {fileID: 6258347396926444799}
   - component: {fileID: 1093601332888903126}
   - component: {fileID: 7343308540658351928}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -197,7 +197,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1754431462303816223}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -271,7 +271,7 @@ GameObject:
   - component: {fileID: 9173906298798261147}
   - component: {fileID: 5620452107402068843}
   - component: {fileID: 5429918439131572139}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Cube.010
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -402,10 +402,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8377595655841536742}
-  - component: {fileID: 8551664909897285030}
-  - component: {fileID: 580829260716055537}
-  - component: {fileID: 291849525270153416}
-  m_Layer: 7
+  - component: {fileID: 238022477116156578}
+  - component: {fileID: 4206831081878122935}
+  - component: {fileID: 503952017842329127}
+  m_Layer: 8
   m_Name: EdifaceFirsObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -428,7 +428,28 @@ Transform:
   - {fileID: 7716193965009342546}
   m_Father: {fileID: 8442114811536212531}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8551664909897285030
+--- !u!95 &238022477116156578
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4788329658414552206}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4206831081878122935
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -437,24 +458,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 4788329658414552206}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d14e7cebd1debce4980a778e23ba16d5, type: 3}
+  m_Script: {fileID: 11500000, guid: af9487bf7a3b20942bb6c5e24eea5eea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _dataTowerAtack:
-    <DelayBetweenShots>k__BackingField: 0.2
+    <DelayBetweenShots>k__BackingField: 0.5
     <TimeReload>k__BackingField: 5
-    <AmountAmmunition>k__BackingField: 100000
-    <DamageOneHit>k__BackingField: 10
-    <RadiusAtack>k__BackingField: 2
+    <AmountAmmunition>k__BackingField: 20
+    <Damage>k__BackingField: 4
+    <RadiusAtack>k__BackingField: 30
+    <DelayBetweenSeatchTarget>k__BackingField: 0.2
+    <EnemyMask>k__BackingField:
+      serializedVersion: 2
+      m_Bits: 128
     <Obstacle>k__BackingField:
       serializedVersion: 2
       m_Bits: 0
-    <IgnoreObstacle>k__BackingField: 0
+    <ShootThroughObstacle>k__BackingField: 0
   _dataHealf:
     <MaxHealf>k__BackingField: 100
+  _speedLookAtTarget: 1
   _head: {fileID: 6258347396926444799}
---- !u!135 &580829260716055537
-SphereCollider:
+  _pointShoot: {fileID: 6258347396926444799}
+  _shootEfect: {fileID: 0}
+--- !u!65 &503952017842329127
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -472,20 +500,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &291849525270153416
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4788329658414552206}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d489bc094807f064e8c5c54d3c2f9190, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Size: {x: 0.4, y: 0.44, z: 0.18}
+  m_Center: {x: 0, y: 0.26, z: 0}
 --- !u!1 &6086286299933710745
 GameObject:
   m_ObjectHideFlags: 0
@@ -614,7 +630,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7716193965009342546}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: EdifaceFirst
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -649,7 +665,7 @@ GameObject:
   - component: {fileID: 7715537953919050807}
   - component: {fileID: 2587072478806023294}
   - component: {fileID: 5563468307844407903}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}

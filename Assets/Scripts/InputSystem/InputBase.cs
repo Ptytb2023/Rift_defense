@@ -9,6 +9,8 @@ namespace RiftDefense.InputSustem
     {
         protected InputMap InputMap;
 
+        public bool Enabel { get; private set; }
+
         [Inject]
         public InputBase(InputMap inputMap)
         {
@@ -21,6 +23,8 @@ namespace RiftDefense.InputSustem
 
         public void SetActive(bool active)
         {
+            Enabel = active;
+
             if (active)
                 Enable();
             else

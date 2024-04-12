@@ -1,5 +1,6 @@
 using Cysharp.Threading.Tasks;
 using RiftDefense.Beatle;
+using RiftDefense.Edifice.Tower.View;
 using RiftDefense.FSM;
 using RiftDefense.Generic.Interface;
 using System;
@@ -9,21 +10,19 @@ namespace RiftDefense.Edifice.Tower.FSM
 {
     public abstract class BaseStateAttackTower : BaseState
     {
-        private StateSearchTargetTower _stateSearch;
+        protected BaseTowerView TowerView;
         private ITargetSystem<IBeatle> _targetSystem;
 
         protected IBeatle CurrentTarget;
 
-
-        public BaseStateAttackTower(StateMachineTower stateMashine,
-                                    StateSearchTargetTower stateSearch,
+        public BaseStateAttackTower(StateMachine stateMashine,
+                                    BaseTowerView baseTowerView,
                                     ITargetSystem<IBeatle> targetSystem)
-            : base(stateMashine, stateSearch)
+            : base(stateMashine)
         {
-            _stateSearch = stateSearch;
+            TowerView = baseTowerView;
             _targetSystem = targetSystem;
         }
-
 
         protected abstract Task PerfomAttack();
 
@@ -31,7 +30,8 @@ namespace RiftDefense.Edifice.Tower.FSM
         {
             SetActive(true);
 
-            TrySetTargetOrNextState();
+            if (TrySetTargetOrNextState())
+                DelayBetweenShoots();
         }
 
         public override void Exit()
@@ -39,10 +39,16 @@ namespace RiftDefense.Edifice.Tower.FSM
             SetActive(false);
         }
 
-        protected virtual async bool Reload()
-        {
-            // if (_currentTarget == null)
 
+        private async void DelayBetweenShoots()
+        {
+            while (Enabel)
+            {
+                await PerfomAttack();
+
+                float secodDelay = TowerView.DataAtack.DelayBetweenShots;
+                await PerformDelay(secodDelay);
+            }
         }
 
         protected async Task PerformDelay(float second)
@@ -52,15 +58,23 @@ namespace RiftDefense.Edifice.Tower.FSM
         }
 
 
-        private void TrySetTargetOrNextState()
+        protected bool TrySetTargetOrNextState()
         {
             if (_targetSystem.TryGetClosestTargetInRadius(out IBeatle beatle))
             {
                 CurrentTarget = beatle;
-                return;
+                CurrentTarget.Dead += TargetDied;
+                return true;
             }
 
-            StateMachine.SetState<StateSearchTargetTower>();
+            GoOverNextOrExitState();
+            return false;
+        }
+
+        private void TargetDied(IEnemy enemy)
+        {
+            CurrentTarget.Dead -= TargetDied;
+            TrySetTargetOrNextState();
         }
     }
 }
