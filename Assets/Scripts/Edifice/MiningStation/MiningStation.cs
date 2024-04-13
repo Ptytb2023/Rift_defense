@@ -13,7 +13,7 @@ namespace RiftDefense.Edifice.Mining
 
         private MiningSystem _miningSystem;
 
-        public bool Enabel => enabled;
+        public bool Enabel => gameObject.activeSelf;
         public event Action<IEnemy> Dead;
 
         private void Awake() => _miningSystem = GetComponent<MiningSystem>();

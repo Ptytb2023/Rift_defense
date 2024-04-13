@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd6f667de02ec1d408f4df6ddb7ccf36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <PriceEdifice>k__BackingField: 20
+  <PriceEdifice>k__BackingField: 5
   _placementObject: {fileID: 3773191152734197313}
   _postedObject: {fileID: 8576251277028385517}
   _previewMaterialForEdifice: {fileID: 2100000, guid: 9daf944eb1dd9d64fa1bcf0873fd4757,
