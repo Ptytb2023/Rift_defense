@@ -1,6 +1,7 @@
 using RiftDefense.InputSustem;
 using RiftDefense.PlacmentSystem.Model;
 using RiftDefense.PlacmentSystem.Presenter;
+using RiftDefense.Player.Container;
 using UnityEngine;
 using Zenject;
 
@@ -8,6 +9,9 @@ namespace RiftDefense.PlacmentSystem.View
 {
     public class PlacmentSystemView : MonoBehaviour
     {
+        [SerializeField]
+        private ContainerPolymers _containerPolymers;
+
         [Space]
         [SerializeField] private DataCursor _dataCursor;
 
@@ -40,7 +44,7 @@ namespace RiftDefense.PlacmentSystem.View
             _gridData = new GridData();
 
             _removeState = new RemovePlacementState(GridData);
-            _creatState = new CreatePlacementState(GridData, PlacmentSystemData.Grid);
+            _creatState = new CreatePlacementState(GridData, PlacmentSystemData.Grid, _containerPolymers);
         }
 
         public IPlacementState GetPlacementState(TypePlacement type)

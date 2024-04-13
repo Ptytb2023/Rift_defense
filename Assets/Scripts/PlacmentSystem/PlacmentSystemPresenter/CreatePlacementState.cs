@@ -1,4 +1,5 @@
 using RiftDefense.Edifice;
+using RiftDefense.Player.Container;
 using UnityEngine;
 
 namespace RiftDefense.PlacmentSystem.Presenter
@@ -7,19 +8,25 @@ namespace RiftDefense.PlacmentSystem.Presenter
     {
         private Grid _grid;
         private GridData _gridData;
+        private ContainerPolymers _containerPolymers;
 
-        public CreatePlacementState(GridData gridData, Grid grid)
+        public CreatePlacementState(GridData gridData, Grid grid, ContainerPolymers containerPolymers)
         {
             _gridData = gridData;
             _grid = grid;
+            _containerPolymers = containerPolymers;
         }
 
         public void OnAction(Vector3Int gridPosition, EdificePlacmentMainView edifice)
         {
-            bool Freely = _gridData.CanPlaceObjectAt(gridPosition) && edifice is not null;
+            bool Freely = !_gridData.CanPlaceObjectAt(gridPosition) && edifice is not null;
 
-            if (!Freely)
+            if (Freely)
                 return;
+
+            if (!_containerPolymers.TryTakePolymers(edifice.PriceEdifice))
+                return;
+
 
             var spawnPosition = _grid.CellToWorld(gridPosition);
 

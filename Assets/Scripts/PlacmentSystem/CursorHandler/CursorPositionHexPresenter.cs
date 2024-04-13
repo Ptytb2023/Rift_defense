@@ -24,6 +24,18 @@ namespace RiftDefense.PlacmentSystem.Presenter
             _inputPlacement = inputPlacement;
         }
 
+        public bool ChangedPosition(Grid grid)
+        {
+            Vector3 mousePosition = GetSelectedMapPosition();
+            Vector3Int gridPosition = grid.WorldToCell(mousePosition);
+
+            if (_lastPositionTileMap == gridPosition)
+                return false;
+
+            return true;
+
+        }
+
         public Vector3 GetSelectedMapPosition()
         {
             var mousePosition = Input.mousePosition;

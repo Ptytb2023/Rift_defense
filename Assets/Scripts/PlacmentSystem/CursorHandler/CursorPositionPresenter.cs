@@ -41,5 +41,10 @@ namespace RiftDefense.PlacmentSystem.Presenter
 
             return gridPosition;
         }
+
+        public bool ChangedPosition(Grid grid)
+        {
+            return false;
+        }
     }
 }

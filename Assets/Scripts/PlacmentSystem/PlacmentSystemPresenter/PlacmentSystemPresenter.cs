@@ -63,6 +63,9 @@ namespace RiftDefense.PlacmentSystem.Presenter
 
         private void PlaceStructure()
         {
+            if (_cursorPositionPresenter.ChangedPosition(_grid))
+                return;
+
             Vector3Int gridPosition = _cursorPositionPresenter.GetSelectedGridPosition(_grid);
 
             _currentState.OnAction(gridPosition, _currentEdifice);

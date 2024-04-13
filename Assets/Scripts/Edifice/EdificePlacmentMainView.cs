@@ -4,6 +4,8 @@ namespace RiftDefense.Edifice
 {
     public class EdificePlacmentMainView : MonoBehaviour
     {
+        [field:SerializeField] public int PriceEdifice { get; private set; }
+
         [SerializeField] private PlacementEdifice _placementObject;
         [SerializeField] private GameObject _postedObject;
 
