@@ -12,7 +12,7 @@ namespace RiftDefense.PlacmentSystem.Presenter
             _gridData = gridData;
         }
 
-        public void OnAction(Vector3Int gridPosition, EdificePlacmentMainView edifice)
+        public void OnAction(Vector3Int gridPosition, SystemEdificeView edifice)
         {
             bool isRemove = _gridData.CanPlaceObjectAt(gridPosition);
 

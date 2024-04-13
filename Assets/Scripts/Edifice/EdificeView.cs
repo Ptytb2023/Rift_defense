@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlacementEdifice : MonoBehaviour
+public class EdificeView : MonoBehaviour
 {
     public void Init(Material material)
     {

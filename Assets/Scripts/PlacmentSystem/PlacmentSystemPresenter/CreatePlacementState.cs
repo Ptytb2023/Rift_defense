@@ -17,14 +17,14 @@ namespace RiftDefense.PlacmentSystem.Presenter
             _containerPolymers = containerPolymers;
         }
 
-        public void OnAction(Vector3Int gridPosition, EdificePlacmentMainView edifice)
+        public void OnAction(Vector3Int gridPosition, SystemEdificeView edifice)
         {
             bool Freely = !_gridData.CanPlaceObjectAt(gridPosition) && edifice is not null;
 
             if (Freely)
                 return;
 
-            if (!_containerPolymers.TryTakePolymers(edifice.PriceEdifice))
+            if (!_containerPolymers.TryTakePolymers(edifice.DataEdiface.PricesBuy))
                 return;
 
 
