@@ -21,7 +21,7 @@ namespace RiftDefense.Beatle
 
         public void PrewiewAtack()
         {
-            _animator.Play(DataAnimationBeatle.Attack);
+            _animator.SetTrigger(DataAnimationBeatle.Attack);
         }
 
         public void ShowDead()
