@@ -4,16 +4,15 @@ namespace RiftDefense.Edifice
 {
     public class SystemEdificeView : MonoBehaviour
     {
-       [SerializeField] public DataEdiface DataEdiface { get; private set; }
+       [field:SerializeField] public DataEdiface DataEdiface { get; private set; }
 
-        public Material PreviewMaterialInstaler { get; private set; }
+        public Material PreviewMaterial => DataEdiface.PreviewMaterialForEdifice;
 
         private EdificeView _objectViewToPlaced => DataEdiface.ObjectViewToPlaced;
 
         private void Start()
         {
-            PreviewMaterialInstaler = new Material(DataEdiface.PreviewMaterialForEdifice);
-            _objectViewToPlaced.Init(PreviewMaterialInstaler);
+            _objectViewToPlaced.Init(PreviewMaterial);
         }
 
         private void OnEnable()

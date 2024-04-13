@@ -28,6 +28,7 @@ namespace RiftDefense.PlacmentSystem.Presenter
 
         private Grid _grid => _placmentSystemView.PlacmentSystemData.Grid;
 
+       
 
         private void Start()
         {

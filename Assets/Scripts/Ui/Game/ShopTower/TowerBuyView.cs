@@ -23,10 +23,10 @@ namespace RiftDefense.UI.Shopping
             _edifice = edifice;
 
             var icon = edifice.DataEdiface.IconForShop;
-            var prive = edifice.DataEdiface.PricesBuy;
+            var price = edifice.DataEdiface.PricesBuy;
             var description = edifice.DataEdiface.Description;
 
-            _labelPrice.text = description;
+            _labelPrice.text = price.ToString();
             _labelDescription.text = description;
             _iconTower.sprite = icon;
         }

@@ -46,7 +46,7 @@ namespace RiftDefense.PlacmentSystem.Presenter
                 positionWorld.y += _previewYOffset;
                 _previewObject.transform.position = positionWorld;
 
-                ApplyFeedbackToPreview(validity, _previewObject.PreviewMaterialInstaler);
+                ApplyFeedbackToPreview(validity, _previewObject.PreviewMaterial);
             }
         }
 

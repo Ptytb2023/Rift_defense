@@ -130,7 +130,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8442114811536212531}
-  - component: {fileID: 7443256236946597006}
+  - component: {fileID: 4775497786787989980}
   m_Layer: 0
   m_Name: EdifaceFirstPrewiev
   m_TagString: Untagged
@@ -147,7 +147,7 @@ Transform:
   m_GameObject: {fileID: 712798501310904539}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 12.358501, y: 0.2, z: -5.198906}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -155,7 +155,7 @@ Transform:
   - {fileID: 8377595655841536742}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7443256236946597006
+--- !u!114 &4775497786787989980
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -164,14 +164,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 712798501310904539}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd6f667de02ec1d408f4df6ddb7ccf36, type: 3}
+  m_Script: {fileID: 11500000, guid: 28116f81b7c7b5a448d9806c5faf908a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <PriceEdifice>k__BackingField: 40
-  _placementObject: {fileID: 3993112165145891748}
-  _postedObject: {fileID: 4788329658414552206}
-  _previewMaterialForEdifice: {fileID: 2100000, guid: 9daf944eb1dd9d64fa1bcf0873fd4757,
-    type: 2}
+  <DataEdiface>k__BackingField:
+    <IconForShop>k__BackingField: {fileID: 10911, guid: 0000000000000000f000000000000000,
+      type: 0}
+    <Description>k__BackingField: "\u041E\u0431\u043E\u0440\u043E\u043D\u0438\u0442\u0435\u043B\u044C\u043D\u043E\u0435
+      \u0441\u043E\u043E\u0440\u0443\u0436\u0435\u043D\u0438\u0435"
+    <PricesBuy>k__BackingField: 60
+    <ObjectViewToPlaced>k__BackingField: {fileID: 3993112165145891748}
+    <ObjectToPlacedPrefab>k__BackingField: {fileID: 4788329658414552206}
+    <PreviewMaterialForEdifice>k__BackingField: {fileID: 2100000, guid: 9daf944eb1dd9d64fa1bcf0873fd4757,
+      type: 2}
 --- !u!1 &1754431462303816223
 GameObject:
   m_ObjectHideFlags: 0
