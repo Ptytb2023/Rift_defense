@@ -47,6 +47,7 @@ public class ClassicTowerStateAttack : BaseStateAttackTower
     private async Task Reload()
     {
         float timeReload = TowerView.DataAtack.TimeReload;
+        _currentAmount = _maxAmout;
         await PerformDelay(timeReload);
     }
 

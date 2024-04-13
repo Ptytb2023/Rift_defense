@@ -46,7 +46,7 @@ public class ClassicTowerView : BaseTowerView
         if (active)
         {
             StopLooking();
-            _looking = StartCoroutine(LookTarget(beatle));
+            _looking = StartCoroutine(LookAtTarget(beatle));
         }
         else
             StopLooking();
@@ -59,7 +59,7 @@ public class ClassicTowerView : BaseTowerView
             StopCoroutine(_looking);
     }
 
-    private IEnumerator LookTarget(IBeatle beatle)
+    private IEnumerator LookAtTarget(IBeatle beatle)
     {
         while (enabled)
         {
