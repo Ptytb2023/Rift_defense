@@ -9,6 +9,7 @@ namespace RiftDefense.Player.Container
         public int AmountPolymer { get; private set; }
 
         public event Action<int> ChangeAmoutPolymer;
+        public event Action NotAmoutPolymer;
 
         public void AddPolymers(int count)
         {
@@ -33,8 +34,12 @@ namespace RiftDefense.Player.Container
             if (count < 0)
                 throw new ArgumentOutOfRangeException(nameof(count));
 
+
             if (count > AmountPolymer)
+            {
+                NotAmoutPolymer?.Invoke();
                 return false;
+            }
 
             AmountPolymer -= count;
             ChangeAmoutPolymer?.Invoke(AmountPolymer);

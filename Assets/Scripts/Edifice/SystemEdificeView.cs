@@ -1,3 +1,4 @@
+using Lean.Pool;
 using UnityEngine;
 
 namespace RiftDefense.Edifice
@@ -29,7 +30,7 @@ namespace RiftDefense.Edifice
         {
             var prefab = DataEdiface.ObjectToPlacedPrefab;
 
-            var gameObject = Instantiate(prefab);
+            var gameObject = LeanPool.Spawn(prefab, position, Quaternion.identity);
             gameObject.transform.position = position;
             return gameObject;
         }

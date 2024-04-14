@@ -17,6 +17,11 @@ public class MiningSystem : MonoBehaviour
 
     private Coroutine _coroutine;
 
+    private void Start()
+    {
+        _containerPolymers.AddPolymers(_startingAmountPolymer);
+    }
+
     public void SetExtractionInSecond(int countExtraction)
     {
         if (countExtraction < 0)
@@ -39,7 +44,6 @@ public class MiningSystem : MonoBehaviour
 
     private IEnumerator GetResource()
     {
-
         while (enabled)
         {
             var second = UnityEngine.Random.Range(_miningTime, _rangeTimeMining);

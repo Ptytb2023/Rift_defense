@@ -468,10 +468,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dataTowerAtack:
-    <DelayBetweenShots>k__BackingField: 0.5
-    <TimeReload>k__BackingField: 5
-    <AmountAmmunition>k__BackingField: 20
-    <Damage>k__BackingField: 4
+    <DelayBetweenShots>k__BackingField: 0.29
+    <TimeReload>k__BackingField: 1
+    <AmountAmmunition>k__BackingField: 245
+    <Damage>k__BackingField: 21.26
     <RadiusAtack>k__BackingField: 30
     <DelayBetweenSeatchTarget>k__BackingField: 0.2
     <EnemyMask>k__BackingField:
