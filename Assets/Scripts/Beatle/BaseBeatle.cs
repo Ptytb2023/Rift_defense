@@ -47,7 +47,7 @@ namespace RiftDefense.Beatle
         {
             var delay = BeatleView.DataAttackBeatle.DelayBetweenSearch;
 
-            while (CurrentTarget == _mainTower && enabled)
+            while (CurrentTarget == _mainTower && gameObject.activeSelf)
             {
                 if (TrySetNewTarget())
                     UpdateMove();
@@ -62,7 +62,7 @@ namespace RiftDefense.Beatle
             var navMeshAgent = BeatleView.DataMoveBeatle.NavMeshAgent;
             float distacneAttackSqr = Mathf.Pow(BeatleView.DataAttackBeatle.AttackDistance, 2);
 
-            while (isActive && enabled)
+            while (isActive && gameObject.activeSelf)
             {
                 if (GetSqrDistanceToTarget() <= distacneAttackSqr)
                 {
