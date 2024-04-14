@@ -21,13 +21,14 @@ namespace RiftDefense.PlacmentSystem.Presenter
         private IPlacementState _currentState;
 
 
-        private EdificePlacmentMainView _currentEdifice;
+        private SystemEdificeView _currentEdifice;
         private Vector3Int _lastDetectedPosition = Vector3Int.zero;
 
         private Coroutine _placementSystemUpdate;
 
         private Grid _grid => _placmentSystemView.PlacmentSystemData.Grid;
 
+       
 
         private void Start()
         {
@@ -40,7 +41,7 @@ namespace RiftDefense.PlacmentSystem.Presenter
             StopPlacement();
         }
 
-        public void StartPlacement(EdificePlacmentMainView edifice, TypePlacement type = TypePlacement.Creat)
+        public void StartPlacement(SystemEdificeView edifice, TypePlacement type = TypePlacement.Creat)
         {
             StopPlacement();
 

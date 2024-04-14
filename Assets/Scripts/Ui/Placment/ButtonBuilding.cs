@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class ButtonBuilding : MonoBehaviour
 {
     [SerializeField] private PlacmentSystemPresenter _placmentSystem;
-    [SerializeField] private EdificePlacmentMainView _edificeTemplate;
+    [SerializeField] private SystemEdificeView _edificeTemplate;
 
     private Button _button;
 

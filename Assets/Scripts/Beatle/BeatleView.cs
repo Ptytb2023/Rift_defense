@@ -26,6 +26,7 @@ namespace RiftDefense.Beatle
 
         public void ShowDead()
         {
+            _animator.Play(DataAnimationBeatle.Dead);
 
         }
       

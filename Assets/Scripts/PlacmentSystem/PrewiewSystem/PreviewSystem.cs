@@ -7,7 +7,7 @@ namespace RiftDefense.PlacmentSystem.Presenter
     public class PreviewSystem
     {
         private DataPreviewSystem _previewSystemData;
-        private EdificePlacmentMainView _previewObject;
+        private SystemEdificeView _previewObject;
 
         private const float _previewYOffset = 0.2f;
 
@@ -16,7 +16,7 @@ namespace RiftDefense.PlacmentSystem.Presenter
             _previewSystemData = previewSystemData;
         }
 
-        public void SetEdificePlacment(EdificePlacmentMainView edifice)
+        public void SetEdificePlacment(SystemEdificeView edifice)
         {
             _previewObject = edifice;
             _previewObject?.gameObject.SetActive(true);
@@ -46,7 +46,7 @@ namespace RiftDefense.PlacmentSystem.Presenter
                 positionWorld.y += _previewYOffset;
                 _previewObject.transform.position = positionWorld;
 
-                ApplyFeedbackToPreview(validity, _previewObject.PreviewMaterialInstaler);
+                ApplyFeedbackToPreview(validity, _previewObject.PreviewMaterial);
             }
         }
 

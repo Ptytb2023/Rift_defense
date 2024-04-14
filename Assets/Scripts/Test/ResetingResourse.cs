@@ -8,6 +8,6 @@ public class ResetingResourse : MonoBehaviour
 
     private void Start()
     {
-        _polimers.Resetiong();
+       // _polimers.Resetiong();
     }
 }

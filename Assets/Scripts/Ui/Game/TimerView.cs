@@ -10,7 +10,8 @@ public class TimerView : MonoBehaviour
     private void Update()
     {
         var time = TimeSpan.FromSeconds(Time.time);
-        _label.text = string.Format("{0:hh\\:mm\\:ss}", time);
+       // _label.text = string.Format("{0:hh\\:mm\\:ss}", time);
+        _label.text = string.Format("{0:mm\\:ss}", time);
     }
 
 }

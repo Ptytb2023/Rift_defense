@@ -32,5 +32,6 @@ namespace RiftDefense.Beatle.Model
         [field: SerializeField] public string Idel { get; private set; }
         [field: SerializeField] public string Attack { get; private set; }
         [field: SerializeField] public string Move { get; private set; }
+        [field: SerializeField] public string Dead { get; private set; }
     }
 }
