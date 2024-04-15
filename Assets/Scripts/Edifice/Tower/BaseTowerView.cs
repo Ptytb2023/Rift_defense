@@ -20,7 +20,7 @@ namespace RiftDefense.Edifice.Tower.View
         public DataHealf DataHealf => _dataHealf;
         public DataAnimator DataAnimator => _dataAnimator;
 
-        public bool Enabel => gameObject.activeSelf;
+        public bool Enabel { get; private set; }
 
         public Vector3Int GridPosition { get; set; }
 
@@ -28,7 +28,7 @@ namespace RiftDefense.Edifice.Tower.View
 
         private Coroutine _lookAt;
 
-        public abstract void PreviewAtack(IEnemy enemy);
+        public abstract void PreviewAtack(IBeatle enemy);
 
         public void SetIdel()
         {
@@ -70,6 +70,7 @@ namespace RiftDefense.Edifice.Tower.View
 
         private void OnDead()
         {
+            Enabel = false;
             Dead?.Invoke(this);
             ShowDead();
             LeanPool.Despawn(this, DataAnimator.DelayDespawn);
@@ -77,12 +78,17 @@ namespace RiftDefense.Edifice.Tower.View
 
         public virtual void OnSpawn()
         {
+            Enabel = true;
             _dataHealf.ResetDataHealf();
             _dataHealf.Dead += OnDead;
         }
 
-        public virtual void OnDespawn() => _dataHealf.Dead -= OnDead;
-      
+        public virtual void OnDespawn()
+        {
+            Enabel = false;
+            _dataHealf.Dead -= OnDead;
+        }
+
 
         private void OnDrawGizmosSelected()
         {
@@ -90,7 +96,7 @@ namespace RiftDefense.Edifice.Tower.View
             Gizmos.DrawSphere(transform.position, DataAttack.RadiusAtack);
         }
 
-        public void DespawnTower()=> OnDead();
-       
+        public void DespawnTower() => OnDead();
+
     }
 }

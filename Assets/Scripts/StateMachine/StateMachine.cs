@@ -27,10 +27,13 @@ namespace RiftDefense.FSM
             Enabel = active;
 
             if (active)
+            {
                 SetState(StartState.GetType());
+            }
             else
             {
                 CurrentState?.Exit();
+                CurrentState.SetActive(false);
                 CurrentState = null;
             }
         }
@@ -53,7 +56,5 @@ namespace RiftDefense.FSM
             else
                 throw new ArgumentException($"{typeState}, Not included in the dictionary: {CurrentState}");
         }
-
-
     }
 }

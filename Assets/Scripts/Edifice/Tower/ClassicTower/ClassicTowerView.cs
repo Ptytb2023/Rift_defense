@@ -41,7 +41,7 @@ public class ClassicTowerView : BaseTowerView
     }
   
 
-    public override void PreviewAtack(IEnemy enemy)
+    public override void PreviewAtack(IBeatle enemy)
     {
         if (_shootEfect != null)
             Instantiate(_shootEfect, _pointShoot.position, _pointShoot.rotation);

@@ -9,12 +9,11 @@ using UnityEngine;
 namespace RiftDefense.Beatle
 {
     [RequireComponent(typeof(BeatleView))]
-    public abstract class BaseBeatle
-        : MonoBehaviour, IBeatle, IPoolable
+    public abstract class BaseBeatle : MonoBehaviour, IBeatle, IPoolable
     {
         protected BeatleView BeatleView;
         protected ITower CurrentTarget { get; private set; }
-        public bool Enabel => gameObject.activeSelf;
+        public bool Enabel { get; private set; }
 
         private IMainTower _mainTower;
         private ITargetSystem<ITower> _targetSystem;
@@ -58,7 +57,7 @@ namespace RiftDefense.Beatle
 
         private IEnumerator TryPerfomAttack()
         {
-            bool isActive = true;
+            bool isActive = CurrentTarget.Enabel;
             var navMeshAgent = BeatleView.DataMoveBeatle.NavMeshAgent;
             float distacneAttackSqr = Mathf.Pow(BeatleView.DataAttackBeatle.AttackDistance, 2);
 
@@ -123,6 +122,7 @@ namespace RiftDefense.Beatle
         private void OnDead()
         {
             Dead?.Invoke(this);
+            Enabel = false;
             BeatleView.ShowDead();
             BeatleView.DataMoveBeatle.NavMeshAgent.enabled = false;
             LeanPool.Despawn(gameObject, 3f);
@@ -130,6 +130,7 @@ namespace RiftDefense.Beatle
 
         public void OnSpawn()
         {
+            Enabel = true;
             BeatleView.DataHealf.ResetDataHealf();
             BeatleView.DataHealf.Dead += OnDead;
             BeatleView.DataMoveBeatle.NavMeshAgent.enabled = true;
@@ -140,8 +141,11 @@ namespace RiftDefense.Beatle
         public void OnDespawn()
         {
             BeatleView.DataHealf.Dead -= OnDead;
-
+            Enabel = false;
             StopAllCoroutines();
         }
+
+        public Vector3 GetPointForHit() => BeatleView.PointToHit.position;
+        
     }
 }

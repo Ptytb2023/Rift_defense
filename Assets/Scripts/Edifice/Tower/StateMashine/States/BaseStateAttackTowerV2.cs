@@ -6,14 +6,14 @@ using RiftDefense.Generic.Interface;
 using System;
 using System.Threading.Tasks;
 
-public abstract class BaseStateAttackTowerV2 : BaseState
+public abstract class BaseStateAttackTower : BaseState
 {
     private ITargetSystem<IBeatle> _targetSystem;
 
     protected IBeatle CurrentTarget;
     protected bool IsLiveTarget => CurrentTarget.Enabel;
 
-    public BaseStateAttackTowerV2(StateMachine stateMachine,
+    public BaseStateAttackTower(StateMachine stateMachine,
         ITargetSystem<IBeatle> targetSystem)
         : base(stateMachine)
     {
@@ -22,37 +22,30 @@ public abstract class BaseStateAttackTowerV2 : BaseState
 
     protected abstract void PerfomAttack();
 
-
-
     protected async Task PerformDelay(float second)
     {
         var delay = TimeSpan.FromSeconds(second);
         await UniTask.Delay(delay, DelayType.DeltaTime, PlayerLoopTiming.Update);
     }
 
-    protected bool TrySetTarget()
-    {
-        if (!_targetSystem.TryGetClosestTargetInRadius(out IBeatle beatle))
-            return false;
-
-        CurrentTarget = beatle;
-        return true;
-    }
+    
 
     protected void NextState()
     {
+        if (!Enabel)
+            return;
         StateMachine.SetState(typeof(StateSearchTargetTower));
     }
 
-    protected bool TrySetStartAttackOrOverGoNextState()
+    protected bool TrySetTargetOrOverGoNextState()
     {
-        if (!TrySetTarget())
+        if (!_targetSystem.TryGetClosestTargetInRadius(out IBeatle beatle))
         {
             NextState();
             return false;
         }
-        
-        PerfomAttack();
+
+        CurrentTarget = beatle;
         return true;
     }
 }

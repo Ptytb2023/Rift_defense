@@ -28,5 +28,7 @@ namespace RiftDefense.Edifice.Tower.Model
         [field: SerializeField] public LineRenderer Beam { get; private set; }
         [field: SerializeField] public Transform SpherePoint { get; private set; }
         [field: SerializeField] public float DurationSeries { get; private set; }
+        [field: SerializeField] public EffectLaserHit EffectLaserHit { get; private set; }
+        [field: SerializeField] public int maxEnmeyDamge { get; private set; }
     }
 }

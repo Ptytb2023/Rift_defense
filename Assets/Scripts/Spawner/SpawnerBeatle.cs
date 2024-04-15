@@ -92,7 +92,7 @@ public class SpawnerBeatle : MonoBehaviour
         if (_waves.Count > 0)
         {
             wave = _waves[0];
-            _waves.RemoveAt(0);
+            _waves.Remove(wave);
             return true;
         }
 

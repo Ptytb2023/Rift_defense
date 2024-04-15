@@ -1,3 +1,4 @@
+using Lean.Pool;
 using RiftDefense.Beatle;
 using RiftDefense.Edifice.Tower.Model;
 using RiftDefense.Edifice.Tower.View;
@@ -58,15 +59,18 @@ namespace RiftDefense.Edifice.Tower
         }
 
 
-        public override void PreviewAtack(IEnemy enemy)
+        public override void PreviewAtack(IBeatle enemy)
         {
-
+            var efect = LeanPool.Spawn(DataAttackLaser.EffectLaserHit);
+            efect.Init(enemy);
         }
 
         public void PreviewReload(float secondReload)
         {
-           // StartCoroutine(Reload(secondReload));
+            //StartCoroutine(Reload(secondReload));
         }
+
+        
 
         private IEnumerator Reload(float secondReload)
         {

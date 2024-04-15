@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace RiftDefense.Edifice.Tower
 {
-    public class LaserTowerAttackState : BaseStateAttackTowerV2
+    public class LaserTowerAttackState : BaseStateAttackTower
     {
         private LaserTowerView _laserTowerView;
 
@@ -30,7 +30,11 @@ namespace RiftDefense.Edifice.Tower
 
         public override void Enter()
         {
-            TrySetStartAttackOrOverGoNextState();
+            if (TrySetTargetOrOverGoNextState())
+            {
+                _laserTowerView.TurnOnBeam(CurrentTarget);
+                PerfomAttack();
+            }
         }
 
         public override void Exit()
@@ -40,8 +44,6 @@ namespace RiftDefense.Edifice.Tower
 
         protected override async void PerfomAttack()
         {
-            _laserTowerView.TurnOnBeam(CurrentTarget);
-
             while (Enabel && IsLiveTarget)
             {
                 ReduceTime();
@@ -54,15 +56,17 @@ namespace RiftDefense.Edifice.Tower
                     await Reload();
             }
 
-            TrySetStartAttackOrOverGoNextState();
+            NextState();
         }
+
 
         private void HoldBeam()
         {
-            var directionAttack = _pointShoot.position - CurrentTarget.GetPosition();
+            var directionAttack = CurrentTarget.GetPointForHit() - _pointShoot.position;
             var distanceAttack = directionAttack.magnitude;
+            Debug.DrawLine(_pointShoot.position, directionAttack * distanceAttack, Color.red, 0.3f);
 
-            _hitInfo = Physics.RaycastAll(_pointShoot.position, directionAttack, distanceAttack, enemyMask);
+            _hitInfo = Physics.RaycastAll(_pointShoot.position, directionAttack, distanceAttack, enemyMask.value);
         }
 
         private void ReduceTime()
@@ -73,25 +77,35 @@ namespace RiftDefense.Edifice.Tower
 
         private async Task Reload(bool instant = false)
         {
-            var secondReload = _laserTowerView.DataAttack.TimeReload;
-            _laserTowerView.PreviewReload(secondReload);
+            if (Enabel)
+            {
+                var secondReload = _laserTowerView.DataAttack.TimeReload;
+                _laserTowerView.PreviewReload(secondReload);
 
-            await PerformDelay(secondReload);
+                await PerformDelay(secondReload);
 
-            _curentDurationSeries = _laserTowerView.DataAttackLaser.DurationSeries;
+                _curentDurationSeries = _laserTowerView.DataAttackLaser.DurationSeries;
+            }
         }
 
         private void HitEnemy()
         {
+            var coutDamage = _laserTowerView.DataAttackLaser.maxEnmeyDamge + 1;
             var damge = _laserTowerView.DataAttack.Damage;
 
-            foreach (var hit in _hitInfo)
+            for (int i = 0; i < _hitInfo.Length; i++)
             {
-                var enemy = hit.collider.GetComponent<IBeatle>();
+                if (coutDamage < i)
+                    break;
+
+                var enemy = _hitInfo[i].collider.GetComponent<IBeatle>();
                 enemy.ApplyDamage(damge);
                 _laserTowerView.PreviewAtack(enemy);
-
             }
+
+            //var damge = _laserTowerView.DataAttack.Damage;
+            //CurrentTarget.ApplyDamage(damge);
+            //_laserTowerView.PreviewAtack(CurrentTarget);
         }
 
 

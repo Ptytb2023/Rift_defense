@@ -16,6 +16,7 @@ namespace RiftDefense.Beatle
                 BeatleView.PrewiewAtack();
                 yield return new WaitForSeconds(delayBetweenAttack);
             }
+         
         }
 
     }

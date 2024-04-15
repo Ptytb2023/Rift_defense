@@ -212,7 +212,7 @@ GameObject:
   - component: {fileID: 4989514443782650589}
   - component: {fileID: 8023761850090406549}
   m_Layer: 8
-  m_Name: ShootPoint
+  m_Name: Beam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -371,6 +371,7 @@ Transform:
   - {fileID: 4989514443782650589}
   - {fileID: 8936202273216185422}
   - {fileID: 4479471528661378314}
+  - {fileID: 1360802477973444525}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6850200360962135243
@@ -410,8 +411,11 @@ MonoBehaviour:
     <Head>k__BackingField: {fileID: 0}
   _dataLaserTower:
     <Beam>k__BackingField: {fileID: 8023761850090406549}
-    <SpherePoint>k__BackingField: {fileID: 4989514443782650589}
+    <SpherePoint>k__BackingField: {fileID: 1360802477973444525}
     <DurationSeries>k__BackingField: 10
+    <EffectLaserHit>k__BackingField: {fileID: 5245323639902121594, guid: c1af61d3026021944b6d9779d4a108e5,
+      type: 3}
+    <maxEnmeyDamge>k__BackingField: 5
   _materialSphereShoot: {fileID: 0}
   _colorReload: {r: 0, g: 0, b: 0, a: 0}
 --- !u!65 &6698844785048157243
@@ -435,3 +439,34 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.39, y: 3.12, z: 1}
   m_Center: {x: 0, y: 2.36, z: 0}
+--- !u!1 &9025818404585113697
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1360802477973444525}
+  m_Layer: 8
+  m_Name: ShootPont
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1360802477973444525
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9025818404585113697}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 4.05, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1701289197271441911}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

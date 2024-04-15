@@ -3,7 +3,7 @@ using RiftDefense.Edifice.Tower.FSM;
 using RiftDefense.Generic.Interface;
 using System.Threading.Tasks;
 
-public class ClassicTowerStateAttack : BaseStateAttackTowerV2
+public class ClassicTowerStateAttack : BaseStateAttackTower
 {
     private ClassicTowerView _classicTowerView;
 
@@ -24,7 +24,11 @@ public class ClassicTowerStateAttack : BaseStateAttackTowerV2
 
     public override void Enter()
     {
-        TrySetStartAttackOrOverGoNextState();
+        if (TrySetTargetOrOverGoNextState())
+        {
+            _classicTowerView.LookAttarget(CurrentTarget, true);
+            PerfomAttack();
+        }
     }
 
     public override void Exit()
@@ -34,7 +38,6 @@ public class ClassicTowerStateAttack : BaseStateAttackTowerV2
 
     protected async override void  PerfomAttack()
     {
-        _classicTowerView.LookAttarget(CurrentTarget, true);
 
         while (Enabel && IsLiveTarget)
         {
@@ -46,6 +49,8 @@ public class ClassicTowerStateAttack : BaseStateAttackTowerV2
             if (_currentAmount <= 0)
                 await Reload();
         }
+
+        NextState();
     }
 
     private async Task Reload()
