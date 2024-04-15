@@ -95,6 +95,7 @@ namespace RiftDefense.Beatle
 
         private void UpdateMove()
         {
+
             var navMeshAgent = BeatleView.DataMoveBeatle.NavMeshAgent;
             navMeshAgent.destination = CurrentTarget.GetPosition();
             BeatleView.SetActiovMove(true);
