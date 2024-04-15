@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using RiftDefense.Beatle;
 using RiftDefense.FSM;
 using RiftDefense.Generic.Interface;
@@ -56,6 +57,7 @@ namespace RiftDefense.Edifice.Tower
                     await Reload();
             }
 
+         
             NextState();
         }
 

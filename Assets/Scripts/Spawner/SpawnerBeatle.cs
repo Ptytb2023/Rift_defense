@@ -15,6 +15,8 @@ public class SpawnerBeatle : MonoBehaviour
     [SerializeField][Range(10f, 100f)] private float _percentMaxTimeRandom;
     [SerializeField][Range(10f, 100f)] private float _percentMaxCoutBeatle;
 
+    private int _currentIndexWave;
+    private Wave _currentWave;
 
     private void Start()
     {
@@ -30,13 +32,15 @@ public class SpawnerBeatle : MonoBehaviour
     {
         yield return new WaitForSeconds(_delayStartSpawn);
 
-        while (TryGetWave(out Wave wave))
-        {
-            yield return new WaitForSeconds(wave.DelayStartSpawn);
-            Debug.Log(wave.DelayStartSpawn);
+        SetWave();
 
-            var time = wave.TimeSpawn;
-            var coutEnemy = wave.CoutBeatle;
+        while (_currentWave != null)
+        {
+            yield return new WaitForSeconds(_currentWave.DelayStartSpawn);
+            Debug.Log(_currentWave.DelayStartSpawn);
+
+            var time = _currentWave.TimeSpawn;
+            var coutEnemy = _currentWave.CoutBeatle;
 
             while (time > 0)
             {
@@ -59,10 +63,12 @@ public class SpawnerBeatle : MonoBehaviour
                 yield return new WaitForSeconds(DelayToSpawn);
 
                 if (coutEnemy > 0)
-                    SpawnBeatle(wave, coutSpawn);
+                    SpawnBeatle(_currentWave, coutSpawn);
 
                 time -= DelayToSpawn;
                 coutEnemy -= coutSpawn;
+
+                SetWave();
             }
         }
     }
@@ -85,18 +91,16 @@ public class SpawnerBeatle : MonoBehaviour
         return _poitnSpawns[randomPointIndex].position;
     }
 
-    private bool TryGetWave(out Wave wave)
+    private void SetWave()
     {
-        wave = null;
-
-        if (_waves.Count > 0)
+        if (_waves.Count > 0 && _currentIndexWave < _waves.Count)
         {
-            wave = _waves[0];
-            _waves.Remove(wave);
-            return true;
+            _currentWave = _waves[_currentIndexWave];
+            _currentIndexWave++;
+            return;
         }
 
-        return false;
+        _currentWave = null;
     }
 
 

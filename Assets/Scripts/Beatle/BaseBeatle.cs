@@ -11,6 +11,8 @@ namespace RiftDefense.Beatle
     [RequireComponent(typeof(BeatleView))]
     public abstract class BaseBeatle : MonoBehaviour, IBeatle, IPoolable
     {
+        [SerializeField] private Collider _collider;
+
         protected BeatleView BeatleView;
         protected ITower CurrentTarget { get; private set; }
         public bool Enabel { get; private set; }
@@ -95,6 +97,10 @@ namespace RiftDefense.Beatle
         private void UpdateMove()
         {
             var navMeshAgent = BeatleView.DataMoveBeatle.NavMeshAgent;
+            if (navMeshAgent.enabled==false)
+            {
+                return;
+            }
             navMeshAgent.destination = CurrentTarget.GetPosition();
             BeatleView.SetActiovMove(true);
         }
@@ -125,6 +131,8 @@ namespace RiftDefense.Beatle
             Enabel = false;
             BeatleView.ShowDead();
             BeatleView.DataMoveBeatle.NavMeshAgent.enabled = false;
+
+            _collider.enabled = false;
             LeanPool.Despawn(gameObject, 3f);
         }
 
@@ -134,12 +142,13 @@ namespace RiftDefense.Beatle
             BeatleView.DataHealf.ResetDataHealf();
             BeatleView.DataHealf.Dead += OnDead;
             BeatleView.DataMoveBeatle.NavMeshAgent.enabled = true;
-
+            _collider.enabled = true;
             StartBeatle();
         }
 
         public void OnDespawn()
         {
+            _collider.enabled = false;
             BeatleView.DataHealf.Dead -= OnDead;
             Enabel = false;
             StopAllCoroutines();
