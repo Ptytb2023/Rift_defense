@@ -68,7 +68,8 @@ public class SpawnerBeatle : MonoBehaviour
                 time -= DelayToSpawn;
                 coutEnemy -= coutSpawn;
 
-                SetWave();
+                if (time <= 0)
+                    SetWave();
             }
         }
     }

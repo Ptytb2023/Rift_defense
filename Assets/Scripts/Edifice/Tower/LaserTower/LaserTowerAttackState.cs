@@ -57,7 +57,7 @@ namespace RiftDefense.Edifice.Tower
                     await Reload();
             }
 
-         
+
             NextState();
         }
 
