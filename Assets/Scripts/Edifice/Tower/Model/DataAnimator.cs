@@ -4,6 +4,11 @@ using UnityEngine;
 [Serializable]
 public class DataAnimator 
 {
-    [field: SerializeField] public readonly string Idel;
-    [field: SerializeField] public readonly string ModeSearch;
+    [field: SerializeField] public Animator Animator { get; private set; }
+    [field: SerializeField] public string Idel { get; private set; }
+    [field: SerializeField] public  string ModeSearch { get; private set; }
+    [field: SerializeField] public  string Dead { get; private set; }
+    [field: SerializeField] public  float DelayDespawn { get; private set; }
+    [field: SerializeField] public  float SpeedRotation { get; private set; }
+    [field: SerializeField] public  Transform Head { get; private set; }
 }

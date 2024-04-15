@@ -1,15 +1,16 @@
 using Lean.Pool;
+using RiftDefense.Edifice.Tower;
 using UnityEngine;
 
 namespace RiftDefense.Edifice
 {
     public class SystemEdificeView : MonoBehaviour
     {
-       [field:SerializeField] public DataEdiface DataEdiface { get; private set; }
+        [field: SerializeField] public DataEdiface DataEdiface { get; private set; }
 
         public Material PreviewMaterial => DataEdiface.PreviewMaterialForEdifice;
 
-        private EdificeView _objectViewToPlaced => DataEdiface.ObjectViewToPlaced;
+        private EdificeView _objectViewToPlaced => DataEdiface.Edifice;
 
         private void Start()
         {
@@ -26,13 +27,13 @@ namespace RiftDefense.Edifice
             _objectViewToPlaced?.gameObject.SetActive(false);
         }
 
-        public GameObject SpawnObject(Vector3 position)
+        public ITower SpawnTower(Vector3 position)
         {
-            var prefab = DataEdiface.ObjectToPlacedPrefab;
-
+            var prefab = DataEdiface.Tower;
             var gameObject = LeanPool.Spawn(prefab, position, Quaternion.identity);
             gameObject.transform.position = position;
-            return gameObject;
+
+            return gameObject.GetComponent<ITower>();
         }
     }
 }

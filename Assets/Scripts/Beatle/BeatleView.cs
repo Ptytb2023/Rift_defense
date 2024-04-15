@@ -10,6 +10,7 @@ namespace RiftDefense.Beatle
         [field: SerializeField] public DataHealf DataHealf { get; private set; }
         [field: SerializeField] public DataAttackBeatle DataAttackBeatle { get; private set; }
         [field: SerializeField] public DataMoveBeatle DataMoveBeatle { get; private set; }
+        [field: SerializeField] public Transform PointToHit { get; private set; }
 
         private Animator _animator=> DataAnimationBeatle.Animator;
 

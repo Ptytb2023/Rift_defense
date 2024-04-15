@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 454651484877674679}
-  - component: {fileID: 5009057454279101199}
   - component: {fileID: 6640528620903188676}
   - component: {fileID: 5200181625963679382}
   - component: {fileID: 2657507223973736598}
+  - component: {fileID: 400985042770444904}
   m_Layer: 7
   m_Name: ClassicBeatle 1
   m_TagString: Untagged
@@ -34,29 +34,9 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5524630537367827266}
+  - {fileID: 2914028685319816773}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &5009057454279101199
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 364553779620849808}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 1
-  m_Center: {x: 0, y: 2, z: 0}
 --- !u!195 &6640528620903188676
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -96,8 +76,9 @@ MonoBehaviour:
     <Idel>k__BackingField: Idel
     <Attack>k__BackingField: Attack
     <Move>k__BackingField: Run
+    <Dead>k__BackingField: 
   <DataHealf>k__BackingField:
-    <MaxHealf>k__BackingField: 1000
+    <MaxHealf>k__BackingField: 5
   <DataAttackBeatle>k__BackingField:
     <Damage>k__BackingField: 3
     <DelayBetweenAttack>k__BackingField: 0.8
@@ -110,6 +91,7 @@ MonoBehaviour:
   <DataMoveBeatle>k__BackingField:
     <NavMeshAgent>k__BackingField: {fileID: 6640528620903188676}
     <Speed>k__BackingField: 4
+  <PointToHit>k__BackingField: {fileID: 2914028685319816773}
 --- !u!114 &2657507223973736598
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -122,6 +104,59 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a2493215e70c7c479439ff7e7b8671e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _collider: {fileID: 400985042770444904}
+--- !u!65 &400985042770444904
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 364553779620849808}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.53, y: 4.430147, z: 1.8599999}
+  m_Center: {x: 0.040000025, y: 2.580073, z: 0}
+--- !u!1 &3680177260051223102
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2914028685319816773}
+  m_Layer: 7
+  m_Name: PPointToHit
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2914028685319816773
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3680177260051223102}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.026, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 454651484877674679}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &5413844959393010857
 PrefabInstance:
   m_ObjectHideFlags: 0

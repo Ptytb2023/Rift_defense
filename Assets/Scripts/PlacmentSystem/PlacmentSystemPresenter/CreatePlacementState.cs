@@ -27,12 +27,10 @@ namespace RiftDefense.PlacmentSystem.Presenter
             if (!_containerPolymers.TryTakePolymers(edifice.DataEdiface.PricesBuy))
                 return;
 
-
             var spawnPosition = _grid.CellToWorld(gridPosition);
 
-            var gameObject = edifice.SpawnObject(spawnPosition);
-            gameObject.SetActive(true);
-            _gridData.AddObjectAt(gridPosition, gameObject);
+            var tower = edifice.SpawnTower(spawnPosition);
+            _gridData.AddObjectAt(gridPosition, tower);
         }
 
     }

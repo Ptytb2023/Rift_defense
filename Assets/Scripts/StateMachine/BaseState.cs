@@ -3,30 +3,13 @@ using System;
 
 namespace RiftDefense.FSM
 {
-    public abstract class BaseState : IActive, IDisposable, IBaseState
+    public abstract class BaseState : IActive, IDisposable
     {
         protected StateMachine StateMachine { get; private set; }
-        protected BaseState NextState;
+
         public bool Enabel { get; protected set; }
 
-
-        public BaseState(StateMachine stateMachine)
-        {
-            StateMachine = stateMachine;
-        }
-
-        public void SetNextState(BaseState nextState)
-        {
-            NextState = nextState;
-        }
-
-        protected void GoOverNextOrExitState()
-        {
-            if (NextState != null)
-                StateMachine.SetState(NextState);
-            else
-                Exit();
-        }
+        public BaseState (StateMachine stateMachine) => StateMachine = stateMachine;
 
         public virtual void Enter() { }
         public virtual void Exit() { }

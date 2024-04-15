@@ -1,5 +1,6 @@
 using RiftDefense.Beatle;
 using RiftDefense.Edifice.Tower.FSM;
+using RiftDefense.Edifice.Tower.Model;
 using RiftDefense.Edifice.Tower.View;
 using RiftDefense.Generic.Interface;
 using System.Collections;
@@ -8,6 +9,8 @@ using UnityEngine;
 
 public class ClassicTowerView : BaseTowerView
 {
+    [SerializeField] private DataAttackClassic _dattaAttackClssic;
+
     [SerializeField] private float _speedLookAtTarget = 1f;
     [SerializeField] private Transform _head;
     [SerializeField] private Transform _pointShoot;
@@ -15,6 +18,7 @@ public class ClassicTowerView : BaseTowerView
 
     private ClassicTower _clasicTower;
 
+    public DataAttackClassic DataAttackClassic => _dattaAttackClssic;
 
     private Coroutine _looking;
 
@@ -23,19 +27,21 @@ public class ClassicTowerView : BaseTowerView
         _clasicTower = new ClassicTower(this);
     }
 
-    protected override void OnEnable()
+    public override void OnDespawn()
     {
-        base.OnEnable();
+        base.OnDespawn();
+        _clasicTower.SetActive(false);
+
+    }
+
+    public override void OnSpawn()
+    {
+        base.OnSpawn();
         _clasicTower.SetActive(true);
     }
+  
 
-    protected override void OnDisable()
-    {
-        base.OnDisable();
-        _clasicTower.SetActive(false);
-    }
-
-    public override void PreviewAtack(IEnemy enemy)
+    public override void PreviewAtack(IBeatle enemy)
     {
         if (_shootEfect != null)
             Instantiate(_shootEfect, _pointShoot.position, _pointShoot.rotation);
@@ -50,7 +56,6 @@ public class ClassicTowerView : BaseTowerView
         }
         else
             StopLooking();
-
     }
 
     private void StopLooking()
@@ -72,9 +77,5 @@ public class ClassicTowerView : BaseTowerView
         }
     }
 
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.green;
-        Gizmos.DrawSphere(transform.position, DataAtack.RadiusAtack);
-    }
+   
 }

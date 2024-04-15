@@ -6,7 +6,6 @@ public class TestControler : MonoBehaviour
 {
     [SerializeField] private float _movementTime;
     [SerializeField] private float _movementSpeed = 1.0f;
-    [SerializeField] private float _scrolSpeed = 9.0f;
 
     private Vector3 _newPosition;
 
