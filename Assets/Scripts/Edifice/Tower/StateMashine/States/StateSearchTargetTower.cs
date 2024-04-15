@@ -9,20 +9,23 @@ using System;
 
 namespace RiftDefense.Edifice.Tower.FSM
 {
-    public class StateSearchTargetTower : BaseState, IStateSearchTargetTower
+    public class StateSearchTargetTower : BaseState
     {
+
         private BaseTowerView _viewBaseTower;
         private ITargetSystem<IBeatle> _targetSystem;
-
-        private BaseDataTowerAttack _dataAttack => _viewBaseTower.DataAtack;
+        private Type _nextState;
+        private DataTowerAttack _dataAttack => _viewBaseTower.DataAttack;
 
         public StateSearchTargetTower(StateMachine stateMachine,
                                          BaseTowerView viewBaseTower,
-                                         ITargetSystem<IBeatle> targetSystem)
+                                         ITargetSystem<IBeatle> targetSystem,
+                                         Type nextState)
             : base(stateMachine)
         {
             _viewBaseTower = viewBaseTower;
             _targetSystem = targetSystem;
+            _nextState = nextState;
         }
 
 
@@ -30,18 +33,18 @@ namespace RiftDefense.Edifice.Tower.FSM
         {
             SetActive(true);
 
-            var animator = _viewBaseTower.Animator;
-            var modeSearch = _viewBaseTower.DataAnimator.ModeSearch;
-            //  animator.Play(modeSearch);
+            //var animator = _viewBaseTower.Animator;
+            //var modeSearch = _viewBaseTower.DataAnimator.ModeSearch;
+            ////  animator.Play(modeSearch);
 
             Update();
         }
 
         public override void Exit()
         {
-            var animator = _viewBaseTower.Animator;
-            var Idel = _viewBaseTower.DataAnimator.Idel;
-            // animator.Play(Idel);
+            //var animator = _viewBaseTower.Animator;
+            //var Idel = _viewBaseTower.DataAnimator.Idel;
+            //// animator.Play(Idel);
 
             SetActive(false);
         }
@@ -51,7 +54,7 @@ namespace RiftDefense.Edifice.Tower.FSM
             while (Enabel)
             {
                 if (_targetSystem.CheakTargetsInRadius())
-                    GoOverNextOrExitState();
+                    StateMachine.SetState(_nextState);
                 else
                 {
                     var deleay = TimeSpan.FromSeconds(_dataAttack.DelayBetweenSeatchTarget);

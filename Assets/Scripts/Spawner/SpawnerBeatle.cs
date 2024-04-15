@@ -15,8 +15,6 @@ public class SpawnerBeatle : MonoBehaviour
     [SerializeField][Range(10f, 100f)] private float _percentMaxTimeRandom;
     [SerializeField][Range(10f, 100f)] private float _percentMaxCoutBeatle;
 
-    private const float _precentMaxTimeRandom = 1f;
-    private int _currentIntWave;
 
     private void Start()
     {
@@ -25,7 +23,6 @@ public class SpawnerBeatle : MonoBehaviour
 
     public void StarSpawner()
     {
-        _currentIntWave = 0;
         StartCoroutine(Spaw());
     }
 
@@ -46,18 +43,18 @@ public class SpawnerBeatle : MonoBehaviour
                 float DelayToSpawn = time;
                 int coutSpawn = coutEnemy;
 
-                //if (time > 1f)
-                //{
+                if (time > 1f)
+                {
                     var maxDeleay = (time * _percentMaxTimeRandom) / 100f;
                     var minDelay = maxDeleay / 3f;
                     DelayToSpawn = UnityEngine.Random.Range(minDelay, maxDeleay);
-                //}
+                }
 
-                //if (coutEnemy > 1 && time > 1f)
-                //{
+                if (coutEnemy > 1 && time > 1f)
+                {
                     int maxSpawn = (int)((coutEnemy * _percentMaxCoutBeatle) / 100f);
                     coutSpawn = UnityEngine.Random.Range(1, maxSpawn++);
-                //}
+                }
 
                 yield return new WaitForSeconds(DelayToSpawn);
 

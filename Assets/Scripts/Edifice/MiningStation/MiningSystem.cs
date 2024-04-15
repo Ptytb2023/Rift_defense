@@ -13,7 +13,6 @@ public class MiningSystem : MonoBehaviour
     private int _currentExtractionSecond;
 
     private const float _miningTime = 1f;
-    private float _currentMiningTime;
 
     private Coroutine _coroutine;
 
@@ -54,7 +53,6 @@ public class MiningSystem : MonoBehaviour
 
     private void Reseting()
     {
-        _currentMiningTime = _miningTime;
         _currentExtractionSecond = _extractionSecond;
     }
 }

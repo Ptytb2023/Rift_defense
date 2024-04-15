@@ -3,52 +3,56 @@ using RiftDefense.Edifice.Tower.FSM;
 using RiftDefense.Generic.Interface;
 using System.Threading.Tasks;
 
-public class ClassicTowerStateAttack : BaseStateAttackTower
+public class ClassicTowerStateAttack : BaseStateAttackTowerV2
 {
-
     private ClassicTowerView _classicTowerView;
 
-    private float _damage => TowerView.DataAtack.Damage;
-    private int _maxAmout => TowerView.DataAtack.AmountAmmunition;
+    private float _damage => _classicTowerView.DataAttack.Damage;
+    private int _maxAmout => _classicTowerView.DataAttackClassic.AmountAmmunition;
 
     private int _currentAmount;
 
     public ClassicTowerStateAttack(ClassicTower stateMashine,
                                    ClassicTowerView baseTowerView,
                                    ITargetSystem<IBeatle> targetSystem) :
-        base(stateMashine, baseTowerView, targetSystem)
+        base(stateMashine, targetSystem)
     {
         _classicTowerView = baseTowerView;
         _currentAmount = _maxAmout;
     }
 
-   
 
-    protected override async Task PerfomAttack()
+    public override void Enter()
     {
-        _classicTowerView.LookAttarget(CurrentTarget, true);
-
-        TowerView.PreviewAtack(CurrentTarget);
-
-        CurrentTarget.ApplyDamage(_damage);
-        _currentAmount--;
-
-        if (_currentAmount <= 0)
-            await Reload();
+        TrySetStartAttackOrOverGoNextState();
     }
 
     public override void Exit()
     {
-        base.Exit();
-
         _classicTowerView.LookAttarget(CurrentTarget, false);
+    }
+
+    protected async override void  PerfomAttack()
+    {
+        _classicTowerView.LookAttarget(CurrentTarget, true);
+
+        while (Enabel && IsLiveTarget)
+        {
+            _classicTowerView.PreviewAtack(CurrentTarget);
+
+            CurrentTarget.ApplyDamage(_damage);
+            _currentAmount--;
+
+            if (_currentAmount <= 0)
+                await Reload();
+        }
     }
 
     private async Task Reload()
     {
-        float timeReload = TowerView.DataAtack.TimeReload;
+        float timeReload = _classicTowerView.DataAttack.TimeReload;
         _currentAmount = _maxAmout;
         await PerformDelay(timeReload);
     }
-
+ 
 }

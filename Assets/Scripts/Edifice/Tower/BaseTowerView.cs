@@ -1,54 +1,96 @@
+using Lean.Pool;
+using RiftDefense.Beatle;
 using RiftDefense.Edifice.Tower.Model;
 using RiftDefense.Generic;
 using RiftDefense.Generic.Interface;
 using System;
-using Unity.VisualScripting;
+using System.Collections;
+using System.Threading;
 using UnityEngine;
 
 namespace RiftDefense.Edifice.Tower.View
 {
-    [RequireComponent(typeof(Animator))]
-    public abstract class BaseTowerView : MonoBehaviour, ITower, IPreviewTower
+    public abstract class BaseTowerView : MonoBehaviour, ITower, IPoolable
     {
-        [SerializeField] private BaseDataTowerAttack _dataTowerAtack;
+        [SerializeField] private DataTowerAttack _baseDataTowerAttack;
         [SerializeField] private DataHealf _dataHealf;
         [SerializeField] private DataAnimator _dataAnimator;
 
+        public DataTowerAttack DataAttack => _baseDataTowerAttack;
         public DataHealf DataHealf => _dataHealf;
-        public BaseDataTowerAttack DataAtack => _dataTowerAtack;
         public DataAnimator DataAnimator => _dataAnimator;
-
-        public Animator Animator { get; private set; }
 
         public bool Enabel => gameObject.activeSelf;
 
+        public Vector3Int GridPosition { get; set; }
+
         public event Action<IEnemy> Dead;
+
+        private Coroutine _lookAt;
 
         public abstract void PreviewAtack(IEnemy enemy);
 
-        public void ApplyDamage(float damage)
+        public void SetIdel()
         {
-            _dataHealf.ApplyDamage(damage);
+
         }
 
-        public Vector3 GetPosition()
+        public void ShowDead()
         {
-            return transform.position;
+
         }
 
-        protected virtual void OnEnable()
+        public void LookingAtEnemy(IBeatle enemy, bool active = true)
+        {
+            if (_lookAt != null)
+                StopCoroutine(_lookAt);
+
+            if (active)
+                _lookAt = StartCoroutine(LookAt(enemy));
+        }
+
+        private IEnumerator LookAt(IBeatle enemy)
+        {
+            var head = DataAnimator.Head;
+            var speed = DataAnimator.SpeedRotation;
+
+            while (gameObject.activeSelf)
+            {
+                var direction = enemy.GetPosition() - head.position;
+                Quaternion newRotation = Quaternion.LookRotation(direction);
+                head.rotation = Quaternion.Slerp(head.rotation, newRotation, speed * Time.deltaTime);
+
+                yield return null;
+            }
+        }
+
+        public void ApplyDamage(float damage) => _dataHealf.ApplyDamage(damage);
+
+        public Vector3 GetPosition() => transform.position;
+
+        private void OnDead()
+        {
+            Dead?.Invoke(this);
+            ShowDead();
+            LeanPool.Despawn(this, DataAnimator.DelayDespawn);
+        }
+
+        public virtual void OnSpawn()
         {
             _dataHealf.ResetDataHealf();
             _dataHealf.Dead += OnDead;
         }
-        protected virtual void OnDisable()
+
+        public virtual void OnDespawn() => _dataHealf.Dead -= OnDead;
+      
+
+        private void OnDrawGizmosSelected()
         {
-            _dataHealf.Dead -= OnDead;
+            Gizmos.color = Color.green;
+            Gizmos.DrawSphere(transform.position, DataAttack.RadiusAtack);
         }
 
-        private void OnDead()
-        {
-            gameObject.SetActive(false);
-        }
+        public void DespawnTower()=> OnDead();
+       
     }
 }
