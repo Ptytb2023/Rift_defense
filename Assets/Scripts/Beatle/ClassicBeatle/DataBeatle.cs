@@ -21,6 +21,7 @@ namespace RiftDefense.Beatle.Model
     public class DataMoveBeatle
     {
         [field: SerializeField] public NavMeshAgent NavMeshAgent { get; private set; }
+        [field: SerializeField] public NavMeshObstacle NavMeshObstacel { get; private set; }
         [field: SerializeField] public float Speed { get; private set; }
 
     }

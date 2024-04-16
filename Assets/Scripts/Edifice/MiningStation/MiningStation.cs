@@ -10,13 +10,14 @@ namespace RiftDefense.Edifice.Mining
     [RequireComponent(typeof(MiningSystem))]
     public class MiningStation : MonoBehaviour, IPoolable, ITower
     {
+        [SerializeField] private Collider collider;
         [SerializeField] private DataHealf _dataHeafl;
 
         private MiningSystem _miningSystem;
 
         public bool Enabel => gameObject.activeSelf;
 
-        public Vector3Int GridPosition { get;  set; }
+        public Vector3Int GridPosition { get; set; }
 
         public event Action<IEnemy> Dead;
 
@@ -26,13 +27,16 @@ namespace RiftDefense.Edifice.Mining
 
         private void OnDead()
         {
-            LeanPool.Despawn(this);
+            collider.enabled = false;
+            Dead?.Invoke(this);
+            LeanPool.Despawn(this, 0.1f);
         }
 
         public void DespawnTower() => OnDead();
-       
+
         public void OnSpawn()
         {
+            collider.enabled = true;
             _dataHeafl.ResetDataHealf();
             _dataHeafl.Dead += OnDead;
         }
@@ -40,7 +44,6 @@ namespace RiftDefense.Edifice.Mining
         public void OnDespawn()
         {
             _dataHeafl.Dead -= OnDead;
-            Dead?.Invoke(this);
         }
     }
 }

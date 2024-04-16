@@ -111,7 +111,7 @@ public class SpawnerBeatle : MonoBehaviour
 public class Wave
 {
     [field: SerializeField] public float DelayStartSpawn { get; private set; }
-    [field: SerializeField] public List<BaseBeatle> Beatles { get; private set; }
+    [field: SerializeField] public List<BaseBeatleView> Beatles { get; private set; }
     [field: SerializeField] public int CoutBeatle { get; private set; }
     [field: SerializeField] public float TimeSpawn { get; private set; }
 

@@ -12,6 +12,7 @@ namespace RiftDefense.Edifice.Tower.View
 {
     public abstract class BaseTowerView : MonoBehaviour, ITower, IPoolable
     {
+        [SerializeField] private Collider _collider;
         [SerializeField] private DataTowerAttack _baseDataTowerAttack;
         [SerializeField] private DataHealf _dataHealf;
         [SerializeField] private DataAnimator _dataAnimator;
@@ -75,12 +76,14 @@ namespace RiftDefense.Edifice.Tower.View
         {
             Enabel = false;
             Dead?.Invoke(this);
+            _collider.enabled = false;
             ShowDead();
             LeanPool.Despawn(this, DataAnimator.DelayDespawn);
         }
 
         public virtual void OnSpawn()
         {
+            _collider.enabled = true;
             Enabel = true;
             _dataHealf.ResetDataHealf();
             _dataHealf.Dead += OnDead;
