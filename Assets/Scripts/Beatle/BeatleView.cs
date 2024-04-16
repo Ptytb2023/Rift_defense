@@ -28,7 +28,6 @@ namespace RiftDefense.Beatle
         public void ShowDead()
         {
             _animator.Play(DataAnimationBeatle.Dead);
-
         }
       
         public void SetActiovMove(bool active)

@@ -1,8 +1,8 @@
+using Lean.Pool;
 using RiftDefense.Beatle;
 using RiftDefense.Edifice.Tower.FSM;
 using RiftDefense.Edifice.Tower.Model;
 using RiftDefense.Edifice.Tower.View;
-using RiftDefense.Generic.Interface;
 using System.Collections;
 using UnityEngine;
 
@@ -39,23 +39,23 @@ public class ClassicTowerView : BaseTowerView
         base.OnSpawn();
         _clasicTower.SetActive(true);
     }
-  
+
 
     public override void PreviewAtack(IBeatle enemy)
     {
         if (_shootEfect != null)
-            Instantiate(_shootEfect, _pointShoot.position, _pointShoot.rotation);
+            LeanPool.Spawn(_shootEfect, _pointShoot.position, _pointShoot.rotation);
     }
 
     public void LookAttarget(IBeatle beatle, bool active)
     {
-        if (active)
-        {
-            StopLooking();
-            _looking = StartCoroutine(LookAtTarget(beatle));
-        }
-        else
-            StopLooking();
+        //if (active)
+        //{
+        //    StopLooking();
+        //    _looking = StartCoroutine(LookAtTarget(beatle));
+        //}
+        //else
+        //    StopLooking();
     }
 
     private void StopLooking()
@@ -71,11 +71,11 @@ public class ClassicTowerView : BaseTowerView
             var direction = beatle.GetPosition() - _head.position;
             Quaternion newRotation = Quaternion.LookRotation(direction);
 
-            _head.rotation = Quaternion.Slerp(_head.rotation, newRotation, _speedLookAtTarget);
+            _head.rotation = Quaternion.Slerp(_head.rotation, newRotation, _speedLookAtTarget * Time.deltaTime);
 
             yield return null;
         }
     }
 
-   
+
 }

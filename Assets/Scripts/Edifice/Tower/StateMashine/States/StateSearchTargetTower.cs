@@ -32,20 +32,14 @@ namespace RiftDefense.Edifice.Tower.FSM
         public override void Enter()
         {
             SetActive(true);
-
-            //var animator = _viewBaseTower.Animator;
-            //var modeSearch = _viewBaseTower.DataAnimator.ModeSearch;
-            ////  animator.Play(modeSearch);
+            _viewBaseTower.PrewiwSearch(true);
 
             Update();
         }
 
         public override void Exit()
         {
-            //var animator = _viewBaseTower.Animator;
-            //var Idel = _viewBaseTower.DataAnimator.Idel;
-            //// animator.Play(Idel);
-
+            _viewBaseTower.PrewiwSearch(false);
             SetActive(false);
         }
 

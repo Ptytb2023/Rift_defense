@@ -30,14 +30,17 @@ namespace RiftDefense.Edifice.Tower.View
 
         public abstract void PreviewAtack(IBeatle enemy);
 
-        public void SetIdel()
+        public void PrewiwSearch(bool active)
         {
-
+            //if (!active)
+            //    _dataAnimator.Animator.StopPlayback();
+            //else
+            //    _dataAnimator.Animator.Play(_dataAnimator.ModeSearch);
         }
 
-        public void ShowDead()
+        public  void ShowDead()
         {
-
+            _dataAnimator.Animator.Play(_dataAnimator.Dead);
         }
 
         public void LookingAtEnemy(IBeatle enemy, bool active = true)
@@ -68,7 +71,7 @@ namespace RiftDefense.Edifice.Tower.View
 
         public Vector3 GetPosition() => transform.position;
 
-        private void OnDead()
+        protected virtual void OnDead()
         {
             Enabel = false;
             Dead?.Invoke(this);

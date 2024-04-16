@@ -2,7 +2,6 @@ using Lean.Pool;
 using RiftDefense.Beatle;
 using RiftDefense.Edifice.Tower.Model;
 using RiftDefense.Edifice.Tower.View;
-using RiftDefense.Generic.Interface;
 using System.Collections;
 using UnityEngine;
 
@@ -70,7 +69,7 @@ namespace RiftDefense.Edifice.Tower
             //StartCoroutine(Reload(secondReload));
         }
 
-        
+      
 
         private IEnumerator Reload(float secondReload)
         {
@@ -87,14 +86,14 @@ namespace RiftDefense.Edifice.Tower
         {
             base.OnSpawn();
             _laserTower.SetActive(true);
+
         }
 
-        public override void OnDespawn()
+        protected override void OnDead()
         {
-            base.OnDespawn();
+            base.OnDead();
+            TurnOffBeam();
             _laserTower.SetActive(false);
-
         }
-        
     }
 }

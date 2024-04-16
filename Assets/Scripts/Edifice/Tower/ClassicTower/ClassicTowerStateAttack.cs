@@ -26,7 +26,7 @@ public class ClassicTowerStateAttack : BaseStateAttackTower
     {
         if (TrySetTargetOrOverGoNextState())
         {
-            _classicTowerView.LookAttarget(CurrentTarget, true);
+            
             PerfomAttack();
         }
     }
@@ -38,6 +38,7 @@ public class ClassicTowerStateAttack : BaseStateAttackTower
 
     protected async override void  PerfomAttack()
     {
+        _classicTowerView.LookAttarget(CurrentTarget, true);
 
         while (Enabel && IsLiveTarget)
         {
@@ -46,6 +47,7 @@ public class ClassicTowerStateAttack : BaseStateAttackTower
             CurrentTarget.ApplyDamage(_damage);
             _currentAmount--;
 
+            await PerformDelay(_classicTowerView.DataAttack.DelayBetweenShots);
             if (_currentAmount <= 0)
                 await Reload();
         }
