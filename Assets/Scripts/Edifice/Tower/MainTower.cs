@@ -7,6 +7,7 @@ using UnityEngine;
 
 public class MainTower : MonoBehaviour, IMainTower
 {
+    
     [SerializeField] private Transform _point;
     [SerializeField] private DataHealf _dataHealf;
 

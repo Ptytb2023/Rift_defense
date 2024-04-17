@@ -20,6 +20,7 @@ public class StateMoveToMainTower : BaseState
 
     public override void Enter()
     {
+        _beatle.CurrentTarget = null;
         _movable.SetTargetToMove(_beatleView.Destination);
         SearchNewTarget();
     }
@@ -32,7 +33,6 @@ public class StateMoveToMainTower : BaseState
     private async void SearchNewTarget()
     {
         await UniTask.Yield(PlayerLoopTiming.Update);
-
         var second = _beatleView.DataAttackBeatle.DelayBetweenSearch;
 
         while (Enabel && _beatle.CurrentTarget == null)

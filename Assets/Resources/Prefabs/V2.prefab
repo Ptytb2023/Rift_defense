@@ -108,6 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df9fcb4ae10774f47b97dc04cf8bc213, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _collider: {fileID: 400985042770444904}
   DataAnimationBeatle:
     <Animator>k__BackingField: {fileID: 8918222908868625690}
     <Idel>k__BackingField: Idel
@@ -115,10 +116,10 @@ MonoBehaviour:
     <Move>k__BackingField: 
     <Dead>k__BackingField: 
   <DataHealf>k__BackingField:
-    <MaxHealf>k__BackingField: 322
+    <MaxHealf>k__BackingField: 20
   <DataAttackBeatle>k__BackingField:
-    <Damage>k__BackingField: 1
-    <DelayBetweenAttack>k__BackingField: 0.5
+    <Damage>k__BackingField: 5
+    <DelayBetweenAttack>k__BackingField: 1
     <AttackDistance>k__BackingField: 3
     <DelayBetweenSearch>k__BackingField: 0.2
     <RadiusSearch>k__BackingField: 15
@@ -128,7 +129,7 @@ MonoBehaviour:
   <DataMoveBeatle>k__BackingField:
     <NavMeshAgent>k__BackingField: {fileID: 6640528620903188676}
     <NavMeshObstacel>k__BackingField: {fileID: 5175734724583723538}
-    <Speed>k__BackingField: 3.5
+    <Speed>k__BackingField: 6
   <PointToHit>k__BackingField: {fileID: 2914028685319816773}
 --- !u!1 &3680177260051223102
 GameObject:

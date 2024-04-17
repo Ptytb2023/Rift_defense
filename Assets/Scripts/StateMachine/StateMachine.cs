@@ -33,7 +33,7 @@ namespace RiftDefense.FSM
             else
             {
                 CurrentState?.Exit();
-                CurrentState.SetActive(false);
+                CurrentState?.SetActive(false);
                 CurrentState = null;
             }
         }

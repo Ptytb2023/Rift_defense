@@ -722,9 +722,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 6944025423003360690}
   _baseDataTowerAttack:
-    <DelayBetweenShots>k__BackingField: 5
-    <TimeReload>k__BackingField: 5
-    <Damage>k__BackingField: 1
+    <DelayBetweenShots>k__BackingField: 1
+    <TimeReload>k__BackingField: 6
+    <Damage>k__BackingField: 10
     <RadiusAtack>k__BackingField: 16
     <DelayBetweenSeatchTarget>k__BackingField: 0.2
     <EnemyMask>k__BackingField:
@@ -735,7 +735,7 @@ MonoBehaviour:
       m_Bits: 0
     <ShootThroughObstacle>k__BackingField: 0
   _dataHealf:
-    <MaxHealf>k__BackingField: 1000
+    <MaxHealf>k__BackingField: 50
   _dataAnimator:
     <Animator>k__BackingField: {fileID: 6167005905151806432}
     <Idel>k__BackingField: Idel
@@ -745,7 +745,7 @@ MonoBehaviour:
     <SpeedRotation>k__BackingField: 3
     <Head>k__BackingField: {fileID: 0}
   _dattaAttackClssic:
-    <AmountAmmunition>k__BackingField: 10
+    <AmountAmmunition>k__BackingField: 12
   _speedLookAtTarget: 1
   _head: {fileID: 0}
   _pointShoot: {fileID: 7550816259285427667}

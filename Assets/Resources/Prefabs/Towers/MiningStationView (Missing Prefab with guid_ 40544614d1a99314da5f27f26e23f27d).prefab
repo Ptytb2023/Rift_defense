@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02488afed20dfe04b9b1cc4a272b5b2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _collider: {fileID: 4171271733918727134}
   _dataHeafl:
     <MaxHealf>k__BackingField: 100
 --- !u!114 &10114205044838344
@@ -62,7 +63,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _startingAmountPolymer: 0
-  _extractionSecond: 1
+  _extractionSecond: 5
   _containerPolymers: {fileID: 11400000, guid: db5f832791d14aa40920c6b0120a9aff, type: 2}
   _rangeTimeMining: 3
 --- !u!65 &4171271733918727134

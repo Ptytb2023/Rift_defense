@@ -9,6 +9,7 @@ using UnityEngine;
 
 public abstract class BaseBeatleView : MonoBehaviour, IBeatle, IPoolable
 {
+    [SerializeField] private Collider _collider;
     [field: SerializeField] public DataAnimationBeatle DataAnimationBeatle;
 
     public event Action<IEnemy> Dead;
@@ -31,19 +32,27 @@ public abstract class BaseBeatleView : MonoBehaviour, IBeatle, IPoolable
 
     public void PrewiewDamage()
     {
-
     }
 
     public void PrewiewAtack()
     {
+        DataAnimationBeatle.Animator.SetTrigger(DataAnimationBeatle.Attack);
     }
 
     public void ShowDead()
     {
+        DataAnimationBeatle.Animator.Play(DataAnimationBeatle.Dead);
     }
 
     public void SetActiovMove(bool active)
     {
+        if (active)
+            DataAnimationBeatle.Animator.SetBool(DataAnimationBeatle.Move, active);
+        else
+        {
+            DataAnimationBeatle.Animator.SetBool(DataAnimationBeatle.Move, active);
+            DataAnimationBeatle.Animator.Play(DataAnimationBeatle.Idel);
+        }
     }
 
     public Vector3 GetPointForHit()
@@ -58,16 +67,35 @@ public abstract class BaseBeatleView : MonoBehaviour, IBeatle, IPoolable
 
     public void ApplyDamage(float damage)
     {
-       DataHealf.ApplyDamage(damage);
+        DataHealf.ApplyDamage(damage);
     }
 
     public virtual void OnSpawn()
     {
-        
+        Enabel = true;
+        _collider.enabled = true;
+        DataHealf.ResetDataHealf();
+        DataHealf.Dead += OnDead;
     }
 
     public virtual void OnDespawn()
     {
-   
+        DataHealf.Dead -= OnDead;
+        PrewiewDamage();
+    }
+
+    protected virtual void OnDead()
+    {
+        Dead?.Invoke(this);
+        Enabel = false;
+        ShowDead();
+        _collider.enabled = false;
+        LeanPool.Despawn(this, 3f);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawSphere(transform.position, DataAttackBeatle.RadiusSearch);
     }
 }

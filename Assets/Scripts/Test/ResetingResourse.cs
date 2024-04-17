@@ -6,8 +6,8 @@ public class ResetingResourse : MonoBehaviour
     [SerializeField] private ContainerPolymers _polimers;
 
 
-    private void Start()
+    private void Awake()
     {
-       // _polimers.Resetiong();
+        _polimers.Resetiong();
     }
 }

@@ -4,6 +4,7 @@ using RiftDefense.FSM;
 using RiftDefense.Generic.Interface;
 using System.Threading.Tasks;
 using UnityEngine;
+using static UnityEngine.InputSystem.LowLevel.InputStateHistory;
 
 namespace RiftDefense.Edifice.Tower
 {
@@ -45,13 +46,18 @@ namespace RiftDefense.Edifice.Tower
 
         protected override async void PerfomAttack()
         {
+            var betweenShoot = _delayBetweenShots / 2f;
             while (Enabel && IsLiveTarget)
             {
                 ReduceTime();
                 HoldBeam();
                 HitEnemy();
 
-                await PerformDelay(_delayBetweenShots);
+                _laserTowerView.TurnOnBeam(CurrentTarget);
+                await PerformDelay(betweenShoot);
+
+                _laserTowerView.TurnOffBeam();
+                await PerformDelay(betweenShoot);
 
                 if (_curentDurationSeries <= 0)
                     await Reload();
@@ -61,6 +67,11 @@ namespace RiftDefense.Edifice.Tower
             NextState();
         }
 
+        private async Task DelayAndStopLaserPrewiw(float second)
+        {
+            _laserTowerView.TurnOffBeam();
+            await PerformDelay(second);
+        }
 
         private void HoldBeam()
         {
@@ -84,7 +95,7 @@ namespace RiftDefense.Edifice.Tower
                 var secondReload = _laserTowerView.DataAttack.TimeReload;
                 _laserTowerView.PreviewReload(secondReload);
 
-                await PerformDelay(secondReload);
+                await DelayAndStopLaserPrewiw(secondReload);
 
                 _curentDurationSeries = _laserTowerView.DataAttackLaser.DurationSeries;
             }

@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1152415385148273959}
   - component: {fileID: 7940599345905265165}
-  - component: {fileID: 8740205375456836796}
-  - component: {fileID: 4534728319960111626}
   - component: {fileID: 7179158682627194823}
+  - component: {fileID: 7865149961495683534}
+  - component: {fileID: 8030373283557564885}
   m_Layer: 7
   m_Name: Scorpio CLassic
   m_TagString: Untagged
@@ -59,52 +59,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &8740205375456836796
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7172865430664660321}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cbdc84936b4ae042b69dacea59f9344, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DataAnimationBeatle:
-    <Animator>k__BackingField: {fileID: 28312189510508643}
-    <Idel>k__BackingField: Idel
-    <Attack>k__BackingField: Attack
-    <Move>k__BackingField: Run
-    <Dead>k__BackingField: DeadAnimation
-  <DataHealf>k__BackingField:
-    <MaxHealf>k__BackingField: 30
-  <DataAttackBeatle>k__BackingField:
-    <Damage>k__BackingField: 3
-    <DelayBetweenAttack>k__BackingField: 0.8
-    <AttackDistance>k__BackingField: 4
-    <DelayBetweenSearch>k__BackingField: 0.2
-    <RadiusSearch>k__BackingField: 15
-    <EnemyMask>k__BackingField:
-      serializedVersion: 2
-      m_Bits: 256
-  <DataMoveBeatle>k__BackingField:
-    <NavMeshAgent>k__BackingField: {fileID: 7940599345905265165}
-    <Speed>k__BackingField: 4
-  <PointToHit>k__BackingField: {fileID: 2778388178666536310}
---- !u!114 &4534728319960111626
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7172865430664660321}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a2493215e70c7c479439ff7e7b8671e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _collider: {fileID: 7179158682627194823}
 --- !u!65 &7179158682627194823
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -126,6 +80,57 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.9199997, y: 4.870693, z: 1.6899999}
   m_Center: {x: 0, y: 3.1353462, z: 0}
+--- !u!114 &7865149961495683534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7172865430664660321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df9fcb4ae10774f47b97dc04cf8bc213, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _collider: {fileID: 7179158682627194823}
+  DataAnimationBeatle:
+    <Animator>k__BackingField: {fileID: 28312189510508643}
+    <Idel>k__BackingField: Idel
+    <Attack>k__BackingField: Attack
+    <Move>k__BackingField: Run
+    <Dead>k__BackingField: DeadAnimation
+  <DataHealf>k__BackingField:
+    <MaxHealf>k__BackingField: 50
+  <DataAttackBeatle>k__BackingField:
+    <Damage>k__BackingField: 10
+    <DelayBetweenAttack>k__BackingField: 1
+    <AttackDistance>k__BackingField: 3
+    <DelayBetweenSearch>k__BackingField: 0.2
+    <RadiusSearch>k__BackingField: 15
+    <EnemyMask>k__BackingField:
+      serializedVersion: 2
+      m_Bits: 256
+  <DataMoveBeatle>k__BackingField:
+    <NavMeshAgent>k__BackingField: {fileID: 7940599345905265165}
+    <NavMeshObstacel>k__BackingField: {fileID: 8030373283557564885}
+    <Speed>k__BackingField: 3
+  <PointToHit>k__BackingField: {fileID: 2778388178666536310}
+--- !u!208 &8030373283557564885
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7172865430664660321}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.72, y: 0.5, z: 1.055}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1.05, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &8916172037155409823
 GameObject:
   m_ObjectHideFlags: 0

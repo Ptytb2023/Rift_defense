@@ -12,9 +12,11 @@ public class StateClassicAttack : BaseBeatleAttack
         var demage = BeatleView.DataAttackBeatle.Damage;
         var delayBetweenAttack = BeatleView.DataAttackBeatle.DelayBetweenAttack;
 
-        while (CurrentTarget.Enabel && Enabel)
+        while (Enabel && CurrentTarget != null && CurrentTarget.Enabel)
         {
+            BeatleView.PrewiewAtack();
             CurrentTarget.ApplyDamage(demage);
+            
             await PerformDelay(delayBetweenAttack);
         }
 

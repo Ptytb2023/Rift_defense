@@ -49,7 +49,7 @@ public class StateMoveToTarget : BaseState
                 return;
             }
 
-            await UniTask.Yield(PlayerLoopTiming.FixedUpdate);
+            await UniTask.Yield(PlayerLoopTiming.Update);
         }
 
         if (Enabel)

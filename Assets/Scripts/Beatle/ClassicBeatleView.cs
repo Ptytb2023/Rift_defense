@@ -1,27 +1,30 @@
-﻿public class ClassicViewV2 : BaseBeatleView
+﻿public class ClassicBeatleView : BaseBeatleView
 {
-    private ClassicBeatleV2 ClassicBeatle;
+    private ClassicBeatle ClassicBeatle;
 
     protected override void Awake()
     {
         base.Awake();
-        ClassicBeatle = new ClassicBeatleV2(this);
+        ClassicBeatle = new ClassicBeatle(this);
 
     }
 
     public override void OnSpawn()
     {
         base.OnSpawn();
-        Enabel = true;
         ClassicBeatle.SetActive(true);
     }
 
     public override void OnDespawn()
     {
         base.OnDespawn();
-        Enabel = false;
 
+    }
+
+    protected override void OnDead()
+    {
         ClassicBeatle.SetActive(false);
+        base.OnDead();
     }
 
 

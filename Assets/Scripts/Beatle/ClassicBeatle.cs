@@ -1,6 +1,6 @@
-﻿public class ClassicBeatleV2 : BaseBeatle
+﻿public class ClassicBeatle : BaseBeatle
 {
-    public ClassicBeatleV2(BaseBeatleView baseView)
+    public ClassicBeatle(BaseBeatleView baseView)
         : base(baseView)
     {
         var stateClassicAttack = new StateClassicAttack(this);

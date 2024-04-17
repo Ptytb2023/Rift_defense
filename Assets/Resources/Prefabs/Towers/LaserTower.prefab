@@ -196,6 +196,7 @@ GameObject:
   - component: {fileID: 1701289197271441911}
   - component: {fileID: 6850200360962135243}
   - component: {fileID: 6698844785048157243}
+  - component: {fileID: 249736434403888591}
   m_Layer: 8
   m_Name: LaserTower
   m_TagString: Untagged
@@ -235,10 +236,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 6698844785048157243}
   _baseDataTowerAttack:
-    <DelayBetweenShots>k__BackingField: 5
-    <TimeReload>k__BackingField: 1
-    <Damage>k__BackingField: 1
-    <RadiusAtack>k__BackingField: 16
+    <DelayBetweenShots>k__BackingField: 2
+    <TimeReload>k__BackingField: 3
+    <Damage>k__BackingField: 10
+    <RadiusAtack>k__BackingField: 22
     <DelayBetweenSeatchTarget>k__BackingField: 0.2
     <EnemyMask>k__BackingField:
       serializedVersion: 2
@@ -248,10 +249,10 @@ MonoBehaviour:
       m_Bits: 0
     <ShootThroughObstacle>k__BackingField: 0
   _dataHealf:
-    <MaxHealf>k__BackingField: 1
+    <MaxHealf>k__BackingField: 50
   _dataAnimator:
     <Animator>k__BackingField: {fileID: 2963805553444213851}
-    <Idel>k__BackingField: 
+    <Idel>k__BackingField: Idel
     <ModeSearch>k__BackingField: 
     <Dead>k__BackingField: Dead
     <DelayDespawn>k__BackingField: 3
@@ -260,7 +261,7 @@ MonoBehaviour:
   _dataLaserTower:
     <Beam>k__BackingField: {fileID: 204814819716449399}
     <SpherePoint>k__BackingField: {fileID: 1360802477973444525}
-    <DurationSeries>k__BackingField: 10
+    <DurationSeries>k__BackingField: 3
     <EffectLaserHit>k__BackingField: {fileID: 5245323639902121594, guid: c1af61d3026021944b6d9779d4a108e5,
       type: 3}
     <maxEnmeyDamge>k__BackingField: 5
@@ -288,6 +289,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.39, y: 3.12, z: 1}
   m_Center: {x: 0, y: 2.36, z: 0}
+--- !u!208 &249736434403888591
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6462423249640290042}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &9025818404585113697
 GameObject:
   m_ObjectHideFlags: 0

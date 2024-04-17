@@ -50,7 +50,7 @@ MonoBehaviour:
       type: 0}
     <Description>k__BackingField: "\u041A\u043B\u0430\u0441\u0441\u0438\u0447\u0435\u0441\u043A\u0430\u044F
       \u043F\u0443\u0448\u043A\u0430"
-    <PricesBuy>k__BackingField: 60
+    <PricesBuy>k__BackingField: 40
     <Edifice>k__BackingField: {fileID: 4145851027280967487}
     <Tower>k__BackingField: {fileID: 7159477469714395814, guid: 38a94cc31fe1715429f8187462ae7195,
       type: 3}

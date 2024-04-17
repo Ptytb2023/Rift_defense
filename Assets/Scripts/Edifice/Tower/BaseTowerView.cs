@@ -83,6 +83,8 @@ namespace RiftDefense.Edifice.Tower.View
 
         public virtual void OnSpawn()
         {
+            //_dataAnimator.Animator.SetBool(_dataAnimator.Dead, false);
+
             _collider.enabled = true;
             Enabel = true;
             _dataHealf.ResetDataHealf();

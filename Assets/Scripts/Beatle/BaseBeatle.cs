@@ -24,7 +24,7 @@ public class BaseBeatle : StateMachine
         var navMehsAgent = baseView.DataMoveBeatle.NavMeshAgent;
         var navMehsObstacel = baseView.DataMoveBeatle.NavMeshObstacel;
 
-        MovableBeatle = new MovableBeatle(navMehsAgent, navMehsObstacel);
+        MovableBeatle = new MovableBeatle(navMehsAgent, navMehsObstacel,BaseBeatleView);
 
         StateMoveToMainTower = new StateMoveToMainTower(this);
 
