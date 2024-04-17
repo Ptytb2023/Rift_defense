@@ -25,6 +25,7 @@ public abstract class BaseBeatleAttack : BaseState
 
     public override void Enter()
     {
+        BeatleView.LookAtTarget(CurrentTarget);
         Moveble.SetActiveObstacel(true);
     }
 
@@ -44,6 +45,7 @@ public abstract class BaseBeatleAttack : BaseState
         if (!CurrentTarget.Enabel)
         {
             StateMachine.SetState(typeof(StateMoveToMainTower));
+            return;
         }
 
         PerfomAttack();

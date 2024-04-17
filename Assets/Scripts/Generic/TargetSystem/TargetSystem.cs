@@ -2,22 +2,30 @@ using System;
 using RiftDefense.Generic.Interface;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor.Rendering;
 
 namespace RiftDefense.Generic
 {
     public class TargetSystem<T> : ITargetSystem<T> where T : IEnemy
     {
+        private IEnemy _source;
+
+        private IEnemy _currentTarget;
+
         private Transform _transform;
         private float _radius;
         private LayerMask _layerMask;
 
         private Collider[] _colliders;
 
-        public TargetSystem(Transform transform, float radius, LayerMask layerMask)
+        private const int _precentFreeTarget = 50;
+
+        public TargetSystem(Transform transform, IEnemy source, float radius, LayerMask layerMask)
         {
             _transform = transform;
             _radius = radius;
             _layerMask = layerMask;
+            _source = source;
         }
 
         public bool TryGetClosestTargetInRadius(out T target)
@@ -28,7 +36,11 @@ namespace RiftDefense.Generic
                 return false;
 
             target = SearchClossetEnemy(_transform.position, targets);
-            return true;
+
+            if (target == null)
+                return false;
+            else
+                return true;
         }
 
         public bool CheakTargetsInRadius()
@@ -75,6 +87,9 @@ namespace RiftDefense.Generic
 
             foreach (var enemy in enemys)
             {
+                if (!enemy.AddEnemyTarget(_source))
+                    break;
+
                 Vector3 directionToTarget = pointPosition - enemy.GetPosition();
                 float squaredDirection = directionToTarget.sqrMagnitude;
 
@@ -88,6 +103,49 @@ namespace RiftDefense.Generic
             return closestEnemy;
         }
 
+        //private bool TargetFree(IEnemy enemy)
+        //{
+        //    if (enemy.MaxCapacityTarget <= enemy.CurrentCoutTarget)
+        //        return false;
+
+        //    if (!enemy.isAllTarget)
+        //        if (enemy.MaxCapacityTarget / 2 <= enemy.CurrentCoutTarget)
+        //        {
+        //            int chanche = UnityEngine.Random.Range(0, 100);
+
+        //            if (chanche > _precentFreeTarget)
+        //            {
+        //                RememberTarget(enemy);
+        //                return true;
+        //            }
+        //            else
+        //                return false;
+        //        }
+
+        //    RememberTarget(enemy);
+        //    return true;
+        //}
+
+        //private void RememberTarget(IEnemy enemy)
+        //{
+        //    if (_currentTarget != null)
+        //        Debug.Log("ERor");
+
+        //    _source.Dead += OnDeadSource;
+        //    _currentTarget = enemy;
+        //    _currentTarget.CurrentCoutTarget++;
+        //}
+
+        //private void OnDeadSource(IEnemy source)
+        //{
+        //    _source.Dead -= OnDeadSource;
+
+        //    if (_currentTarget != null)
+        //    {
+        //        _currentTarget.CurrentCoutTarget--;
+        //        _currentTarget = null;
+        //    }
+        //}
 
     }
 }

@@ -684,7 +684,6 @@ GameObject:
   - component: {fileID: 7847726812923309608}
   - component: {fileID: 6217058219446068121}
   - component: {fileID: 6944025423003360690}
-  - component: {fileID: 9055748747601173842}
   - component: {fileID: 2997654178448175752}
   m_Layer: 8
   m_Name: EdifaceFirsObject
@@ -721,6 +720,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af9487bf7a3b20942bb6c5e24eea5eea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <isAllTarget>k__BackingField: 0
+  <MaxCapacityTarget>k__BackingField: 5
   _collider: {fileID: 6944025423003360690}
   _baseDataTowerAttack:
     <DelayBetweenShots>k__BackingField: 1
@@ -770,24 +771,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.4, y: 0.44, z: 0.18}
-  m_Center: {x: 0, y: 0.26, z: 0}
---- !u!208 &9055748747601173842
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7159477469714395814}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.15, y: 0.115, z: 0.15}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0, z: 0}
-  m_TimeToStationary: 0.5
+  m_Size: {x: 0.25, y: 0.4, z: 0.32}
+  m_Center: {x: 0, y: 0.26, z: 0.009508908}
 --- !u!114 &2997654178448175752
 MonoBehaviour:
   m_ObjectHideFlags: 0

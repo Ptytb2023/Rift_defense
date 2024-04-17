@@ -7,8 +7,10 @@ using UnityEngine;
 
 public class MainTower : MonoBehaviour, IMainTower
 {
-    
-    [SerializeField] private Transform _point;
+    [field: SerializeField] public bool isAllTarget { get; private set; }
+    [field: SerializeField] public int MaxCapacityTarget { get; private set; }
+    public int CurrentCoutTarget { get; set; }
+
     [SerializeField] private DataHealf _dataHealf;
 
     public bool Enabel => gameObject.activeSelf;
@@ -36,11 +38,44 @@ public class MainTower : MonoBehaviour, IMainTower
 
     public Vector3 GetPosition()
     {
-        return _point.position;
+        return transform.position;
     }
 
     public void DespawnTower()
     {
         OnDead();
     }
+
+
+    public bool AddEnemyTarget(IEnemy enemy)
+    {
+        if (CurrentCoutTarget >= MaxCapacityTarget)
+            return false;
+
+        if (!isAllTarget)
+            if (MaxCapacityTarget / 2 <= CurrentCoutTarget)
+            {
+                int chanche = UnityEngine.Random.Range(0, 100);
+
+                if (chanche > 50)
+                {
+                    CurrentCoutTarget++;
+                    enemy.Dead += OnEnemyDeadTarget;
+                    return true;
+                }
+                else
+                    return false;
+            }
+
+        CurrentCoutTarget++;
+        enemy.Dead += OnEnemyDeadTarget;
+        return true;
+    }
+
+    private void OnEnemyDeadTarget(IEnemy enemy)
+    {
+        enemy.Dead -= OnEnemyDeadTarget;
+        CurrentCoutTarget--;
+    }
+
 }

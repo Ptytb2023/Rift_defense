@@ -21,7 +21,7 @@ namespace RiftDefense.Edifice.Tower
             var radius = towerView.DataAttack.RadiusAtack;
             var mask = towerView.DataAttack.EnemyMask;
 
-            TargetSystem = new TargetSystem<IBeatle>(transorm, radius, mask);
+            TargetSystem = new TargetSystem<IBeatle>(transorm, towerView, radius, mask);
         }
       
     }

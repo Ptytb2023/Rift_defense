@@ -1,6 +1,7 @@
 using Lean.Pool;
 using RiftDefense.Beatle;
 using RiftDefense.Beatle.Model;
+using RiftDefense.Edifice.Tower;
 using RiftDefense.Generic;
 using RiftDefense.Generic.Interface;
 using System;
@@ -8,7 +9,12 @@ using UnityEngine;
 
 public abstract class BaseBeatleView : MonoBehaviour, IBeatle, IPoolable
 {
+    [field: SerializeField] public bool isAllTarget { get; private set; }
+    [field: SerializeField] public int MaxCapacityTarget { get; private set; }
+    public int CurrentCoutTarget { get; set; }
+
     [SerializeField] private Collider _collider;
+    [SerializeField] private BaseBeatle _beasBeatle;
     [field: SerializeField] public DataAnimationBeatle DataAnimationBeatle;
 
     public event Action<IEnemy> Dead;
@@ -38,6 +44,11 @@ public abstract class BaseBeatleView : MonoBehaviour, IBeatle, IPoolable
         DataAnimationBeatle.Animator.SetTrigger(DataAnimationBeatle.Attack);
     }
 
+    public void LookAtTarget(ITower tower)
+    {
+        transform.LookAt(tower.GetPosition());
+    }
+
     public void ShowDead()
     {
         DataAnimationBeatle.Animator.Play(DataAnimationBeatle.Dead);
@@ -50,7 +61,6 @@ public abstract class BaseBeatleView : MonoBehaviour, IBeatle, IPoolable
         else
         {
             DataAnimationBeatle.Animator.SetBool(DataAnimationBeatle.Move, active);
-            DataAnimationBeatle.Animator.Play(DataAnimationBeatle.Idel);
         }
     }
 
@@ -71,6 +81,8 @@ public abstract class BaseBeatleView : MonoBehaviour, IBeatle, IPoolable
 
     public virtual void OnSpawn()
     {
+        CurrentCoutTarget = 0;
+        _beasBeatle.enabled = true;
         Enabel = true;
         _collider.enabled = true;
         DataHealf.ResetDataHealf();
@@ -85,6 +97,7 @@ public abstract class BaseBeatleView : MonoBehaviour, IBeatle, IPoolable
 
     protected virtual void OnDead()
     {
+        _beasBeatle.enabled = false;
         Dead?.Invoke(this);
         Enabel = false;
         ShowDead();
@@ -92,9 +105,42 @@ public abstract class BaseBeatleView : MonoBehaviour, IBeatle, IPoolable
         LeanPool.Despawn(this, 3f);
     }
 
-    private void OnDrawGizmosSelected()
+    //private void OnDrawGizmosSelected()
+    //{
+    //    Gizmos.color = Color.green;
+    //    Gizmos.DrawSphere(transform.position, DataAttackBeatle.RadiusSearch);
+
+    //}
+
+    public bool AddEnemyTarget(IEnemy enemy)
     {
-        Gizmos.color = Color.green;
-        Gizmos.DrawSphere(transform.position, DataAttackBeatle.RadiusSearch);
+        if (CurrentCoutTarget >= MaxCapacityTarget)
+            return false;
+
+        if (!isAllTarget)
+            if (MaxCapacityTarget / 2 <= CurrentCoutTarget)
+            {
+                int chanche = UnityEngine.Random.Range(0, 100);
+
+                if (chanche > 50)
+                {
+                    CurrentCoutTarget++;
+                    enemy.Dead += OnEnemyDeadTarget;
+                    return true;
+                }
+                else
+                    return false;
+            }
+
+        CurrentCoutTarget++;
+        enemy.Dead += OnEnemyDeadTarget;
+        return true;
     }
+
+    private void OnEnemyDeadTarget(IEnemy enemy)
+    {
+        enemy.Dead -= OnEnemyDeadTarget;
+        CurrentCoutTarget--;
+    }
+
 }

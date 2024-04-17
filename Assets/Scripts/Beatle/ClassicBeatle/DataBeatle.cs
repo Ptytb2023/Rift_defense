@@ -13,7 +13,9 @@ namespace RiftDefense.Beatle.Model
         [field: SerializeField] public float DelayBetweenAttack { get; private set; }
         [field: SerializeField] public float AttackDistance { get; private set; }
         [field: SerializeField] public float DelayBetweenSearch { get; private set; }
-        [field: SerializeField] public float RadiusSearch { get; private set; }
+        [field: SerializeField] public float RadiusSearch { get; private set; } 
+        [field: SerializeField] public Transform pointAttack { get; private set; }
+        [field: SerializeField] public float radiusPointAttack { get; private set; }
         [field: SerializeField] public LayerMask EnemyMask { get; private set; }
     }
 

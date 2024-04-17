@@ -77,7 +77,6 @@ namespace RiftDefense.Edifice.Tower
         public override void OnSpawn()
         {
             base.OnSpawn();
-
         }
 
         protected override void OnDead()

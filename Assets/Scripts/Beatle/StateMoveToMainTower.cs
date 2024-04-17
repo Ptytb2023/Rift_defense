@@ -5,6 +5,7 @@ using RiftDefense.Generic.Interface;
 using System;
 using System.Threading.Tasks;
 using UnityEngine;
+using static Lean.Pool.LeanGameObjectPool;
 
 public class StateMoveToMainTower : BaseState
 {
@@ -48,6 +49,10 @@ public class StateMoveToMainTower : BaseState
             _beatle.CurrentTarget = tower;
             NextState();
             return;
+        }
+        else
+        {
+            Delay = _beatleView.DataAttackBeatle.DelayBetweenSearch;
         }
     }
 

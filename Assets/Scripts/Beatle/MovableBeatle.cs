@@ -30,13 +30,22 @@ public class MovableBeatle
     public bool TryReachDestination(float distance)
     {
         distance *= distance;
-        var direction =   _currentPoint  - _navMeshAget.transform.position;
+        var direction = _currentPoint - _navMeshAget.transform.position;
         var distanceToPoint = direction.sqrMagnitude;
 
         if (distanceToPoint <= distance)
             return true;
 
         return false;
+    }
+
+    public void SetActiveQuality(bool active)
+    {
+        if (active)
+            _navMeshAget.obstacleAvoidanceType = ObstacleAvoidanceType.HighQualityObstacleAvoidance;
+        else
+            _navMeshAget.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
+
     }
 
     public void StopMove()

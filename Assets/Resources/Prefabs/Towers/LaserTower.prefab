@@ -195,8 +195,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1701289197271441911}
   - component: {fileID: 6850200360962135243}
-  - component: {fileID: 6698844785048157243}
   - component: {fileID: 249736434403888591}
+  - component: {fileID: 5330859164989864036}
+  - component: {fileID: 5013047170000957732}
   m_Layer: 8
   m_Name: LaserTower
   m_TagString: Untagged
@@ -234,7 +235,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16f4ec3816c1b444b9c04ea922524182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _collider: {fileID: 6698844785048157243}
+  <isAllTarget>k__BackingField: 0
+  <MaxCapacityTarget>k__BackingField: 5
+  _collider: {fileID: 5013047170000957732}
   _baseDataTowerAttack:
     <DelayBetweenShots>k__BackingField: 2
     <TimeReload>k__BackingField: 3
@@ -249,7 +252,7 @@ MonoBehaviour:
       m_Bits: 0
     <ShootThroughObstacle>k__BackingField: 0
   _dataHealf:
-    <MaxHealf>k__BackingField: 50
+    <MaxHealf>k__BackingField: 1000
   _dataAnimator:
     <Animator>k__BackingField: {fileID: 2963805553444213851}
     <Idel>k__BackingField: Idel
@@ -268,7 +271,37 @@ MonoBehaviour:
     <attackInStraightLine>k__BackingField: 0
   _materialSphereShoot: {fileID: 0}
   _colorReload: {r: 0, g: 0, b: 0, a: 0}
---- !u!65 &6698844785048157243
+--- !u!208 &249736434403888591
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6462423249640290042}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.005, y: 0.5, z: 0.005}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 0
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
+--- !u!114 &5330859164989864036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6462423249640290042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 559cdf5aefee868418450f06418abf11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  towerView: {fileID: 6850200360962135243}
+  <LaserTowerView>k__BackingField: {fileID: 6850200360962135243}
+--- !u!65 &5013047170000957732
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -287,24 +320,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.39, y: 3.12, z: 1}
-  m_Center: {x: 0, y: 2.36, z: 0}
---- !u!208 &249736434403888591
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6462423249640290042}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0, z: 0}
-  m_TimeToStationary: 0.5
+  m_Size: {x: 2, y: 3, z: 2}
+  m_Center: {x: 0, y: 2, z: 0}
 --- !u!1 &9025818404585113697
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,6 +12,8 @@ namespace RiftDefense.FSM
 
         public bool Enabel { get; private set; }
 
+        
+
         public void AddState(BaseState state)
         {
             var type = state.GetType();

@@ -47,7 +47,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 7172865430664660321}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 1.5
+  m_Radius: 2
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 30
@@ -93,7 +93,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df9fcb4ae10774f47b97dc04cf8bc213, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <isAllTarget>k__BackingField: 0
+  <MaxCapacityTarget>k__BackingField: 3
   _collider: {fileID: 7179158682627194823}
+  _beasBeatle: {fileID: 2522896939204937373}
   DataAnimationBeatle:
     <Animator>k__BackingField: {fileID: 28312189510508643}
     <Idel>k__BackingField: Idel
@@ -101,13 +104,15 @@ MonoBehaviour:
     <Move>k__BackingField: Run
     <Dead>k__BackingField: DeadAnimation
   <DataHealf>k__BackingField:
-    <MaxHealf>k__BackingField: 50
+    <MaxHealf>k__BackingField: 100
   <DataAttackBeatle>k__BackingField:
     <Damage>k__BackingField: 10
     <DelayBetweenAttack>k__BackingField: 1
     <AttackDistance>k__BackingField: 3
     <DelayBetweenSearch>k__BackingField: 0.2
     <RadiusSearch>k__BackingField: 15
+    <pointAttack>k__BackingField: {fileID: 1058408695960757516}
+    <radiusPointAttack>k__BackingField: 2
     <EnemyMask>k__BackingField:
       serializedVersion: 2
       m_Bits: 256
@@ -126,11 +131,11 @@ NavMeshObstacle:
   m_Enabled: 0
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 0.72, y: 0.5, z: 1.055}
+  m_Extents: {x: 0.105, y: 0.5, z: 0.105}
   m_MoveThreshold: 0.1
   m_Carve: 1
   m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 1.05, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
 --- !u!114 &2522896939204937373
 MonoBehaviour:
@@ -144,6 +149,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 962528a1cffb07e4d830938ebf9fafde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &7716916116441365600
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1058408695960757516}
+  - component: {fileID: 4169615882049622698}
+  m_Layer: 0
+  m_Name: pointAttack
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1058408695960757516
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7716916116441365600}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.9, z: 1.26}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8275652650453908664}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4169615882049622698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7716916116441365600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dd27e64cb0a4e84db64b51d85bfc26c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _beatleView: {fileID: 7865149961495683534}
 --- !u!1 &8916172037155409823
 GameObject:
   m_ObjectHideFlags: 0
@@ -255,7 +305,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 574b88f187952ad4e8fbd44393136a55,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1058408695960757516}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 574b88f187952ad4e8fbd44393136a55,
         type: 3}

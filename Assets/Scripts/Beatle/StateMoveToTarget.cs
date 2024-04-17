@@ -2,6 +2,7 @@
 using RiftDefense.FSM;
 using RiftDefense.Generic.Interface;
 using System;
+using UnityEngine;
 
 public class StateMoveToTarget : BaseState
 {
@@ -12,7 +13,12 @@ public class StateMoveToTarget : BaseState
 
     private Type _nextState;
 
+    private Transform _pointAttack => BeatleView.DataAttackBeatle.pointAttack;
+    private float _radiusAttack => BeatleView.DataAttackBeatle.radiusPointAttack;
     private float _diastanceAttack => BeatleView.DataAttackBeatle.AttackDistance;
+    private LayerMask _maskEnemy => BeatleView.DataAttackBeatle.EnemyMask;
+    private Collider[] _colliders;
+
 
     protected ITower CurrentTarget => BaseBeatle.CurrentTarget;
 
@@ -26,23 +32,46 @@ public class StateMoveToTarget : BaseState
 
     public override void Enter()
     {
+        _movableBeatle.SetActiveQuality(false);
         _movableBeatle.SetTargetToMove(BaseBeatle.CurrentTarget.GetPosition(), _diastanceAttack);
     }
 
     public override void Exit()
     {
+        _movableBeatle.SetActiveQuality(true);
         _movableBeatle.StopMove();
     }
 
     public override void Update()
     {
         if (CurrentTarget.Enabel)
-            if (_movableBeatle.TryReachDestination(_diastanceAttack))
+        {
+            if (TryRechDestination())
             {
                 StateMachine.SetState(_nextState);
                 return;
             }
-            else
-                StateMachine.SetState(typeof(StateMoveToMainTower));
+        }
+        else
+            StateMachine.SetState(_nextState);
     }
+
+
+    private bool TryRechDestination()
+    {
+        _colliders = Physics.OverlapSphere(_pointAttack.position,
+            _radiusAttack,
+            _maskEnemy.value);
+
+        foreach (var collider in _colliders)
+        {
+            if(collider.TryGetComponent(out ITower tower))
+                if(tower==CurrentTarget)
+                    return true;
+        }
+
+        return false;
+    }
+
+
 }

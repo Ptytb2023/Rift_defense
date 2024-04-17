@@ -2,6 +2,7 @@ using RiftDefense.Beatle;
 using RiftDefense.FSM;
 using System.Collections;
 using UnityEngine;
+using static UnityEngine.InputSystem.LowLevel.InputStateHistory;
 
 namespace RiftDefense.Edifice.Tower
 {
@@ -16,6 +17,7 @@ namespace RiftDefense.Edifice.Tower
         private Transform _pointShoot => _laserTowerView.DataAttackLaser.SpherePoint;
         private LayerMask enemyMask => _laserTowerView.DataAttack.EnemyMask;
 
+        private WaitForSeconds delayTurnOff; 
 
         private Coroutine _turenOn;
 
@@ -23,7 +25,7 @@ namespace RiftDefense.Edifice.Tower
             base(laserTower)
         {
             _laserTower = laserTower;
-
+            delayTurnOff = new WaitForSeconds(_laserTowerView.DataAttack.DelayBetweenShots/2f);
             _curentDurationSeries = _laserTowerView.DataAttackLaser.DurationSeries;
         }
 
@@ -46,11 +48,11 @@ namespace RiftDefense.Edifice.Tower
             _laserTowerView.TurnOffBeam();
         }
 
-        private IEnumerator DelayTurenOn(float second)
+        private IEnumerator DelayTurenOn()
         {
             _laserTowerView.TurnOnBeam(CurrentTarget);
 
-            yield return new WaitForSeconds(second);
+            yield return delayTurnOff;
 
             _laserTowerView.TurnOffBeam();
         }
@@ -61,7 +63,7 @@ namespace RiftDefense.Edifice.Tower
             HoldBeam();
             HitEnemy();
 
-            _turenOn = StateMachine.StartCoroutine(DelayTurenOn(_laserTowerView.DataAttack.DelayBetweenShots));
+            _turenOn = StateMachine.StartCoroutine(DelayTurenOn());
             if (_curentDurationSeries <= 0)
                 Reload();
         }

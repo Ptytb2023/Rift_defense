@@ -12,10 +12,17 @@ namespace RiftDefense.Edifice.Tower.View
 {
     public abstract class BaseTowerView : MonoBehaviour, ITower, IPoolable
     {
+        [field: SerializeField] public bool isAllTarget { get; private set; }
+        [field: SerializeField] public int MaxCapacityTarget { get; private set; }
+        public int CurrentCoutTarget { get; set; }
+
         [SerializeField] private Collider _collider;
         [SerializeField] private DataTowerAttack _baseDataTowerAttack;
         [SerializeField] private DataHealf _dataHealf;
         [SerializeField] private DataAnimator _dataAnimator;
+
+        //private Coroutine _fixedTarget;
+        //private WaitForSeconds _secondDelay;
 
         public DataTowerAttack DataAttack => _baseDataTowerAttack;
         public DataHealf DataHealf => _dataHealf;
@@ -39,7 +46,7 @@ namespace RiftDefense.Edifice.Tower.View
             //    _dataAnimator.Animator.Play(_dataAnimator.ModeSearch);
         }
 
-        public  void ShowDead()
+        public void ShowDead()
         {
             _dataAnimator.Animator.Play(_dataAnimator.Dead);
         }
@@ -74,6 +81,9 @@ namespace RiftDefense.Edifice.Tower.View
 
         protected virtual void OnDead()
         {
+            //if (_fixedTarget != null)
+            //    StopCoroutine(_fixedTarget);
+
             Enabel = false;
             Dead?.Invoke(this);
             _collider.enabled = false;
@@ -83,8 +93,11 @@ namespace RiftDefense.Edifice.Tower.View
 
         public virtual void OnSpawn()
         {
-            //_dataAnimator.Animator.SetBool(_dataAnimator.Dead, false);
+            //_secondDelay = new WaitForSeconds(10f);
 
+            //_fixedTarget = StartCoroutine(cheakTargeta());
+            //_dataAnimator.Animator.SetBool(_dataAnimator.Dead, false);
+            CurrentCoutTarget = 0;
             _collider.enabled = true;
             Enabel = true;
             _dataHealf.ResetDataHealf();
@@ -105,6 +118,52 @@ namespace RiftDefense.Edifice.Tower.View
         }
 
         public void DespawnTower() => OnDead();
+
+        //private IEnumerator cheakTargeta()
+        //{
+        //    while (Enabel)
+        //    {
+        //        yield return _secondDelay;
+
+        //        if (CurrentCoutTarget >= MaxCapacityTarget)
+        //        {
+        //            CurrentCoutTarget--;
+        //        }
+
+        //    }
+        //}
+
+
+        public bool AddEnemyTarget(IEnemy enemy)
+        {
+            if (CurrentCoutTarget >= MaxCapacityTarget)
+                return false;
+
+            if (!isAllTarget)
+                if (MaxCapacityTarget / 2 <= CurrentCoutTarget)
+                {
+                    int chanche = UnityEngine.Random.Range(0, 100);
+
+                    if (chanche > 50)
+                    {
+                        CurrentCoutTarget++;
+                        enemy.Dead += OnEnemyDeadTarget;
+                        return true;
+                    }
+                    else
+                        return false;
+                }
+
+            CurrentCoutTarget++;
+            enemy.Dead += OnEnemyDeadTarget;
+            return true;
+        }
+
+        private void OnEnemyDeadTarget(IEnemy enemy)
+        {
+            enemy.Dead -= OnEnemyDeadTarget;
+            CurrentCoutTarget--;
+        }
 
     }
 }

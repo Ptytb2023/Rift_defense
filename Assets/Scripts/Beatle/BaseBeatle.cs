@@ -11,6 +11,7 @@ public class BaseBeatle : StateMachine
     public TargetSystem<ITower> TargetSystem { get; private set; }
     public MovableBeatle MovableBeatle { get; private set; }
 
+
     protected StateMoveToMainTower StateMoveToMainTower;
 
     protected virtual void Awake()
@@ -20,7 +21,7 @@ public class BaseBeatle : StateMachine
         var radius = BaseBeatleView.DataAttackBeatle.RadiusSearch;
         var layerMask = BaseBeatleView.DataAttackBeatle.EnemyMask;
 
-        TargetSystem = new TargetSystem<ITower>(transform, radius, layerMask);
+        TargetSystem = new TargetSystem<ITower>(transform, BaseBeatleView , radius, layerMask);
 
         var navMehsAgent = BaseBeatleView.DataMoveBeatle.NavMeshAgent;
         var navMehsObstacel = BaseBeatleView.DataMoveBeatle.NavMeshObstacel;

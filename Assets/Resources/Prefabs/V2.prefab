@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 400985042770444904}
   - component: {fileID: 5175734724583723538}
   - component: {fileID: 1042074203792443867}
+  - component: {fileID: 3568964288721102440}
   m_Layer: 7
   m_Name: V2
   m_TagString: Untagged
@@ -35,6 +36,7 @@ Transform:
   m_Children:
   - {fileID: 2803166156559104581}
   - {fileID: 2914028685319816773}
+  - {fileID: 7573758188258785884}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!195 &6640528620903188676
@@ -90,7 +92,7 @@ NavMeshObstacle:
   m_Enabled: 0
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 1.21, y: 0.5, z: 1.02}
+  m_Extents: {x: 0.005, y: 0.5, z: 0.005}
   m_MoveThreshold: 0.1
   m_Carve: 1
   m_CarveOnlyStationary: 1
@@ -108,7 +110,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df9fcb4ae10774f47b97dc04cf8bc213, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <isAllTarget>k__BackingField: 0
+  <MaxCapacityTarget>k__BackingField: 4
   _collider: {fileID: 400985042770444904}
+  _beasBeatle: {fileID: 3568964288721102440}
   DataAnimationBeatle:
     <Animator>k__BackingField: {fileID: 8918222908868625690}
     <Idel>k__BackingField: Idel
@@ -123,6 +128,8 @@ MonoBehaviour:
     <AttackDistance>k__BackingField: 3
     <DelayBetweenSearch>k__BackingField: 0.2
     <RadiusSearch>k__BackingField: 15
+    <pointAttack>k__BackingField: {fileID: 0}
+    <radiusPointAttack>k__BackingField: 1.3
     <EnemyMask>k__BackingField:
       serializedVersion: 2
       m_Bits: 256
@@ -131,6 +138,18 @@ MonoBehaviour:
     <NavMeshObstacel>k__BackingField: {fileID: 5175734724583723538}
     <Speed>k__BackingField: 6
   <PointToHit>k__BackingField: {fileID: 2914028685319816773}
+--- !u!114 &3568964288721102440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 364553779620849808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 962528a1cffb07e4d830938ebf9fafde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3680177260051223102
 GameObject:
   m_ObjectHideFlags: 0
@@ -162,6 +181,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 454651484877674679}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8100046885127032079
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7573758188258785884}
+  - component: {fileID: 6927460037998860493}
+  m_Layer: 7
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7573758188258785884
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8100046885127032079}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.24, y: 0, z: 0.74}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 454651484877674679}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6927460037998860493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8100046885127032079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dd27e64cb0a4e84db64b51d85bfc26c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _beatleView: {fileID: 1042074203792443867}
 --- !u!1001 &2408407352205598126
 PrefabInstance:
   m_ObjectHideFlags: 0
