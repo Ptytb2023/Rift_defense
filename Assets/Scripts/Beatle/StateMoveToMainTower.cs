@@ -4,6 +4,7 @@ using RiftDefense.FSM;
 using RiftDefense.Generic.Interface;
 using System;
 using System.Threading.Tasks;
+using UnityEngine;
 
 public class StateMoveToMainTower : BaseState
 {
@@ -11,6 +12,10 @@ public class StateMoveToMainTower : BaseState
     protected BaseBeatleView _beatleView => _beatle.BaseBeatleView;
     protected ITargetSystem<ITower> TargetSystem => _beatle.TargetSystem;
     private MovableBeatle _movable => _beatle.MovableBeatle;
+
+
+    private ITower CurrentTarget => _beatle.CurrentTarget;
+    protected float Delay;
 
     public StateMoveToMainTower(BaseBeatle beatleBase
         ) : base(beatleBase)
@@ -22,7 +27,6 @@ public class StateMoveToMainTower : BaseState
     {
         _beatle.CurrentTarget = null;
         _movable.SetTargetToMove(_beatleView.Destination);
-        SearchNewTarget();
     }
 
     public override void Exit()
@@ -30,32 +34,25 @@ public class StateMoveToMainTower : BaseState
         _movable.StopMove();
     }
 
-    private async void SearchNewTarget()
+
+    public override void Update()
     {
-        await UniTask.Yield(PlayerLoopTiming.Update);
-        var second = _beatleView.DataAttackBeatle.DelayBetweenSearch;
-
-        while (Enabel && _beatle.CurrentTarget == null)
+        if (Delay > 0)
         {
-            if (TargetSystem.TryGetClosestTargetInRadius(out ITower tower))
-            {
-                _beatle.CurrentTarget = tower;
-                NextState();
-                return;
-            }
+            Delay -= Time.deltaTime;
+            return;
+        }
 
-            await PerformDelay(second);
+        if (TargetSystem.TryGetClosestTargetInRadius(out ITower tower))
+        {
+            _beatle.CurrentTarget = tower;
+            NextState();
+            return;
         }
     }
 
     private void NextState()
     {
         StateMachine.SetState(typeof(StateMoveToTarget));
-    }
-
-    protected async Task PerformDelay(float second)
-    {
-        var delay = TimeSpan.FromSeconds(second);
-        await UniTask.Delay(delay, DelayType.DeltaTime, PlayerLoopTiming.Update);
     }
 }

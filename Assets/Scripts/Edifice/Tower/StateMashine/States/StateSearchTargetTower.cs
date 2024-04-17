@@ -3,58 +3,63 @@ using RiftDefense.Edifice.Tower.View;
 using RiftDefense.Generic.Interface;
 using RiftDefense.Beatle;
 using RiftDefense.FSM;
-using Cysharp.Threading.Tasks;
 using System;
+using UnityEngine;
 
 
 namespace RiftDefense.Edifice.Tower.FSM
 {
     public class StateSearchTargetTower : BaseState
     {
+        private BaseTower _tower;
+        private ITargetSystem<IBeatle> _targetSystem => _tower.TargetSystem;
+        private BaseTowerView _viewBaseTower => _tower.towerView;
 
-        private BaseTowerView _viewBaseTower;
-        private ITargetSystem<IBeatle> _targetSystem;
         private Type _nextState;
         private DataTowerAttack _dataAttack => _viewBaseTower.DataAttack;
 
-        public StateSearchTargetTower(StateMachine stateMachine,
-                                         BaseTowerView viewBaseTower,
-                                         ITargetSystem<IBeatle> targetSystem,
+        private float _delay;
+
+        public StateSearchTargetTower(BaseTower tower,
                                          Type nextState)
-            : base(stateMachine)
+            : base(tower)
         {
-            _viewBaseTower = viewBaseTower;
-            _targetSystem = targetSystem;
+            _tower = tower;
             _nextState = nextState;
         }
 
 
         public override void Enter()
         {
-            SetActive(true);
             _viewBaseTower.PrewiwSearch(true);
-
-            Update();
+            //Debug.Log($"Enter {typeof(StateSearchTargetTower)}");
         }
 
         public override void Exit()
         {
             _viewBaseTower.PrewiwSearch(false);
-            SetActive(false);
+
+            //Debug.Log($"Exit {typeof(StateSearchTargetTower)}");
         }
 
-        private async void Update()
+        public override void Update()
         {
-            while (Enabel)
+            if (_delay > 0)
             {
-                if (_targetSystem.CheakTargetsInRadius())
-                    StateMachine.SetState(_nextState);
-                else
-                {
-                    var deleay = TimeSpan.FromSeconds(_dataAttack.DelayBetweenSeatchTarget);
-                    await UniTask.Delay(deleay, DelayType.DeltaTime, PlayerLoopTiming.Update);
-                }
+                _delay -= Time.deltaTime;
+                return;
             }
+
+            if (_targetSystem.TryGetClosestTargetInRadius(out IBeatle beatle))
+            {
+                _tower.CurrentTarget = beatle;
+                StateMachine.SetState(_nextState);
+            }
+            else
+            {
+                _delay = _dataAttack.DelayBetweenSeatchTarget;
+            }
+            //Debug.Log($"Update {typeof(StateSearchTargetTower)}");
         }
     }
 }

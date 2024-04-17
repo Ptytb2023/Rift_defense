@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using RiftDefense.Edifice.Tower;
 using RiftDefense.Generic.Interface;
 using System;
@@ -20,7 +21,7 @@ public class PointAttackTower : MonoBehaviour, ITower
 
     public void DespawnTower()
     {
-        
+        Dead?.Invoke(this);
     }
 
     public Vector3 GetPosition()

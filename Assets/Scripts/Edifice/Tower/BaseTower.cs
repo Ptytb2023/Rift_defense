@@ -2,14 +2,20 @@ using RiftDefense.Beatle;
 using RiftDefense.Edifice.Tower.View;
 using RiftDefense.FSM;
 using RiftDefense.Generic;
+using UnityEngine;
 
 namespace RiftDefense.Edifice.Tower
 {
+    [RequireComponent(typeof(BaseTowerView))]
     public abstract class BaseTower : StateMachine
     {
-        protected TargetSystem<IBeatle> TargetSystem;
+        [SerializeField] public BaseTowerView towerView;
+        
+        public TargetSystem<IBeatle> TargetSystem { get; private set; }
 
-        public BaseTower(BaseTowerView towerView) 
+        public IBeatle CurrentTarget;
+
+        protected virtual void Awake()
         {
             var transorm = towerView.transform;
             var radius = towerView.DataAttack.RadiusAtack;
@@ -17,5 +23,6 @@ namespace RiftDefense.Edifice.Tower
 
             TargetSystem = new TargetSystem<IBeatle>(transorm, radius, mask);
         }
+      
     }
 }

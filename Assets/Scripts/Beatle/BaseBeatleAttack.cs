@@ -1,9 +1,7 @@
-﻿using Cysharp.Threading.Tasks;
-using RiftDefense.Edifice.Tower;
+﻿using RiftDefense.Edifice.Tower;
 using RiftDefense.FSM;
 using RiftDefense.Generic.Interface;
-using System;
-using System.Threading.Tasks;
+using UnityEngine;
 
 public abstract class BaseBeatleAttack : BaseState
 {
@@ -14,6 +12,8 @@ public abstract class BaseBeatleAttack : BaseState
     protected MovableBeatle Moveble => BaseBeatle.MovableBeatle;
 
     protected ITower CurrentTarget => BaseBeatle.CurrentTarget;
+    protected float Delay;
+
 
     protected BaseBeatleAttack(BaseBeatle stateMachine)
         : base(stateMachine)
@@ -25,10 +25,7 @@ public abstract class BaseBeatleAttack : BaseState
 
     public override void Enter()
     {
-        Moveble.StopMove();
         Moveble.SetActiveObstacel(true);
-
-        PerfomAttack();
     }
 
     public override void Exit()
@@ -37,9 +34,24 @@ public abstract class BaseBeatleAttack : BaseState
         Moveble.SetActiveObstacel(false);
     }
 
-    protected async Task PerformDelay(float second)
+    public override void Update()
     {
-        var delay = TimeSpan.FromSeconds(second);
-        await UniTask.Delay(delay, DelayType.DeltaTime, PlayerLoopTiming.Update);
+        if (Delay > 0)
+        {
+            Delay -= Time.deltaTime;
+            return;
+        }
+        if (!CurrentTarget.Enabel)
+        {
+            StateMachine.SetState(typeof(StateMoveToMainTower));
+        }
+
+        PerfomAttack();
+
+        Delay = BeatleView.DataAttackBeatle.DelayBetweenAttack;
     }
+
+
+
+
 }

@@ -1,26 +1,16 @@
-﻿using RiftDefense.FSM;
-
+﻿
 public class StateClassicAttack : BaseBeatleAttack
 {
+    private float demage => BeatleView.DataAttackBeatle.Damage;
+
     public StateClassicAttack(BaseBeatle stateMachine) :
         base(stateMachine)
     {
     }
 
-    protected override async void PerfomAttack()
+    protected override  void PerfomAttack()
     {
-        var demage = BeatleView.DataAttackBeatle.Damage;
-        var delayBetweenAttack = BeatleView.DataAttackBeatle.DelayBetweenAttack;
-
-        while (Enabel && CurrentTarget != null && CurrentTarget.Enabel)
-        {
-            BeatleView.PrewiewAtack();
-            CurrentTarget.ApplyDamage(demage);
-            
-            await PerformDelay(delayBetweenAttack);
-        }
-
-        if (Enabel)
-            StateMachine.SetState(typeof(StateMoveToMainTower));
+        BeatleView.PrewiewAtack();
+        CurrentTarget.ApplyDamage(demage);
     }
 }

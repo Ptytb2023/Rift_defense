@@ -1,10 +1,12 @@
 ﻿public class ClassicBeatle : BaseBeatle
 {
-    public ClassicBeatle(BaseBeatleView baseView)
-        : base(baseView)
+
+    protected override void Awake()
     {
+        base.Awake();
+
         var stateClassicAttack = new StateClassicAttack(this);
-        var stateMoveToTarget = new StateMoveToTarget(this,typeof(StateClassicAttack));
+        var stateMoveToTarget = new StateMoveToTarget(this, typeof(StateClassicAttack));
 
         AddState(stateClassicAttack);
         AddState(stateMoveToTarget);

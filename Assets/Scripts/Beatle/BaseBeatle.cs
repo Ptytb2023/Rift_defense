@@ -1,7 +1,9 @@
 ﻿using RiftDefense.Edifice.Tower;
 using RiftDefense.FSM;
 using RiftDefense.Generic;
+using UnityEngine;
 
+[RequireComponent(typeof(BaseBeatleView))]
 public class BaseBeatle : StateMachine
 {
     public BaseBeatleView BaseBeatleView { get; private set; }
@@ -11,20 +13,19 @@ public class BaseBeatle : StateMachine
 
     protected StateMoveToMainTower StateMoveToMainTower;
 
-    public BaseBeatle(BaseBeatleView baseView)
+    protected virtual void Awake()
     {
-        BaseBeatleView = baseView;
+        BaseBeatleView = GetComponent<BaseBeatleView>();
 
-        var transform = baseView.transform;
-        var radius = baseView.DataAttackBeatle.RadiusSearch;
-        var layerMask = baseView.DataAttackBeatle.EnemyMask;
+        var radius = BaseBeatleView.DataAttackBeatle.RadiusSearch;
+        var layerMask = BaseBeatleView.DataAttackBeatle.EnemyMask;
 
         TargetSystem = new TargetSystem<ITower>(transform, radius, layerMask);
 
-        var navMehsAgent = baseView.DataMoveBeatle.NavMeshAgent;
-        var navMehsObstacel = baseView.DataMoveBeatle.NavMeshObstacel;
+        var navMehsAgent = BaseBeatleView.DataMoveBeatle.NavMeshAgent;
+        var navMehsObstacel = BaseBeatleView.DataMoveBeatle.NavMeshObstacel;
 
-        MovableBeatle = new MovableBeatle(navMehsAgent, navMehsObstacel,BaseBeatleView);
+        MovableBeatle = new MovableBeatle(navMehsAgent, navMehsObstacel, BaseBeatleView);
 
         StateMoveToMainTower = new StateMoveToMainTower(this);
 
@@ -32,5 +33,4 @@ public class BaseBeatle : StateMachine
 
         StartState = StateMoveToMainTower;
     }
-
 }

@@ -22,22 +22,16 @@ public class ClassicTowerView : BaseTowerView
 
     private Coroutine _looking;
 
-    private void Awake()
-    {
-        _clasicTower = new ClassicTower(this);
-    }
 
     public override void OnDespawn()
     {
         base.OnDespawn();
-        _clasicTower.SetActive(false);
 
     }
 
     public override void OnSpawn()
     {
         base.OnSpawn();
-        _clasicTower.SetActive(true);
     }
 
 

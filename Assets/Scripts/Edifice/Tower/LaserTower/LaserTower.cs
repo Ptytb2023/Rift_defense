@@ -1,15 +1,21 @@
-
+using UnityEngine;
 using RiftDefense.Edifice.Tower.FSM;
+
 
 namespace RiftDefense.Edifice.Tower
 {
+    [RequireComponent(typeof(LaserTowerView))]
     public class LaserTower : BaseTower
     {
-        public LaserTower(LaserTowerView towerView)
-            : base(towerView)
+      [field:SerializeField]  public LaserTowerView LaserTowerView { get; private set; }
+
+
+        protected override void Awake()
         {
-            var stateAttack = new LaserTowerAttackState(this, TargetSystem, towerView);
-            var stateSearch = new StateSearchTargetTower(this, towerView, TargetSystem, stateAttack.GetType());
+            base.Awake();
+
+            var stateAttack = new LaserTowerAttackState(this);
+            var stateSearch = new StateSearchTargetTower(this, stateAttack.GetType());
 
 
             AddState(stateAttack);
@@ -17,5 +23,6 @@ namespace RiftDefense.Edifice.Tower
 
             StartState = stateSearch;
         }
+       
     }
 }

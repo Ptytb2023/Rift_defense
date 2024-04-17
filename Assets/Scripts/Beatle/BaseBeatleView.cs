@@ -4,7 +4,6 @@ using RiftDefense.Beatle.Model;
 using RiftDefense.Generic;
 using RiftDefense.Generic.Interface;
 using System;
-using TMPro.EditorUtilities;
 using UnityEngine;
 
 public abstract class BaseBeatleView : MonoBehaviour, IBeatle, IPoolable

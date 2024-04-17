@@ -1,10 +1,10 @@
-using RiftDefense.Generic.Interface;
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace RiftDefense.FSM
 {
-    public abstract class StateMachine : IActive
+    public abstract class StateMachine : MonoBehaviour
     {
         protected Dictionary<Type, BaseState> States = new Dictionary<Type, BaseState>();
         protected BaseState StartState;
@@ -22,20 +22,23 @@ namespace RiftDefense.FSM
             States.Add(type, state);
         }
 
-        public void SetActive(bool active)
-        {
-            Enabel = active;
 
-            if (active)
-            {
-                SetState(StartState.GetType());
-            }
-            else
-            {
-                CurrentState?.Exit();
-                CurrentState?.SetActive(false);
-                CurrentState = null;
-            }
+        protected virtual void OnEnable()
+        {
+            CurrentState = StartState;
+            CurrentState.Enter();
+        }
+
+
+        private void OnDisable()
+        {
+            CurrentState?.Exit();
+            CurrentState = null;
+        }
+
+        private void Update()
+        {
+            CurrentState.Update();
         }
 
         public void SetState(Type typeState)
@@ -47,10 +50,7 @@ namespace RiftDefense.FSM
             if (States.TryGetValue(typeState, out var newState))
             {
                 CurrentState?.Exit();
-                CurrentState?.SetActive(false);
-
                 CurrentState = newState;
-                CurrentState.SetActive(true);
                 CurrentState.Enter();
             }
             else

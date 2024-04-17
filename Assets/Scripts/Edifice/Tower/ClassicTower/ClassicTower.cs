@@ -1,12 +1,21 @@
+using RiftDefense.Beatle;
+using RiftDefense.Generic;
+using UnityEngine;
 
 namespace RiftDefense.Edifice.Tower.FSM
 {
+    [RequireComponent(typeof(ClassicTowerView))]
     public class ClassicTower : BaseTower
     {
-        public ClassicTower(ClassicTowerView towerView) : base(towerView)
+       [field:SerializeField] public ClassicTowerView classicTowerView { get; private set; }
+
+
+        protected override void Awake() 
         {
-            var stateAttack = new ClassicTowerStateAttack(this, towerView, TargetSystem);
-            var stateSearch = new StateSearchTargetTower(this, towerView, TargetSystem, stateAttack.GetType());
+            base.Awake();
+
+            var stateAttack = new ClassicTowerStateAttack(this);
+            var stateSearch = new StateSearchTargetTower(this, stateAttack.GetType());
 
             AddState(stateAttack);
             AddState(stateSearch);

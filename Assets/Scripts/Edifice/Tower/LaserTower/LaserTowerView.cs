@@ -19,12 +19,6 @@ namespace RiftDefense.Edifice.Tower
         private Coroutine _trackingBeam;
         private const int _indexEndBeam = 1;
 
-        private LaserTower _laserTower;
-
-        private void Awake()
-        {
-            _laserTower = new LaserTower(this);
-        }
 
         public void TurnOnBeam(IBeatle enemy)
         {
@@ -68,7 +62,6 @@ namespace RiftDefense.Edifice.Tower
         {
             //StartCoroutine(Reload(secondReload));
         }
-
       
 
         private IEnumerator Reload(float secondReload)
@@ -81,11 +74,9 @@ namespace RiftDefense.Edifice.Tower
             _materialSphereShoot.color = oldColor;
         }
 
-
         public override void OnSpawn()
         {
             base.OnSpawn();
-            _laserTower.SetActive(true);
 
         }
 
@@ -93,7 +84,6 @@ namespace RiftDefense.Edifice.Tower
         {
             base.OnDead();
             TurnOffBeam();
-            _laserTower.SetActive(false);
         }
     }
 }

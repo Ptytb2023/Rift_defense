@@ -1,5 +1,4 @@
-﻿using Cysharp.Threading.Tasks;
-using RiftDefense.Edifice.Tower;
+﻿using RiftDefense.Edifice.Tower;
 using RiftDefense.FSM;
 using RiftDefense.Generic.Interface;
 using System;
@@ -13,7 +12,9 @@ public class StateMoveToTarget : BaseState
 
     private Type _nextState;
 
-    ITower _target => BaseBeatle.CurrentTarget;
+    private float _diastanceAttack => BeatleView.DataAttackBeatle.AttackDistance;
+
+    protected ITower CurrentTarget => BaseBeatle.CurrentTarget;
 
     public StateMoveToTarget(BaseBeatle baseBeatle, Type nextState)
                                  : base(baseBeatle)
@@ -25,10 +26,7 @@ public class StateMoveToTarget : BaseState
 
     public override void Enter()
     {
-        if (!_target.Enabel)
-            NextStateMoveToMainTower();
-        else
-            Move();
+        _movableBeatle.SetTargetToMove(BaseBeatle.CurrentTarget.GetPosition(), _diastanceAttack);
     }
 
     public override void Exit()
@@ -36,29 +34,15 @@ public class StateMoveToTarget : BaseState
         _movableBeatle.StopMove();
     }
 
-    private async void Move()
+    public override void Update()
     {
-        float distanceAttack = BeatleView.DataAttackBeatle.AttackDistance;
-        _movableBeatle.SetTargetToMove(BaseBeatle.CurrentTarget.GetPosition(), distanceAttack);
-
-        while (Enabel && _target.Enabel)
-        {
-            if (_movableBeatle.TryReachDestination(distanceAttack))
+        if (CurrentTarget.Enabel)
+            if (_movableBeatle.TryReachDestination(_diastanceAttack))
             {
                 StateMachine.SetState(_nextState);
                 return;
             }
-
-            await UniTask.Yield(PlayerLoopTiming.Update);
-        }
-
-        if (Enabel)
-            NextStateMoveToMainTower();
-    }
-
-
-    protected void NextStateMoveToMainTower()
-    {
-        StateMachine.SetState(typeof(StateMoveToMainTower));
+            else
+                StateMachine.SetState(typeof(StateMoveToMainTower));
     }
 }
