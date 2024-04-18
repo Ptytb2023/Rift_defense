@@ -23,20 +23,24 @@ public class ClassicTowerStateAttack : BaseStateAttackTower
         base.Enter();
 
         if (CurrentTarget != null && CurrentTarget.Enabel)
-            _classicTowerView.LookAttarget(CurrentTarget, true);
+                  NewTarget += OnNewTarget;
 
-        NewTarget += OnNewTarget;
+
+        _classicTowerView.LookingAtEnemy(CurrentTarget,true);
     }
 
     public override void Exit()
     {
-        _classicTowerView.LookAttarget(CurrentTarget, false);
+        base.Exit();
+
         NewTarget -= OnNewTarget;
+
+        _classicTowerView.LookingAtEnemy(CurrentTarget, false);
     }
 
     protected  override void PerfomAttack()
     {
-        Debug.Log("Attack Update");
+        Debug.Log("Attack Mini");
         _classicTowerView.PreviewAtack(CurrentTarget);
 
         CurrentTarget.ApplyDamage(_damage);
@@ -55,6 +59,6 @@ public class ClassicTowerStateAttack : BaseStateAttackTower
 
     private void OnNewTarget()
     {
-        _classicTowerView.LookAttarget(CurrentTarget, true);
+        _classicTowerView.LookingAtEnemy(CurrentTarget, true);
     }
 }

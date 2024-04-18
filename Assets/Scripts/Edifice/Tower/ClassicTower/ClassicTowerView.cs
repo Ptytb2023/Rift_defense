@@ -41,16 +41,7 @@ public class ClassicTowerView : BaseTowerView
             LeanPool.Spawn(_shootEfect, _pointShoot.position, _pointShoot.rotation);
     }
 
-    public void LookAttarget(IBeatle beatle, bool active)
-    {
-        //if (active)
-        //{
-        //    StopLooking();
-        //    _looking = StartCoroutine(LookAtTarget(beatle));
-        //}
-        //else
-        //    StopLooking();
-    }
+   
 
     private void StopLooking()
     {

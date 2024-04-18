@@ -53,7 +53,6 @@ public abstract class BaseStateAttackTower : BaseState
         {
             NextState();
             return false;
-         
         }
 
         BaseTower.CurrentTarget = beatle;
@@ -66,7 +65,7 @@ public abstract class BaseStateAttackTower : BaseState
     {
         if (!CurrentTarget.Enabel)
         {
-            if (!TrySetTargetOrOverGoNextState())
+            if (TrySetTargetOrOverGoNextState())
                 return;
         }
 

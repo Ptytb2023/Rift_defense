@@ -1,8 +1,10 @@
 using Lean.Pool;
 using RiftDefense.Beatle;
+using RiftDefense.Generic.Interface;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -18,8 +20,14 @@ public class SpawnerBeatle : MonoBehaviour
     private int _currentIndexWave;
     private Wave _currentWave;
 
+    private int _currentCoutSpawn;
+    private WaitForSeconds _sleep;
+
+    public Action AllEnemyDead;
+
     private void Start()
     {
+        _sleep = new WaitForSeconds(10f);
         StarSpawner();
     }
 
@@ -72,6 +80,8 @@ public class SpawnerBeatle : MonoBehaviour
                     SetWave();
             }
         }
+
+        StartCoroutine(EndGame());
     }
 
     private void SpawnBeatle(Wave wave, int coutSpawn)
@@ -82,8 +92,22 @@ public class SpawnerBeatle : MonoBehaviour
 
             var beatle = wave.Beatles[randomIndexBeatle];
 
-            LeanPool.Spawn(beatle, GetPoint(), Quaternion.identity);
+            var enemy = LeanPool.Spawn(beatle, GetPoint(), Quaternion.identity);
+
+            enemy.Dead += OnEnemyDead;
+            _currentCoutSpawn++;
         }
+    }
+
+    private IEnumerator EndGame()
+    {
+        while (_currentCoutSpawn > 0)
+        {
+            yield return _sleep;
+
+        }
+
+        AllEnemyDead?.Invoke();
     }
 
     private Vector3 GetPoint()
@@ -100,10 +124,15 @@ public class SpawnerBeatle : MonoBehaviour
             _currentIndexWave++;
             return;
         }
-
         _currentWave = null;
     }
 
+
+    private void OnEnemyDead(IEnemy enemy)
+    {
+        enemy.Dead -= OnEnemyDead;
+        _currentCoutSpawn--;
+    }
 
 }
 

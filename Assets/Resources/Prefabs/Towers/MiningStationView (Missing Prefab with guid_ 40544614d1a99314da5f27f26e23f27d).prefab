@@ -51,7 +51,7 @@ MonoBehaviour:
   <MaxCapacityTarget>k__BackingField: 5
   _collider: {fileID: 4171271733918727134}
   _dataHeafl:
-    <MaxHealf>k__BackingField: 100
+    <MaxHealf>k__BackingField: 20
 --- !u!114 &10114205044838344
 MonoBehaviour:
   m_ObjectHideFlags: 0

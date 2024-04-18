@@ -220,6 +220,7 @@ Transform:
   m_Children:
   - {fileID: 1360802477973444525}
   - {fileID: 5040612000324620847}
+  - {fileID: 7278368667419626511}
   - {fileID: 6634317918898561034}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -235,13 +236,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16f4ec3816c1b444b9c04ea922524182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sekelt: {fileID: 5672293922284226709}
   <isAllTarget>k__BackingField: 0
   <MaxCapacityTarget>k__BackingField: 5
   _collider: {fileID: 5013047170000957732}
   _baseDataTowerAttack:
-    <DelayBetweenShots>k__BackingField: 2
+    <DelayBetweenShots>k__BackingField: 1
     <TimeReload>k__BackingField: 3
-    <Damage>k__BackingField: 10
+    <Damage>k__BackingField: 20
     <RadiusAtack>k__BackingField: 22
     <DelayBetweenSeatchTarget>k__BackingField: 0.2
     <EnemyMask>k__BackingField:
@@ -252,7 +254,7 @@ MonoBehaviour:
       m_Bits: 0
     <ShootThroughObstacle>k__BackingField: 0
   _dataHealf:
-    <MaxHealf>k__BackingField: 1000
+    <MaxHealf>k__BackingField: 50
   _dataAnimator:
     <Animator>k__BackingField: {fileID: 2963805553444213851}
     <Idel>k__BackingField: Idel
@@ -260,7 +262,7 @@ MonoBehaviour:
     <Dead>k__BackingField: Dead
     <DelayDespawn>k__BackingField: 3
     <SpeedRotation>k__BackingField: 0
-    <Head>k__BackingField: {fileID: 0}
+    <Head>k__BackingField: {fileID: 7278368667419626511}
   _dataLaserTower:
     <Beam>k__BackingField: {fileID: 204814819716449399}
     <SpherePoint>k__BackingField: {fileID: 1360802477973444525}
@@ -417,6 +419,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LaserNew
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ed75673efc16bd241af456fc65762545,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 881954782194467577, guid: ed75673efc16bd241af456fc65762545, type: 3}
@@ -460,3 +467,78 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1001 &7100853628945837028
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1701289197271441911}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: ed75673efc16bd241af456fc65762545,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ed75673efc16bd241af456fc65762545,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ed75673efc16bd241af456fc65762545,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ed75673efc16bd241af456fc65762545,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ed75673efc16bd241af456fc65762545,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ed75673efc16bd241af456fc65762545,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ed75673efc16bd241af456fc65762545,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ed75673efc16bd241af456fc65762545,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ed75673efc16bd241af456fc65762545,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ed75673efc16bd241af456fc65762545,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ed75673efc16bd241af456fc65762545,
+        type: 3}
+      propertyPath: m_Name
+      value: NotAnim
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects:
+    - {fileID: 881954782194467577, guid: ed75673efc16bd241af456fc65762545, type: 3}
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ed75673efc16bd241af456fc65762545, type: 3}
+--- !u!4 &7278368667419626511 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ed75673efc16bd241af456fc65762545,
+    type: 3}
+  m_PrefabInstance: {fileID: 7100853628945837028}
+  m_PrefabAsset: {fileID: 0}

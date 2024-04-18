@@ -12,10 +12,12 @@ public class MainTower : MonoBehaviour, IMainTower
     public int CurrentCoutTarget { get; set; }
 
     [SerializeField] private DataHealf _dataHealf;
+    [SerializeField] private Transform[] pointsForAttack;
 
     public bool Enabel => gameObject.activeSelf;
 
     public Vector3Int GridPosition { get; set; }
+
     public event Action<IEnemy> Dead;
 
 
@@ -29,7 +31,10 @@ public class MainTower : MonoBehaviour, IMainTower
         _dataHealf.Dead -= OnDead;
     }
 
-    private void OnDead() => Dead?.Invoke(this);
+    private void OnDead()
+    {
+        Dead?.Invoke(this);
+    }
 
     public void ApplyDamage(float damage)
     {
@@ -38,13 +43,16 @@ public class MainTower : MonoBehaviour, IMainTower
 
     public Vector3 GetPosition()
     {
-        return transform.position;
+        int randomPoitn = UnityEngine.Random.Range(0, pointsForAttack.Length);
+
+        return pointsForAttack[randomPoitn].position;
     }
 
     public void DespawnTower()
     {
         OnDead();
     }
+
 
 
     public bool AddEnemyTarget(IEnemy enemy)

@@ -12,6 +12,8 @@ namespace RiftDefense.Edifice.Tower.View
 {
     public abstract class BaseTowerView : MonoBehaviour, ITower, IPoolable
     {
+
+        [SerializeField] private GameObject _sekelt;
         [field: SerializeField] public bool isAllTarget { get; private set; }
         [field: SerializeField] public int MaxCapacityTarget { get; private set; }
         public int CurrentCoutTarget { get; set; }
@@ -20,6 +22,7 @@ namespace RiftDefense.Edifice.Tower.View
         [SerializeField] private DataTowerAttack _baseDataTowerAttack;
         [SerializeField] private DataHealf _dataHealf;
         [SerializeField] private DataAnimator _dataAnimator;
+        
 
         //private Coroutine _fixedTarget;
         //private WaitForSeconds _secondDelay;
@@ -48,6 +51,14 @@ namespace RiftDefense.Edifice.Tower.View
 
         public void ShowDead()
         {
+            if (_sekelt != null)
+            {
+                _sekelt?.gameObject.SetActive(true);
+                DataAnimator.Head?.gameObject.SetActive(false);
+            }
+
+            if (_lookAt != null)
+                StopCoroutine(_lookAt);
             _dataAnimator.Animator.Play(_dataAnimator.Dead);
         }
 
@@ -73,6 +84,7 @@ namespace RiftDefense.Edifice.Tower.View
 
                 yield return null;
             }
+
         }
 
         public void ApplyDamage(float damage) => _dataHealf.ApplyDamage(damage);
@@ -97,6 +109,12 @@ namespace RiftDefense.Edifice.Tower.View
 
             //_fixedTarget = StartCoroutine(cheakTargeta());
             //_dataAnimator.Animator.SetBool(_dataAnimator.Dead, false);
+            if (_sekelt != null)
+            {
+                _sekelt?.gameObject.SetActive(false);
+                DataAnimator.Head?.gameObject.SetActive(true);
+            }
+
             CurrentCoutTarget = 0;
             _collider.enabled = true;
             Enabel = true;
