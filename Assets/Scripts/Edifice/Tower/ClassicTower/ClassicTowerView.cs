@@ -3,7 +3,6 @@ using RiftDefense.Beatle;
 using RiftDefense.Edifice.Tower.FSM;
 using RiftDefense.Edifice.Tower.Model;
 using RiftDefense.Edifice.Tower.View;
-using System.Collections;
 using UnityEngine;
 
 
@@ -40,27 +39,5 @@ public class ClassicTowerView : BaseTowerView
         if (_shootEfect != null)
             LeanPool.Spawn(_shootEfect, _pointShoot.position, _pointShoot.rotation);
     }
-
-   
-
-    private void StopLooking()
-    {
-        if (_looking != null)
-            StopCoroutine(_looking);
-    }
-
-    private IEnumerator LookAtTarget(IBeatle beatle)
-    {
-        while (enabled)
-        {
-            var direction = beatle.GetPosition() - _head.position;
-            Quaternion newRotation = Quaternion.LookRotation(direction);
-
-            _head.rotation = Quaternion.Slerp(_head.rotation, newRotation, _speedLookAtTarget * Time.deltaTime);
-
-            yield return null;
-        }
-    }
-
 
 }

@@ -9,10 +9,9 @@ using UnityEngine;
 
 public abstract class BaseBeatleView : MonoBehaviour, IBeatle, IPoolable
 {
-    [field: SerializeField] public bool isAllTarget { get; private set; }
-    [field: SerializeField] public int MaxCapacityTarget { get; private set; }
-    public int CurrentCoutTarget { get; set; }
+  
 
+    [SerializeField] public DataDetecteble _dataDetecteble;
     [SerializeField] private Collider _collider;
     [SerializeField] private BaseBeatle _beasBeatle;
     [field: SerializeField] public DataAnimationBeatle DataAnimationBeatle;
@@ -26,6 +25,7 @@ public abstract class BaseBeatleView : MonoBehaviour, IBeatle, IPoolable
     [field: SerializeField] public Transform PointToHit { get; private set; }
 
     public Vector3 Destination { get; private set; }
+    public Detecteble Detecteble { get; private set; }
 
     public bool Enabel { get; protected set; }
 
@@ -33,6 +33,7 @@ public abstract class BaseBeatleView : MonoBehaviour, IBeatle, IPoolable
     {
         var mainTower = FindObjectOfType<MainTower>();
         Destination = mainTower.GetPosition();
+        Detecteble = new Detecteble(_dataDetecteble);
     }
 
     public void PrewiewDamage()
@@ -81,7 +82,7 @@ public abstract class BaseBeatleView : MonoBehaviour, IBeatle, IPoolable
 
     public virtual void OnSpawn()
     {
-        CurrentCoutTarget = 0;
+        Detecteble.Reseting();
         _beasBeatle.enabled = true;
         Enabel = true;
         _collider.enabled = true;
@@ -112,35 +113,5 @@ public abstract class BaseBeatleView : MonoBehaviour, IBeatle, IPoolable
 
     //}
 
-    public bool AddEnemyTarget(IEnemy enemy)
-    {
-        if (CurrentCoutTarget >= MaxCapacityTarget)
-            return false;
-
-        if (!isAllTarget)
-            if (MaxCapacityTarget / 2 <= CurrentCoutTarget)
-            {
-                int chanche = UnityEngine.Random.Range(0, 100);
-
-                if (chanche > 50)
-                {
-                    CurrentCoutTarget++;
-                    enemy.Dead += OnEnemyDeadTarget;
-                    return true;
-                }
-                else
-                    return false;
-            }
-
-        CurrentCoutTarget++;
-        enemy.Dead += OnEnemyDeadTarget;
-        return true;
-    }
-
-    private void OnEnemyDeadTarget(IEnemy enemy)
-    {
-        enemy.Dead -= OnEnemyDeadTarget;
-        CurrentCoutTarget--;
-    }
 
 }

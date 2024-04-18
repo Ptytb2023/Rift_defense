@@ -2,15 +2,12 @@ using System;
 using RiftDefense.Generic.Interface;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor.Rendering;
 
 namespace RiftDefense.Generic
 {
     public class TargetSystem<T> : ITargetSystem<T> where T : IEnemy
     {
         private IEnemy _source;
-
-        private IEnemy _currentTarget;
 
         private Transform _transform;
         private float _radius;
@@ -28,6 +25,7 @@ namespace RiftDefense.Generic
             _source = source;
         }
 
+
         public bool TryGetClosestTargetInRadius(out T target)
         {
             target = default;
@@ -35,12 +33,23 @@ namespace RiftDefense.Generic
             if (!TryGetAllTargetsInRadius(out List<T> targets))
                 return false;
 
-            target = SearchClossetEnemy(_transform.position, targets);
+            foreach (var item in targets)
+            {
+                if (item.Detecteble.AddEnemyTarget(_source))
+                {
+                    target = item;
+                    return true;
+                }
+            }
 
-            if (target == null)
-                return false;
-            else
-                return true;
+            return false;
+
+            //target = SearchClossetEnemy(_transform.position, targets);
+
+            //if (target == null)
+            //    return false;
+            //else
+            //    return true;
         }
 
         public bool CheakTargetsInRadius()
@@ -87,9 +96,6 @@ namespace RiftDefense.Generic
 
             foreach (var enemy in enemys)
             {
-                if (!enemy.AddEnemyTarget(_source))
-                    break;
-
                 Vector3 directionToTarget = pointPosition - enemy.GetPosition();
                 float squaredDirection = directionToTarget.sqrMagnitude;
 

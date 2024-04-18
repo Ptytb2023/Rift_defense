@@ -10,9 +10,7 @@ namespace RiftDefense.Edifice.Mining
     [RequireComponent(typeof(MiningSystem))]
     public class MiningStation : MonoBehaviour, IPoolable, ITower
     {
-        [field: SerializeField] public bool isAllTarget { get; private set; }
-        [field: SerializeField] public int MaxCapacityTarget { get; private set; }
-        public int CurrentCoutTarget { get; set; }
+        [SerializeField] public DataDetecteble _dataDetecteble;
 
         [SerializeField] private Collider _collider;
         [SerializeField] private DataHealf _dataHeafl;
@@ -20,12 +18,16 @@ namespace RiftDefense.Edifice.Mining
         private MiningSystem _miningSystem;
 
         public bool Enabel { get; private set; }
-
+        public Detecteble Detecteble { get; private set; }
         public Vector3Int GridPosition { get; set; }
 
         public event Action<IEnemy> Dead;
 
-        private void Awake() => _miningSystem = GetComponent<MiningSystem>();
+        private void Awake()
+        {
+            Detecteble = new Detecteble(_dataDetecteble);
+            _miningSystem = GetComponent<MiningSystem>();
+        }
         public void ApplyDamage(float damage) => _dataHeafl.ApplyDamage(damage);
         public Vector3 GetPosition() => transform.position;
 
@@ -41,7 +43,7 @@ namespace RiftDefense.Edifice.Mining
 
         public void OnSpawn()
         {
-            CurrentCoutTarget = 0;
+            Detecteble.Reseting();
             Enabel = true;
             _collider.enabled = true;
             _dataHeafl.ResetDataHealf();
@@ -54,35 +56,5 @@ namespace RiftDefense.Edifice.Mining
             _dataHeafl.Dead -= OnDead;
         }
 
-        public bool AddEnemyTarget(IEnemy enemy)
-        {
-            if (CurrentCoutTarget >= MaxCapacityTarget)
-                return false;
-
-            if (!isAllTarget)
-                if (MaxCapacityTarget / 2 <= CurrentCoutTarget)
-                {
-                    int chanche = UnityEngine.Random.Range(0, 100);
-
-                    if (chanche > 50)
-                    {
-                        CurrentCoutTarget++;
-                        enemy.Dead += OnEnemyDeadTarget;
-                        return true;
-                    }
-                    else
-                        return false;
-                }
-
-            CurrentCoutTarget++;
-            enemy.Dead += OnEnemyDeadTarget;
-            return true;
-        }
-
-        private void OnEnemyDeadTarget(IEnemy enemy)
-        {
-            enemy.Dead -= OnEnemyDeadTarget;
-            CurrentCoutTarget--;
-        }
     }
 }

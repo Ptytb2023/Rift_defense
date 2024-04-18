@@ -721,9 +721,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af9487bf7a3b20942bb6c5e24eea5eea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _dataDetecteble:
+    <MaxSizeDataEnemy>k__BackingField: 5
+    <IsllTargetsEnemy>k__BackingField: 0
   _sekelt: {fileID: 8848275343388441756}
-  <isAllTarget>k__BackingField: 0
-  <MaxCapacityTarget>k__BackingField: 5
   _collider: {fileID: 6944025423003360690}
   _baseDataTowerAttack:
     <DelayBetweenShots>k__BackingField: 1

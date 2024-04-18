@@ -1051,8 +1051,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92df40e61cfc2ef44b7e943f76eb63c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <isAllTarget>k__BackingField: 1
-  <MaxCapacityTarget>k__BackingField: 20
+  _dataDetecteble:
+    <MaxSizeDataEnemy>k__BackingField: 20
+    <IsllTargetsEnemy>k__BackingField: 1
   _dataHealf:
     <MaxHealf>k__BackingField: 1
   pointsForAttack:

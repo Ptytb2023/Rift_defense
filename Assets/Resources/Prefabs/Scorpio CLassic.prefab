@@ -93,18 +93,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df9fcb4ae10774f47b97dc04cf8bc213, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <isAllTarget>k__BackingField: 0
-  <MaxCapacityTarget>k__BackingField: 3
+  _dataDetecteble:
+    <MaxSizeDataEnemy>k__BackingField: 4
+    <IsllTargetsEnemy>k__BackingField: 0
   _collider: {fileID: 7179158682627194823}
   _beasBeatle: {fileID: 2522896939204937373}
   DataAnimationBeatle:
     <Animator>k__BackingField: {fileID: 28312189510508643}
     <Idel>k__BackingField: Idel
-    <Attack>k__BackingField: Attak
+    <Attack>k__BackingField: Attack
     <Move>k__BackingField: Run
     <Dead>k__BackingField: DeadAnimation
   <DataHealf>k__BackingField:
-    <MaxHealf>k__BackingField: 50
+    <MaxHealf>k__BackingField: 921.9
   <DataAttackBeatle>k__BackingField:
     <Damage>k__BackingField: 10
     <DelayBetweenAttack>k__BackingField: 1
@@ -119,7 +120,7 @@ MonoBehaviour:
   <DataMoveBeatle>k__BackingField:
     <NavMeshAgent>k__BackingField: {fileID: 7940599345905265165}
     <NavMeshObstacel>k__BackingField: {fileID: 8030373283557564885}
-    <Speed>k__BackingField: 3
+    <Speed>k__BackingField: 10.69
   <PointToHit>k__BackingField: {fileID: 2778388178666536310}
 --- !u!208 &8030373283557564885
 NavMeshObstacle:

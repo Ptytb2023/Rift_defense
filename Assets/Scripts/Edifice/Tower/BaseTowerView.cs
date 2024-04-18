@@ -12,11 +12,9 @@ namespace RiftDefense.Edifice.Tower.View
 {
     public abstract class BaseTowerView : MonoBehaviour, ITower, IPoolable
     {
-
+        [SerializeField] public DataDetecteble _dataDetecteble;
         [SerializeField] private GameObject _sekelt;
-        [field: SerializeField] public bool isAllTarget { get; private set; }
-        [field: SerializeField] public int MaxCapacityTarget { get; private set; }
-        public int CurrentCoutTarget { get; set; }
+    
 
         [SerializeField] private Collider _collider;
         [SerializeField] private DataTowerAttack _baseDataTowerAttack;
@@ -32,7 +30,7 @@ namespace RiftDefense.Edifice.Tower.View
         public DataAnimator DataAnimator => _dataAnimator;
 
         public bool Enabel { get; private set; }
-
+        public Detecteble Detecteble { get; private set; }
         public Vector3Int GridPosition { get; set; }
 
         public event Action<IEnemy> Dead;
@@ -40,6 +38,11 @@ namespace RiftDefense.Edifice.Tower.View
         private Coroutine _lookAt;
 
         public abstract void PreviewAtack(IBeatle enemy);
+
+        private void Awake()
+        {
+            Detecteble = new Detecteble(_dataDetecteble);
+        }
 
         public void PrewiwSearch(bool active)
         {
@@ -93,9 +96,6 @@ namespace RiftDefense.Edifice.Tower.View
 
         protected virtual void OnDead()
         {
-            //if (_fixedTarget != null)
-            //    StopCoroutine(_fixedTarget);
-
             Enabel = false;
             Dead?.Invoke(this);
             _collider.enabled = false;
@@ -105,17 +105,14 @@ namespace RiftDefense.Edifice.Tower.View
 
         public virtual void OnSpawn()
         {
-            //_secondDelay = new WaitForSeconds(10f);
-
-            //_fixedTarget = StartCoroutine(cheakTargeta());
-            //_dataAnimator.Animator.SetBool(_dataAnimator.Dead, false);
             if (_sekelt != null)
             {
                 _sekelt?.gameObject.SetActive(false);
                 DataAnimator.Head?.gameObject.SetActive(true);
             }
 
-            CurrentCoutTarget = 0;
+            Detecteble.Reseting();
+
             _collider.enabled = true;
             Enabel = true;
             _dataHealf.ResetDataHealf();
@@ -152,36 +149,7 @@ namespace RiftDefense.Edifice.Tower.View
         //}
 
 
-        public bool AddEnemyTarget(IEnemy enemy)
-        {
-            if (CurrentCoutTarget >= MaxCapacityTarget)
-                return false;
-
-            if (!isAllTarget)
-                if (MaxCapacityTarget / 2 <= CurrentCoutTarget)
-                {
-                    int chanche = UnityEngine.Random.Range(0, 100);
-
-                    if (chanche > 50)
-                    {
-                        CurrentCoutTarget++;
-                        enemy.Dead += OnEnemyDeadTarget;
-                        return true;
-                    }
-                    else
-                        return false;
-                }
-
-            CurrentCoutTarget++;
-            enemy.Dead += OnEnemyDeadTarget;
-            return true;
-        }
-
-        private void OnEnemyDeadTarget(IEnemy enemy)
-        {
-            enemy.Dead -= OnEnemyDeadTarget;
-            CurrentCoutTarget--;
-        }
+     
 
     }
 }

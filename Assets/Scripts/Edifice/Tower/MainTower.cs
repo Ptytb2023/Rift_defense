@@ -7,22 +7,26 @@ using UnityEngine;
 
 public class MainTower : MonoBehaviour, IMainTower
 {
-    [field: SerializeField] public bool isAllTarget { get; private set; }
-    [field: SerializeField] public int MaxCapacityTarget { get; private set; }
-    public int CurrentCoutTarget { get; set; }
+    [field: SerializeField] private DataDetecteble _dataDetecteble;
+  
 
     [SerializeField] private DataHealf _dataHealf;
     [SerializeField] private Transform[] pointsForAttack;
 
     public bool Enabel => gameObject.activeSelf;
-
+    public Detecteble Detecteble { get; private set; }
     public Vector3Int GridPosition { get; set; }
 
     public event Action<IEnemy> Dead;
 
+    private void Awake()
+    {
+        Detecteble = new Detecteble(_dataDetecteble);
+    }
 
     private void OnEnable()
     {
+        Detecteble.Reseting();
         _dataHealf.Dead += OnDead;
     }
 
@@ -55,35 +59,5 @@ public class MainTower : MonoBehaviour, IMainTower
 
 
 
-    public bool AddEnemyTarget(IEnemy enemy)
-    {
-        if (CurrentCoutTarget >= MaxCapacityTarget)
-            return false;
-
-        if (!isAllTarget)
-            if (MaxCapacityTarget / 2 <= CurrentCoutTarget)
-            {
-                int chanche = UnityEngine.Random.Range(0, 100);
-
-                if (chanche > 50)
-                {
-                    CurrentCoutTarget++;
-                    enemy.Dead += OnEnemyDeadTarget;
-                    return true;
-                }
-                else
-                    return false;
-            }
-
-        CurrentCoutTarget++;
-        enemy.Dead += OnEnemyDeadTarget;
-        return true;
-    }
-
-    private void OnEnemyDeadTarget(IEnemy enemy)
-    {
-        enemy.Dead -= OnEnemyDeadTarget;
-        CurrentCoutTarget--;
-    }
 
 }

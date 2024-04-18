@@ -110,8 +110,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df9fcb4ae10774f47b97dc04cf8bc213, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <isAllTarget>k__BackingField: 0
-  <MaxCapacityTarget>k__BackingField: 4
+  _dataDetecteble:
+    <MaxSizeDataEnemy>k__BackingField: 4
+    <IsllTargetsEnemy>k__BackingField: 0
   _collider: {fileID: 400985042770444904}
   _beasBeatle: {fileID: 3568964288721102440}
   DataAnimationBeatle:
