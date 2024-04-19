@@ -15,13 +15,14 @@ namespace RiftDefense.Edifice.Tower.View
         [SerializeField] private BaseTower _baseTower;
         [SerializeField] public DataDetecteble _dataDetecteble;
         [SerializeField] private GameObject _sekelt;
-    
+
 
         [SerializeField] private Collider _collider;
         [SerializeField] private DataTowerAttack _baseDataTowerAttack;
         [SerializeField] private DataHealf _dataHealf;
         [SerializeField] private DataAnimator _dataAnimator;
-        
+        [SerializeField] private EffectTowerDead _effectTowerDead;
+
 
         //private Coroutine _fixedTarget;
         //private WaitForSeconds _secondDelay;
@@ -103,6 +104,7 @@ namespace RiftDefense.Edifice.Tower.View
             _collider.enabled = false;
             ShowDead();
             LeanPool.Despawn(this, DataAnimator.DelayDespawn);
+            LeanPool.Spawn(_effectTowerDead, transform.position, Quaternion.identity);
         }
 
         public virtual void OnSpawn()
@@ -152,7 +154,7 @@ namespace RiftDefense.Edifice.Tower.View
         //}
 
 
-     
+
 
     }
 }

@@ -15,6 +15,7 @@ namespace RiftDefense.Edifice.Mining
         [SerializeField] private Animator _animator;
         [SerializeField] private Collider _collider;
         [SerializeField] private DataHealf _dataHeafl;
+        [SerializeField] private EffectTowerDead _effectTowerDead;
 
         private MiningSystem _miningSystem;
 
@@ -39,6 +40,7 @@ namespace RiftDefense.Edifice.Mining
             _collider.enabled = false;
             Dead?.Invoke(this);
             LeanPool.Despawn(this, 3f);
+            LeanPool.Spawn(_effectTowerDead, transform.position, Quaternion.identity);
         }
 
         public void DespawnTower() => OnDead();

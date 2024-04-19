@@ -265,6 +265,8 @@ MonoBehaviour:
     <DelayDespawn>k__BackingField: 3
     <SpeedRotation>k__BackingField: 0
     <Head>k__BackingField: {fileID: 7278368667419626511}
+  _effectTowerDead: {fileID: 6640054492268683715, guid: 2340871eae8d5a34a911c85fdcc13dd2,
+    type: 3}
   _dataLaserTower:
     <Beam>k__BackingField: {fileID: 204814819716449399}
     <SpherePoint>k__BackingField: {fileID: 1360802477973444525}

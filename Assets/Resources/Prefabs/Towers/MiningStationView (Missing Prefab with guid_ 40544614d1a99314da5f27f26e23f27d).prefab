@@ -730,6 +730,8 @@ MonoBehaviour:
   _collider: {fileID: 4171271733918727134}
   _dataHeafl:
     <MaxHealf>k__BackingField: 20
+  _effectTowerDead: {fileID: 6640054492268683715, guid: 2340871eae8d5a34a911c85fdcc13dd2,
+    type: 3}
 --- !u!114 &10114205044838344
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -750,9 +750,10 @@ MonoBehaviour:
     <DelayDespawn>k__BackingField: 3
     <SpeedRotation>k__BackingField: 3
     <Head>k__BackingField: {fileID: 5394907464264517612}
+  _effectTowerDead: {fileID: 6640054492268683715, guid: 2340871eae8d5a34a911c85fdcc13dd2,
+    type: 3}
   _dattaAttackClssic:
     <AmountAmmunition>k__BackingField: 12
-  _speedLookAtTarget: 1
   _head: {fileID: 5394907464264517612}
   _pointShoot: {fileID: 7550816259285427667}
   _shootEfect: {fileID: 0}
