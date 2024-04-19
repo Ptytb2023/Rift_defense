@@ -7,14 +7,14 @@ namespace RiftDefense.InputSustem
 {
     public abstract class InputBase : IInputBase, IActive, IDisposable
     {
-        protected InputMap InputMap;
+        protected InputManager InputManager;
 
         public bool Enabel { get; private set; }
 
         [Inject]
-        public InputBase(InputMap inputMap)
+        public InputBase(InputManager inputManager)
         {
-            InputMap = inputMap;
+            InputManager = inputManager;
             Enable();
         }
 

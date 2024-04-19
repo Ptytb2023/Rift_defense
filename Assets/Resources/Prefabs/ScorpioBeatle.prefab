@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1042074203792443867}
   - component: {fileID: 3568964288721102440}
   m_Layer: 7
-  m_Name: V2
+  m_Name: ScorpioBeatle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

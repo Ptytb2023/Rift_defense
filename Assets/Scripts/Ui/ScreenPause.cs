@@ -12,24 +12,26 @@ public class ScreenPause : MonoBehaviour
 
     private void OnEnable()
     {
-        _buttonExit.onClick.AddListener(OnClickButton);
+        _buttonExit.onClick.AddListener(onClickExit);
         _buttonContinoi.onClick.AddListener(OnClickContinio);
     }
 
     private void OnDisable()
     {
-        _buttonExit.onClick.RemoveListener(OnClickButton);
+        _buttonExit.onClick.RemoveListener(onClickExit);
         _buttonContinoi.onClick.RemoveListener(OnClickContinio);
     }
 
 
-    private void OnClickButton()
+    private void onClickExit()
     {
         ButtonClickExit?.Invoke();
+        gameObject.SetActive(false);
     }
 
     private void OnClickContinio()
     {
         ButtonClickContinio?.Invoke();
+        gameObject.SetActive(false);
     }
 }

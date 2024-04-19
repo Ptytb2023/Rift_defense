@@ -75,6 +75,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: febf82a506f1fee4eb20c29729df576f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _screenPause: {fileID: 0}
+  _timerView: {fileID: 0}
+  _shopScreen: {fileID: 0}
   _loadGame: {fileID: 0}
   _screenDefeat: {fileID: 0}
   _screenVictory: {fileID: 0}
+  _dialogSystem: {fileID: 0}
+  <IsDialog>k__BackingField: 0

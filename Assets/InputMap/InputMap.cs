@@ -122,10 +122,21 @@ namespace NewInputSystem
                 {
                     ""name"": """",
                     ""id"": ""4a2baec4-68b9-4ce8-a421-7d508c5f81eb"",
-                    ""path"": ""<Keyboard>/escape"",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""KeyboardAndMouse"",
+                    ""action"": ""Exit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fb0cee5f-3490-45ae-a388-dfadcd74d039"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
                     ""action"": ""Exit"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -133,13 +144,13 @@ namespace NewInputSystem
             ]
         },
         {
-            ""name"": ""Ui"",
-            ""id"": ""801b3d82-5c8f-468f-9810-73ba444726f4"",
+            ""name"": ""UI"",
+            ""id"": ""a80a8565-d353-4945-b8c8-6f084cde32ce"",
             ""actions"": [
                 {
-                    ""name"": ""Escape"",
+                    ""name"": ""PouseClick"",
                     ""type"": ""Button"",
-                    ""id"": ""3da1148f-a525-4a86-9c42-569474cd9170"",
+                    ""id"": ""d17e01fb-d258-4e9d-81db-2f134ccb28a6"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -149,12 +160,12 @@ namespace NewInputSystem
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""c464f62c-864c-4feb-a2dc-450fc6d86389"",
-                    ""path"": ""<Keyboard>/space"",
+                    ""id"": ""d3e64f6f-0ad3-4358-83f9-ffc9e76169dc"",
+                    ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""KeyboardAndMouse"",
-                    ""action"": ""Escape"",
+                    ""groups"": """",
+                    ""action"": ""PouseClick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -177,9 +188,9 @@ namespace NewInputSystem
             // Keyboard
             m_Keyboard = asset.FindActionMap("Keyboard", throwIfNotFound: true);
             m_Keyboard_Exit = m_Keyboard.FindAction("Exit", throwIfNotFound: true);
-            // Ui
-            m_Ui = asset.FindActionMap("Ui", throwIfNotFound: true);
-            m_Ui_Escape = m_Ui.FindAction("Escape", throwIfNotFound: true);
+            // UI
+            m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
+            m_UI_PouseClick = m_UI.FindAction("PouseClick", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -346,51 +357,51 @@ namespace NewInputSystem
         }
         public KeyboardActions @Keyboard => new KeyboardActions(this);
 
-        // Ui
-        private readonly InputActionMap m_Ui;
-        private List<IUiActions> m_UiActionsCallbackInterfaces = new List<IUiActions>();
-        private readonly InputAction m_Ui_Escape;
-        public struct UiActions
+        // UI
+        private readonly InputActionMap m_UI;
+        private List<IUIActions> m_UIActionsCallbackInterfaces = new List<IUIActions>();
+        private readonly InputAction m_UI_PouseClick;
+        public struct UIActions
         {
             private @InputMap m_Wrapper;
-            public UiActions(@InputMap wrapper) { m_Wrapper = wrapper; }
-            public InputAction @Escape => m_Wrapper.m_Ui_Escape;
-            public InputActionMap Get() { return m_Wrapper.m_Ui; }
+            public UIActions(@InputMap wrapper) { m_Wrapper = wrapper; }
+            public InputAction @PouseClick => m_Wrapper.m_UI_PouseClick;
+            public InputActionMap Get() { return m_Wrapper.m_UI; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
             public bool enabled => Get().enabled;
-            public static implicit operator InputActionMap(UiActions set) { return set.Get(); }
-            public void AddCallbacks(IUiActions instance)
+            public static implicit operator InputActionMap(UIActions set) { return set.Get(); }
+            public void AddCallbacks(IUIActions instance)
             {
-                if (instance == null || m_Wrapper.m_UiActionsCallbackInterfaces.Contains(instance)) return;
-                m_Wrapper.m_UiActionsCallbackInterfaces.Add(instance);
-                @Escape.started += instance.OnEscape;
-                @Escape.performed += instance.OnEscape;
-                @Escape.canceled += instance.OnEscape;
+                if (instance == null || m_Wrapper.m_UIActionsCallbackInterfaces.Contains(instance)) return;
+                m_Wrapper.m_UIActionsCallbackInterfaces.Add(instance);
+                @PouseClick.started += instance.OnPouseClick;
+                @PouseClick.performed += instance.OnPouseClick;
+                @PouseClick.canceled += instance.OnPouseClick;
             }
 
-            private void UnregisterCallbacks(IUiActions instance)
+            private void UnregisterCallbacks(IUIActions instance)
             {
-                @Escape.started -= instance.OnEscape;
-                @Escape.performed -= instance.OnEscape;
-                @Escape.canceled -= instance.OnEscape;
+                @PouseClick.started -= instance.OnPouseClick;
+                @PouseClick.performed -= instance.OnPouseClick;
+                @PouseClick.canceled -= instance.OnPouseClick;
             }
 
-            public void RemoveCallbacks(IUiActions instance)
+            public void RemoveCallbacks(IUIActions instance)
             {
-                if (m_Wrapper.m_UiActionsCallbackInterfaces.Remove(instance))
+                if (m_Wrapper.m_UIActionsCallbackInterfaces.Remove(instance))
                     UnregisterCallbacks(instance);
             }
 
-            public void SetCallbacks(IUiActions instance)
+            public void SetCallbacks(IUIActions instance)
             {
-                foreach (var item in m_Wrapper.m_UiActionsCallbackInterfaces)
+                foreach (var item in m_Wrapper.m_UIActionsCallbackInterfaces)
                     UnregisterCallbacks(item);
-                m_Wrapper.m_UiActionsCallbackInterfaces.Clear();
+                m_Wrapper.m_UIActionsCallbackInterfaces.Clear();
                 AddCallbacks(instance);
             }
         }
-        public UiActions @Ui => new UiActions(this);
+        public UIActions @UI => new UIActions(this);
         private int m_KeyboardAndMouseSchemeIndex = -1;
         public InputControlScheme KeyboardAndMouseScheme
         {
@@ -410,9 +421,9 @@ namespace NewInputSystem
         {
             void OnExit(InputAction.CallbackContext context);
         }
-        public interface IUiActions
+        public interface IUIActions
         {
-            void OnEscape(InputAction.CallbackContext context);
+            void OnPouseClick(InputAction.CallbackContext context);
         }
     }
 }

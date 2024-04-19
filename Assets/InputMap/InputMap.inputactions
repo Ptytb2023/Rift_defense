@@ -98,10 +98,21 @@
                 {
                     "name": "",
                     "id": "4a2baec4-68b9-4ce8-a421-7d508c5f81eb",
-                    "path": "<Keyboard>/escape",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardAndMouse",
+                    "action": "Exit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fb0cee5f-3490-45ae-a388-dfadcd74d039",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "Exit",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -109,13 +120,13 @@
             ]
         },
         {
-            "name": "Ui",
-            "id": "801b3d82-5c8f-468f-9810-73ba444726f4",
+            "name": "UI",
+            "id": "a80a8565-d353-4945-b8c8-6f084cde32ce",
             "actions": [
                 {
-                    "name": "Escape",
+                    "name": "PouseClick",
                     "type": "Button",
-                    "id": "3da1148f-a525-4a86-9c42-569474cd9170",
+                    "id": "d17e01fb-d258-4e9d-81db-2f134ccb28a6",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -125,12 +136,12 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "c464f62c-864c-4feb-a2dc-450fc6d86389",
-                    "path": "<Keyboard>/space",
+                    "id": "d3e64f6f-0ad3-4358-83f9-ffc9e76169dc",
+                    "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
-                    "groups": "KeyboardAndMouse",
-                    "action": "Escape",
+                    "groups": "",
+                    "action": "PouseClick",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

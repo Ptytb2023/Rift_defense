@@ -34,11 +34,13 @@ namespace RiftDefense.UI
                 ChangeProgress?.Invoke(progress);
 
                 yield return null;
+                
             }
-
             _loadScene = null;
 
             ReadySceneLoad?.Invoke();
+
+            
 
         }
     }

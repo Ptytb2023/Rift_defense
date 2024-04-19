@@ -12,8 +12,8 @@ public class MainTower : MonoBehaviour, IMainTower
 
     [SerializeField] private DataHealf _dataHealf;
     [SerializeField] private Transform[] pointsForAttack;
+    [SerializeField] private MiningSystem _miningSystem;
 
-    private MiningSystem _miningSystem;
 
     public bool Enabel => gameObject.activeSelf;
     public Detecteble Detecteble { get; private set; }
@@ -24,8 +24,6 @@ public class MainTower : MonoBehaviour, IMainTower
     private void Awake()
     {
         Detecteble = new Detecteble(_dataDetecteble);
-        _miningSystem = GetComponent<MiningSystem>();
-        _miningSystem.enabled = false;
     }
 
     private void OnEnable()

@@ -13,8 +13,8 @@ public class UiAsistent : MonoBehaviour
     [SerializeField] private ScreenDefeat _screenDefeat;
     [SerializeField] private ScreenVictory _screenVictory;
 
-    [SerializeField] private bool _dialog;
     [SerializeField] private DialogSystem _dialogSystem;
+    [field: SerializeField] public bool IsDialog { get; private set; }
 
     public Action ButtonClickExit;
     public Action ButtonClickContinio;
@@ -30,14 +30,19 @@ public class UiAsistent : MonoBehaviour
 
     private void OnEnable()
     {
-        if (_dialog)
+        if (IsDialog)
+        {
+            _dialogSystem.gameObject.SetActive(true);
             _dialogSystem.EndDialog += StartGame;
+        }
         else
             StartGame();
 
 
         _screenDefeat.ButtonClickMenu += ExitMenu;
-        _screenPause.ButtonClickExit += ClickContinio;
+
+        _screenPause.ButtonClickContinio += ClickContinio;
+        _screenPause.ButtonClickExit += ExitMenu;
 
     }
 
@@ -46,11 +51,9 @@ public class UiAsistent : MonoBehaviour
         _screenPause.gameObject.SetActive(true);
     }
 
-   
-
     private void StartGame()
     {
-        if (_dialog)
+        if (IsDialog)
             _dialogSystem.EndDialog -= StartGame;
 
         _timerView.gameObject.SetActive(true);
@@ -65,13 +68,14 @@ public class UiAsistent : MonoBehaviour
         _screenVictory.ButtonClickMenu -= ExitMenu;
 
         _screenDefeat.ButtonClickMenu -= ExitMenu;
-        _screenPause.ButtonClickExit -= ClickContinio;
+
+        _screenPause.ButtonClickContinio -= ClickContinio;
+        _screenPause.ButtonClickExit -= ExitMenu;
     }
 
     public void ShowScreenDefeat()
     {
         _screenDefeat.gameObject.SetActive(true);
-      
     }
 
 

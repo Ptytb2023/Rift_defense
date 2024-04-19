@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8030373283557564885}
   - component: {fileID: 2522896939204937373}
   m_Layer: 7
-  m_Name: Scorpio CLassic
+  m_Name: SpaceBeatle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

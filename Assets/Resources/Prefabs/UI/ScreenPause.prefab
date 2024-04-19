@@ -493,7 +493,7 @@ GameObject:
   - component: {fileID: 7286149457255698569}
   - component: {fileID: 7520208919567151897}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Exit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -733,6 +733,7 @@ GameObject:
   - component: {fileID: 334318719742877263}
   - component: {fileID: 7724554234619521922}
   - component: {fileID: 3341406211024125609}
+  - component: {fileID: 1446774593410469103}
   m_Layer: 5
   m_Name: ScreenPause
   m_TagString: Untagged
@@ -798,3 +799,17 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1446774593410469103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8816976343789172790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d511158486de5954d9b26e0926e47088, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _buttonExit: {fileID: 7520208919567151897}
+  _buttonContinoi: {fileID: 8420459294971697683}

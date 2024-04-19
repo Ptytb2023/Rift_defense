@@ -14,11 +14,13 @@ public class GameManager : MonoBehaviour
 
     private const int indexMenu = 0;
 
+
     [Inject]
     private IInputMenu _inputMenu;
 
     private void Awake()
     {
+        Time.timeScale = 1f;
         _polimers.Resetiong();
         _spawnerBeatle.gameObject.SetActive(false);
         //UnityEditor.AI.NavMeshBuilder.BuildNavMesh();
@@ -35,6 +37,9 @@ public class GameManager : MonoBehaviour
         _inputMenu.clickEscape += OnPause;
 
         _uiAsistent.ButtonClickContinio += Continio;
+
+        if (!_uiAsistent.IsDialog)
+            StartGeame();
     }
 
     private void OnDisable()
@@ -51,11 +56,13 @@ public class GameManager : MonoBehaviour
 
     private void Victory()
     {
+        Time.timeScale = 0f;
         _uiAsistent.ShowScreenVictory();
     }
 
     private void Defeat(IEnemy enemy)
     {
+        Time.timeScale = 0f;
         _uiAsistent.ShowScreenDefeat();
     }
 
@@ -63,6 +70,7 @@ public class GameManager : MonoBehaviour
     {
         _uiAsistent.ShwoLoadSreen();
         _sceneLoadManager.LoadScene(indexMenu);
+       
     }
 
 
