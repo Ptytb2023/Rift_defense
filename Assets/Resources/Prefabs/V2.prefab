@@ -120,7 +120,7 @@ MonoBehaviour:
     <Idel>k__BackingField: Idel
     <Attack>k__BackingField: Attack
     <Move>k__BackingField: Run
-    <Dead>k__BackingField: Dead
+    <Dead>k__BackingField: DeadAnimation
   <DataHealf>k__BackingField:
     <MaxHealf>k__BackingField: 20
   <DataAttackBeatle>k__BackingField:

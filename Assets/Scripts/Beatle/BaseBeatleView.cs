@@ -9,25 +9,21 @@ using UnityEngine;
 
 public abstract class BaseBeatleView : MonoBehaviour, IBeatle, IPoolable
 {
-  
-
     [SerializeField] public DataDetecteble _dataDetecteble;
     [SerializeField] private Collider _collider;
     [SerializeField] private BaseBeatle _beasBeatle;
+
     [field: SerializeField] public DataAnimationBeatle DataAnimationBeatle;
-
-    public event Action<IEnemy> Dead;
-
     [field: SerializeField] public DataHealf DataHealf { get; private set; }
     [field: SerializeField] public DataAttackBeatle DataAttackBeatle { get; private set; }
     [field: SerializeField] public DataMoveBeatle DataMoveBeatle { get; private set; }
-
     [field: SerializeField] public Transform PointToHit { get; private set; }
 
     public Vector3 Destination { get; private set; }
     public Detecteble Detecteble { get; private set; }
-
     public bool Enabel { get; protected set; }
+
+    public event Action<IEnemy> Dead;
 
     protected virtual void Awake()
     {

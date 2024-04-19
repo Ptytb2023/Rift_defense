@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace RiftDefense.InputSustem
 {
-    public class InputPlacement : InputBase, IInputPlacement
+    public class InputPlacement : InputBase, IInputPlacement, IInputMenu
     {
         public InputPlacement(InputMap inputMap) : base(inputMap)
         {
@@ -12,6 +12,7 @@ namespace RiftDefense.InputSustem
 
         public event Action ClickAction;
         public event Action ClickExit;
+        public event Action clickEscape;
 
         public Vector2 GetMousePosition()
         {
@@ -23,6 +24,8 @@ namespace RiftDefense.InputSustem
             InputMap.Enable();
             InputMap.Mouse.LeftButton.started += stx => ClickAction?.Invoke();
             InputMap.Keyboard.Exit.started += stx => ClickExit?.Invoke();
+            InputMap.Ui.Escape.started += stx => OnClickEscape();
+
         }
 
         protected override void Disable()
@@ -30,6 +33,14 @@ namespace RiftDefense.InputSustem
             InputMap.Disable();
             InputMap.Keyboard.Exit.started -= stx => ClickExit?.Invoke();
             InputMap.Mouse.LeftButton.started -= stx => ClickAction?.Invoke();
+            InputMap.Ui.Escape.started -= stx => OnClickEscape();
+
+        }
+
+
+        private void OnClickEscape()
+        {
+            clickEscape?.Invoke();
         }
     }
 }

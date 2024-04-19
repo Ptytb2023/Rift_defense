@@ -63,7 +63,7 @@ namespace RiftDefense.Edifice.Tower
             HoldBeam();
             HitEnemy();
 
-            _turenOn = StateMachine.StartCoroutine(DelayTurenOn());
+            //_turenOn = StateMachine.StartCoroutine(DelayTurenOn());
             if (_curentDurationSeries <= 0)
                 Reload();
         }

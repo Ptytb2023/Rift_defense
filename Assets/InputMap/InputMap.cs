@@ -131,6 +131,34 @@ namespace NewInputSystem
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Ui"",
+            ""id"": ""801b3d82-5c8f-468f-9810-73ba444726f4"",
+            ""actions"": [
+                {
+                    ""name"": ""Escape"",
+                    ""type"": ""Button"",
+                    ""id"": ""3da1148f-a525-4a86-9c42-569474cd9170"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""c464f62c-864c-4feb-a2dc-450fc6d86389"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardAndMouse"",
+                    ""action"": ""Escape"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -149,6 +177,9 @@ namespace NewInputSystem
             // Keyboard
             m_Keyboard = asset.FindActionMap("Keyboard", throwIfNotFound: true);
             m_Keyboard_Exit = m_Keyboard.FindAction("Exit", throwIfNotFound: true);
+            // Ui
+            m_Ui = asset.FindActionMap("Ui", throwIfNotFound: true);
+            m_Ui_Escape = m_Ui.FindAction("Escape", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -314,6 +345,52 @@ namespace NewInputSystem
             }
         }
         public KeyboardActions @Keyboard => new KeyboardActions(this);
+
+        // Ui
+        private readonly InputActionMap m_Ui;
+        private List<IUiActions> m_UiActionsCallbackInterfaces = new List<IUiActions>();
+        private readonly InputAction m_Ui_Escape;
+        public struct UiActions
+        {
+            private @InputMap m_Wrapper;
+            public UiActions(@InputMap wrapper) { m_Wrapper = wrapper; }
+            public InputAction @Escape => m_Wrapper.m_Ui_Escape;
+            public InputActionMap Get() { return m_Wrapper.m_Ui; }
+            public void Enable() { Get().Enable(); }
+            public void Disable() { Get().Disable(); }
+            public bool enabled => Get().enabled;
+            public static implicit operator InputActionMap(UiActions set) { return set.Get(); }
+            public void AddCallbacks(IUiActions instance)
+            {
+                if (instance == null || m_Wrapper.m_UiActionsCallbackInterfaces.Contains(instance)) return;
+                m_Wrapper.m_UiActionsCallbackInterfaces.Add(instance);
+                @Escape.started += instance.OnEscape;
+                @Escape.performed += instance.OnEscape;
+                @Escape.canceled += instance.OnEscape;
+            }
+
+            private void UnregisterCallbacks(IUiActions instance)
+            {
+                @Escape.started -= instance.OnEscape;
+                @Escape.performed -= instance.OnEscape;
+                @Escape.canceled -= instance.OnEscape;
+            }
+
+            public void RemoveCallbacks(IUiActions instance)
+            {
+                if (m_Wrapper.m_UiActionsCallbackInterfaces.Remove(instance))
+                    UnregisterCallbacks(instance);
+            }
+
+            public void SetCallbacks(IUiActions instance)
+            {
+                foreach (var item in m_Wrapper.m_UiActionsCallbackInterfaces)
+                    UnregisterCallbacks(item);
+                m_Wrapper.m_UiActionsCallbackInterfaces.Clear();
+                AddCallbacks(instance);
+            }
+        }
+        public UiActions @Ui => new UiActions(this);
         private int m_KeyboardAndMouseSchemeIndex = -1;
         public InputControlScheme KeyboardAndMouseScheme
         {
@@ -332,6 +409,10 @@ namespace NewInputSystem
         public interface IKeyboardActions
         {
             void OnExit(InputAction.CallbackContext context);
+        }
+        public interface IUiActions
+        {
+            void OnEscape(InputAction.CallbackContext context);
         }
     }
 }

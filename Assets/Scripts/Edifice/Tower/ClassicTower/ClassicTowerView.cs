@@ -9,8 +9,6 @@ using UnityEngine;
 public class ClassicTowerView : BaseTowerView
 {
     [SerializeField] private DataAttackClassic _dattaAttackClssic;
-
-    [SerializeField] private float _speedLookAtTarget = 1f;
     [SerializeField] private Transform _head;
     [SerializeField] private Transform _pointShoot;
     [SerializeField] private ParticleSystem _shootEfect;

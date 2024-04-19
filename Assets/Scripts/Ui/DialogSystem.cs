@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -12,10 +13,10 @@ public class DialogSystem : MonoBehaviour
     [SerializeField] private string[] _text;
 
     private WaitForSeconds _sleep;
-
-    private const float _secondSleep = 0.05f;
-
+    private const float _secondSleep = 0.001f;
     private int _currentIndexLine;
+
+    public Action EndDialog;
 
     private void Awake()
     {
@@ -41,8 +42,11 @@ public class DialogSystem : MonoBehaviour
         if (_currentIndexLine < _text.Length)
             StartCoroutine(ShowLine(_text[_currentIndexLine]));
         else
+        {
+            EndDialog?.Invoke();
             gameObject.SetActive(false);
-        _currentIndexLine++;
+        }
+            _currentIndexLine++;
     }
 
 

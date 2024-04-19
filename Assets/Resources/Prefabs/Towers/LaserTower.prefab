@@ -236,17 +236,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16f4ec3816c1b444b9c04ea922524182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _baseTower: {fileID: 5330859164989864036}
   _dataDetecteble:
     <MaxSizeDataEnemy>k__BackingField: 5
     <IsllTargetsEnemy>k__BackingField: 0
   _sekelt: {fileID: 5672293922284226709}
-  <isAllTarget>k__BackingField: 0
-  <MaxCapacityTarget>k__BackingField: 5
   _collider: {fileID: 5013047170000957732}
   _baseDataTowerAttack:
-    <DelayBetweenShots>k__BackingField: 1
+    <DelayBetweenShots>k__BackingField: 0.2
     <TimeReload>k__BackingField: 3
-    <Damage>k__BackingField: 20
+    <Damage>k__BackingField: 4
     <RadiusAtack>k__BackingField: 22
     <DelayBetweenSeatchTarget>k__BackingField: 0.2
     <EnemyMask>k__BackingField:

@@ -12,6 +12,7 @@ namespace RiftDefense.Edifice.Tower.View
 {
     public abstract class BaseTowerView : MonoBehaviour, ITower, IPoolable
     {
+        [SerializeField] private BaseTower _baseTower;
         [SerializeField] public DataDetecteble _dataDetecteble;
         [SerializeField] private GameObject _sekelt;
     
@@ -96,6 +97,7 @@ namespace RiftDefense.Edifice.Tower.View
 
         protected virtual void OnDead()
         {
+            _baseTower.enabled = false;
             Enabel = false;
             Dead?.Invoke(this);
             _collider.enabled = false;
@@ -105,6 +107,7 @@ namespace RiftDefense.Edifice.Tower.View
 
         public virtual void OnSpawn()
         {
+            _baseTower.enabled = true;
             if (_sekelt != null)
             {
                 _sekelt?.gameObject.SetActive(false);

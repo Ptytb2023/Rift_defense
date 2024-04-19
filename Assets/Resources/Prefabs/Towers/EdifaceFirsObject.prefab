@@ -721,6 +721,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af9487bf7a3b20942bb6c5e24eea5eea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _baseTower: {fileID: 2997654178448175752}
   _dataDetecteble:
     <MaxSizeDataEnemy>k__BackingField: 5
     <IsllTargetsEnemy>k__BackingField: 0

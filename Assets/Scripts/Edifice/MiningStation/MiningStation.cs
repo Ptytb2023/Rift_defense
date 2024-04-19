@@ -11,7 +11,8 @@ namespace RiftDefense.Edifice.Mining
     public class MiningStation : MonoBehaviour, IPoolable, ITower
     {
         [SerializeField] public DataDetecteble _dataDetecteble;
-
+        [SerializeField] private string _nameTrigerDeadAnimation;
+        [SerializeField] private Animator _animator;
         [SerializeField] private Collider _collider;
         [SerializeField] private DataHealf _dataHeafl;
 
@@ -33,10 +34,11 @@ namespace RiftDefense.Edifice.Mining
 
         private void OnDead()
         {
+            _animator.Play(_nameTrigerDeadAnimation);
             Enabel = false;
             _collider.enabled = false;
             Dead?.Invoke(this);
-            LeanPool.Despawn(this, 0.1f);
+            LeanPool.Despawn(this, 3f);
         }
 
         public void DespawnTower() => OnDead();
@@ -52,7 +54,6 @@ namespace RiftDefense.Edifice.Mining
 
         public void OnDespawn()
         {
-            
             _dataHeafl.Dead -= OnDead;
         }
 
