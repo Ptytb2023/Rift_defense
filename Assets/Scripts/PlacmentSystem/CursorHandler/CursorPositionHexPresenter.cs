@@ -13,7 +13,7 @@ namespace RiftDefense.PlacmentSystem.Presenter
 
         private Vector3 _lastPostion = Vector3.zero;
         private Vector3Int _lastPositionTileMap = Vector3Int.zero;
-        private const float _maxDistanceRaycast = 100f;
+        private const float _maxDistanceRaycast = 500f;
 
         private IInputPlacement _inputPlacement;
 

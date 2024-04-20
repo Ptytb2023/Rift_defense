@@ -35,7 +35,7 @@ public class AudioAssistent : MonoBehaviour
     public void PlaySound(string sound)
     {
         _sound = _audioManger.GetSound(_nameSound);
-
+        _audioSource.volume = _audioManger.CurrentVolume;
         _audioSource.clip = _sound.clip;
         _audioSource.loop = _sound.Loop;
         _audioSource.Play();

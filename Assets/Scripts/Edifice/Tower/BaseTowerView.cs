@@ -59,7 +59,7 @@ namespace RiftDefense.Edifice.Tower.View
             if (_sekelt != null)
             {
                 _sekelt?.gameObject.SetActive(true);
-                DataAnimator.Head?.gameObject.SetActive(false);
+                DataAnimator.AnimationModel?.gameObject.SetActive(false);
             }
 
             if (_lookAt != null)
@@ -113,7 +113,7 @@ namespace RiftDefense.Edifice.Tower.View
             if (_sekelt != null)
             {
                 _sekelt?.gameObject.SetActive(false);
-                DataAnimator.Head?.gameObject.SetActive(true);
+                DataAnimator.AnimationModel?.gameObject.SetActive(true);
             }
 
             Detecteble.Reseting();

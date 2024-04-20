@@ -13,6 +13,21 @@ MonoBehaviour:
   m_Name: AdioManager
   m_EditorClassIdentifier: 
   _musicSounds:
+  - name: Level1
+    clip: {fileID: 8300000, guid: 0cc8251e21e2c3b48b972a395a4726ff, type: 3}
+    Loop: 1
   - name: Level2
+    clip: {fileID: 8300000, guid: 0cc8251e21e2c3b48b972a395a4726ff, type: 3}
+    Loop: 1
+  - name: Level3
+    clip: {fileID: 8300000, guid: 0cc8251e21e2c3b48b972a395a4726ff, type: 3}
+    Loop: 1
+  - name: Level4
+    clip: {fileID: 8300000, guid: 0cc8251e21e2c3b48b972a395a4726ff, type: 3}
+    Loop: 1
+  - name: Level5
+    clip: {fileID: 8300000, guid: 0cc8251e21e2c3b48b972a395a4726ff, type: 3}
+    Loop: 1
+  - name: Menu
     clip: {fileID: 8300000, guid: 0cc8251e21e2c3b48b972a395a4726ff, type: 3}
     Loop: 1

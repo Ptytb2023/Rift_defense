@@ -46,8 +46,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <DataEdiface>k__BackingField:
-    <IconForShop>k__BackingField: {fileID: 10911, guid: 0000000000000000f000000000000000,
-      type: 0}
+    <IconForShop>k__BackingField: {fileID: 21300000, guid: d1dcdd7c4d5f2074fad7cbc467e92b38,
+      type: 3}
     <Description>k__BackingField: "\u041A\u043B\u0430\u0441\u0441\u0438\u0447\u0435\u0441\u043A\u0430\u044F
       \u043F\u0443\u0448\u043A\u0430"
     <PricesBuy>k__BackingField: 40
