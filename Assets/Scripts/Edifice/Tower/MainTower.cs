@@ -24,10 +24,12 @@ public class MainTower : MonoBehaviour, IMainTower
     private void Awake()
     {
         Detecteble = new Detecteble(_dataDetecteble);
+       
     }
 
     private void OnEnable()
     {
+        _dataHealf.ResetDataHealf();
         Detecteble.Reseting();
         _dataHealf.Dead += OnDead;
     }

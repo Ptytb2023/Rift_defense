@@ -6,7 +6,7 @@ public class NavigationTest : MonoBehaviour
 {
     private void Awake()
     {
-        UnityEditor.AI.NavMeshBuilder.Cancel();
-        UnityEditor.AI.NavMeshBuilder.BuildNavMesh();
+        //UnityEditor.AI.NavMeshBuilder.Cancel();
+        //UnityEditor.AI.NavMeshBuilder.BuildNavMesh();
     }
 }

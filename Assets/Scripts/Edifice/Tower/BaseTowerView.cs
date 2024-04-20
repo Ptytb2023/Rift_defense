@@ -14,7 +14,7 @@ namespace RiftDefense.Edifice.Tower.View
     {
         [SerializeField] private BaseTower _baseTower;
         [SerializeField] public DataDetecteble _dataDetecteble;
-        [SerializeField] private GameObject _sekelt;
+        [SerializeField] private GameObject _noSkelet;
 
 
         [SerializeField] private Collider _collider;
@@ -56,10 +56,10 @@ namespace RiftDefense.Edifice.Tower.View
 
         public void ShowDead()
         {
-            if (_sekelt != null)
+            if (_noSkelet != null)
             {
-                _sekelt?.gameObject.SetActive(true);
-                DataAnimator.AnimationModel?.gameObject.SetActive(false);
+                _noSkelet?.gameObject.SetActive(false);
+                DataAnimator.SkeletModel?.gameObject.SetActive(true);
             }
 
             if (_lookAt != null)
@@ -110,10 +110,10 @@ namespace RiftDefense.Edifice.Tower.View
         public virtual void OnSpawn()
         {
             _baseTower.enabled = true;
-            if (_sekelt != null)
+            if (_noSkelet != null)
             {
-                _sekelt?.gameObject.SetActive(false);
-                DataAnimator.AnimationModel?.gameObject.SetActive(true);
+                _noSkelet?.gameObject.SetActive(true);
+                DataAnimator.SkeletModel?.gameObject.SetActive(false);
             }
 
             Detecteble.Reseting();

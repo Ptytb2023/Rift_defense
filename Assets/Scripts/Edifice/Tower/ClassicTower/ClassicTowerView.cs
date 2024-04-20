@@ -20,22 +20,11 @@ public class ClassicTowerView : BaseTowerView
     private Coroutine _looking;
 
 
-    public override void OnDespawn()
-    {
-        base.OnDespawn();
-
-    }
-
-    public override void OnSpawn()
-    {
-        base.OnSpawn();
-    }
-
 
     public override void PreviewAtack(IBeatle enemy)
     {
-        if (_shootEfect != null)
-            LeanPool.Spawn(_shootEfect, _pointShoot.position, _pointShoot.rotation);
+        var ise = LeanPool.Spawn(_shootEfect, _pointShoot.position, _pointShoot.rotation);
+        LeanPool.Despawn(ise, DataAttack.DelayBetweenShots / 2f);
     }
 
 }
