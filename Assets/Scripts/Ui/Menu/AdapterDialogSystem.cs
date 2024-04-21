@@ -50,7 +50,7 @@ public class AdapterDialogSystem : MonoBehaviour
         PlayerPrefs.SetInt(nameof(_listenedDialog), 1);
     }
 
-    private void Reset()
+    public void Reset()
     {
         PlayerPrefs.SetInt(nameof(_listenedDialog), 0);
     }

@@ -69,8 +69,8 @@ public class GameManager : MonoBehaviour
     private void ExitMenu()
     {
         _uiAsistent.ShwoLoadSreen();
+        MenuManager.OpenLevels = true;
         _sceneLoadManager.LoadScene(indexMenu);
-       
     }
 
 
