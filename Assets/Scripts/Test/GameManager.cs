@@ -1,6 +1,7 @@
 using RiftDefense.Generic.Interface;
 using RiftDefense.Player.Container;
 using RiftDefense.UI;
+using System;
 using UnityEngine;
 using Zenject;
 
@@ -11,6 +12,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] private MainTower _mainTower;
     [SerializeField] private ContainerPolymers _polimers;
     [SerializeField] private SceneLoadManager _sceneLoadManager;
+
+    [Space]
+    [SerializeField] private int _countPolymersForStars;
+    [SerializeField] private float _delayForOneChar = 0.2f;
+
+    [TextArea()]
+    [SerializeField] private string[] _text;
+
 
     private const int indexMenu = 0;
 
@@ -32,14 +41,14 @@ public class GameManager : MonoBehaviour
         _spawnerBeatle.AllEnemyDead += Victory;
         _mainTower.Dead += Defeat;
         _uiAsistent.ButtonClickExit += ExitMenu;
-        _uiAsistent.EndDialogSystem += StartGeame;
+        _uiAsistent.EndDialogSystem += StartGame;
 
         _inputMenu.clickEscape += OnPause;
 
         _uiAsistent.ButtonClickContinio += Continio;
 
         if (!_uiAsistent.IsDialog)
-            StartGeame();
+            StartGame();
     }
 
     private void OnDisable()
@@ -48,7 +57,7 @@ public class GameManager : MonoBehaviour
         _mainTower.Dead -= Defeat;
         _uiAsistent.ButtonClickExit -= ExitMenu;
 
-        _uiAsistent.EndDialogSystem -= StartGeame;
+        _uiAsistent.EndDialogSystem -= StartGame;
 
         _inputMenu.clickEscape -= OnPause;
         _uiAsistent.ButtonClickContinio -= Continio;
@@ -57,7 +66,25 @@ public class GameManager : MonoBehaviour
     private void Victory()
     {
         Time.timeScale = 0f;
-        _uiAsistent.ShowScreenVictory();
+
+        float CurrentPolymer = _polimers.AmountPolymer;
+        float PolymersForStars = _countPolymersForStars;
+        double result = 0;
+
+        if (CurrentPolymer > 0)
+        {
+            result = Math.Floor(CurrentPolymer / PolymersForStars);
+
+            if (result > 0)
+                result -= 1;
+
+            if (result > _text.Length)
+                result = _text.Length - 1;
+        }
+
+        string message = _text[(int)result];
+
+        _uiAsistent.ShowScreenVictory(message, _delayForOneChar);
     }
 
     private void Defeat(IEnemy enemy)
@@ -74,9 +101,9 @@ public class GameManager : MonoBehaviour
     }
 
 
-    private void StartGeame()
+    private void StartGame()
     {
-        _uiAsistent.EndDialogSystem -= StartGeame;
+        _uiAsistent.EndDialogSystem -= StartGame;
         _spawnerBeatle.gameObject.SetActive(true);
         _mainTower.StartMinigSystem();
     }

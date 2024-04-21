@@ -1,8 +1,8 @@
 using RiftDefense.Beatle;
 using RiftDefense.FSM;
+using RiftDefense.Generic.Interface;
 using System.Collections;
 using UnityEngine;
-using static UnityEngine.InputSystem.LowLevel.InputStateHistory;
 
 namespace RiftDefense.Edifice.Tower
 {
@@ -17,15 +17,16 @@ namespace RiftDefense.Edifice.Tower
         private Transform _pointShoot => _laserTowerView.DataAttackLaser.SpherePoint;
         private LayerMask enemyMask => _laserTowerView.DataAttack.EnemyMask;
 
-        private WaitForSeconds delayTurnOff; 
+        private WaitForSeconds delayTurnOff;
 
         private Coroutine _turenOn;
+
 
         public LaserTowerAttackState(LaserTower laserTower) :
             base(laserTower)
         {
             _laserTower = laserTower;
-            delayTurnOff = new WaitForSeconds(_laserTowerView.DataAttack.DelayBetweenShots/2f);
+            delayTurnOff = new WaitForSeconds(_laserTowerView.DataAttack.DelayBetweenShots / 2f);
             _curentDurationSeries = _laserTowerView.DataAttackLaser.DurationSeries;
         }
 
@@ -43,22 +44,18 @@ namespace RiftDefense.Edifice.Tower
         {
             base.Exit();
             _laserTowerView.TurnOffBeam();
-            if(_turenOn!=null)
+            if (_turenOn != null)
                 StateMachine.StopCoroutine(_turenOn);
             _laserTowerView.TurnOffBeam();
         }
 
-        private IEnumerator DelayTurenOn()
-        {
-            _laserTowerView.TurnOnBeam(CurrentTarget);
-
-            yield return delayTurnOff;
-
-            _laserTowerView.TurnOffBeam();
-        }
+     
 
         protected override void PerfomAttack()
         {
+            if (_laserTowerView.IsTurenON == false)
+                _laserTowerView.TurnOnBeam(CurrentTarget);
+
             ReduceTime();
             HoldBeam();
             HitEnemy();
@@ -68,7 +65,11 @@ namespace RiftDefense.Edifice.Tower
                 Reload();
         }
 
-
+        protected override void OnEnemyDead(IEnemy enemy)
+        {
+            base.OnEnemyDead(enemy);
+            _laserTowerView.TurnOffBeam();
+        }
 
         private void HoldBeam()
         {
@@ -110,6 +111,15 @@ namespace RiftDefense.Edifice.Tower
             //var damge = _laserTowerView.DataAttack.Damage;
             //CurrentTarget.ApplyDamage(damge);
             //_laserTowerView.PreviewAtack(CurrentTarget);
+        }
+
+        private IEnumerator DelayTurenOn()
+        {
+            _laserTowerView.TurnOnBeam(CurrentTarget);
+
+            yield return delayTurnOff;
+
+            _laserTowerView.TurnOffBeam();
         }
 
     }

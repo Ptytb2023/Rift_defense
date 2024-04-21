@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ce276c3598a5574292166b24b392dd0, type: 3}
   m_Name: ContainerPolymers
   m_EditorClassIdentifier: 
+  <AmountPolymer>k__BackingField: 0

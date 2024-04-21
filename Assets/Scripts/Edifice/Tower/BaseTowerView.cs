@@ -83,9 +83,10 @@ namespace RiftDefense.Edifice.Tower.View
 
             while (gameObject.activeSelf)
             {
-                var direction = enemy.GetPosition() - head.position;
-                Quaternion newRotation = Quaternion.LookRotation(direction);
-                head.rotation = Quaternion.Slerp(head.rotation, newRotation, speed * Time.deltaTime);
+                head.LookAt(enemy.GetPointForHit());
+                //var direction = enemy.GetPosition() - head.position;
+                //Quaternion newRotation = Quaternion.LookRotation(direction);
+                //head.rotation = Quaternion.Slerp(head.rotation, newRotation, speed * Time.deltaTime);
 
                 yield return null;
             }

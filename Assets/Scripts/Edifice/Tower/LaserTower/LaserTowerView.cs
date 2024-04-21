@@ -14,6 +14,7 @@ namespace RiftDefense.Edifice.Tower
         [SerializeField] private Material _materialSphereShoot;
         [SerializeField] private Color _colorReload;
 
+        public bool IsTurenON { get; private set; }
         public DataAttackLaser DataAttackLaser => _dataLaserTower;
 
         private Coroutine _trackingBeam;
@@ -23,7 +24,7 @@ namespace RiftDefense.Edifice.Tower
         public void TurnOnBeam(IBeatle enemy)
         {
             TurnOffBeam();
-
+            IsTurenON = true;
             _dataLaserTower.Beam.enabled = true;
 
             _trackingBeam = StartCoroutine(TrackingTarget(enemy));
@@ -32,7 +33,7 @@ namespace RiftDefense.Edifice.Tower
         public void TurnOffBeam()
         {
             _dataLaserTower.Beam.enabled = false;
-
+            IsTurenON = false;
             if (_trackingBeam != null)
                 StopCoroutine(_trackingBeam);
         }

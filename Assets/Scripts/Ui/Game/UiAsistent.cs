@@ -79,9 +79,11 @@ public class UiAsistent : MonoBehaviour
     }
 
 
-    public void ShowScreenVictory()
+    public void ShowScreenVictory(string message, float delayOneChar)
     {
         _screenVictory.gameObject.SetActive(true);
+        _screenVictory.SetText(message, delayOneChar);
+
         _screenVictory.ButtonClickMenu += ExitMenu;
     }
 

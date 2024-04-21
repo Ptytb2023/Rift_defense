@@ -21,6 +21,7 @@ public abstract class BaseStateAttackTower : BaseState
 
 
     protected event Action NewTarget;
+    protected event Action EnemyDead;
 
     public BaseStateAttackTower(BaseTower baseTower)
         : base(baseTower)
@@ -56,6 +57,7 @@ public abstract class BaseStateAttackTower : BaseState
         }
 
         BaseTower.CurrentTarget = beatle;
+        CurrentTarget.Dead += OnEnemyDead;
         NewTarget?.Invoke();
         return true;
     }
@@ -78,5 +80,11 @@ public abstract class BaseStateAttackTower : BaseState
         PerfomAttack();
 
         Delay = TowerView.DataAttack.DelayBetweenShots;
+    }
+
+
+    protected virtual void OnEnemyDead(IEnemy enemy)
+    {
+        EnemyDead?.Invoke();
     }
 }

@@ -35,6 +35,7 @@ public class ScreenVictory : MonoBehaviour
 
     private IEnumerator ShowLine(string text, float delay)
     {
+        _text.text = string.Empty;
         WaitForSecondsRealtime waitForSeconds = new WaitForSecondsRealtime(delay);
 
         foreach (var letter in text)

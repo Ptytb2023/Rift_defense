@@ -6,7 +6,7 @@ namespace RiftDefense.Player.Container
     [CreateAssetMenu(fileName = "ContainerPolymers", menuName = "Container/Polymer", order = 51)]
     public class ContainerPolymers : ScriptableObject
     {
-        public int AmountPolymer { get; private set; }
+       [field:SerializeField] public int AmountPolymer { get; private set; }
 
         public event Action<int> ChangeAmoutPolymer;
         public event Action NotAmoutPolymer;
