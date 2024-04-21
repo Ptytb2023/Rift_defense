@@ -23,6 +23,8 @@ public class MovableBeatle
         _navMeshAget.stoppingDistance = distance;
         _navMeshAget.destination = _currentPoint;
 
+        _navMeshAget.speed = _view.DataMoveBeatle.Speed;
+
         _view.SetActiovMove(true);
     }
 

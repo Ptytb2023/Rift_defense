@@ -98,7 +98,7 @@
                 {
                     "name": "",
                     "id": "4a2baec4-68b9-4ce8-a421-7d508c5f81eb",
-                    "path": "<Keyboard>/space",
+                    "path": "<Keyboard>/tab",
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardAndMouse",
@@ -108,7 +108,7 @@
                 },
                 {
                     "name": "",
-                    "id": "fb0cee5f-3490-45ae-a388-dfadcd74d039",
+                    "id": "4b68fd06-0c8b-48ab-a90e-afd3def9e3a6",
                     "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",

@@ -137,7 +137,7 @@ MonoBehaviour:
   <DataMoveBeatle>k__BackingField:
     <NavMeshAgent>k__BackingField: {fileID: 6640528620903188676}
     <NavMeshObstacel>k__BackingField: {fileID: 5175734724583723538}
-    <Speed>k__BackingField: 6
+    <Speed>k__BackingField: 5
   <PointToHit>k__BackingField: {fileID: 2914028685319816773}
 --- !u!114 &3568964288721102440
 MonoBehaviour:

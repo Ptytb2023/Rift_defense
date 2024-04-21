@@ -745,7 +745,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _startingAmountPolymer: 0
-  _extractionSecond: 5
+  _extractionSecond: 3
   _containerPolymers: {fileID: 11400000, guid: db5f832791d14aa40920c6b0120a9aff, type: 2}
   _rangeTimeMining: 3
 --- !u!65 &4171271733918727134

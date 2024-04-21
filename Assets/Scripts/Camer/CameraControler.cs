@@ -12,10 +12,12 @@ public class CameraControler : MonoBehaviour
 
     [SerializeField] private float _rotationAmount = 9.0f;
 
-
+    [Space]
     [SerializeField] private Vector2 _limitHorizontal;
     [SerializeField] private Vector2 _limitVertical;
     [SerializeField] private Vector2 _limitDeep;
+    [Space]
+    [SerializeField] private bool _drawLimit;
 
 
     private Vector3 _direction;
@@ -28,7 +30,6 @@ public class CameraControler : MonoBehaviour
 
 
     private float _currentSpeed;
-
 
     private void Start()
     {
@@ -143,34 +144,50 @@ public class CameraControler : MonoBehaviour
     }
 
 
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.yellow;
-        //Horizontal
-        Gizmos.DrawLine(new Vector3(_limitHorizontal.x, _limitVertical.x, _limitDeep.x), new Vector3(_limitHorizontal.y, _limitVertical.x, _limitDeep.x));
-        Gizmos.DrawLine(new Vector3(_limitHorizontal.x, _limitVertical.y, _limitDeep.x), new Vector3(_limitHorizontal.y, _limitVertical.y, _limitDeep.x));
 
-        Gizmos.DrawLine(new Vector3(_limitHorizontal.x, _limitVertical.y, _limitDeep.y), new Vector3(_limitHorizontal.y, _limitVertical.y, _limitDeep.y));
-       
-        Gizmos.DrawLine(new Vector3(_limitHorizontal.x, _limitVertical.x, _limitDeep.y), new Vector3(_limitHorizontal.y, _limitVertical.x, _limitDeep.y));
-     
+
+    private void OnDrawGizmos()
+    {
+        if (_drawLimit)
+        {
+            DrawLimnit();
+
+            Gizmos.DrawCube(_camera.transform.position, new Vector3(5, 5, 5));
+        }
+    }
+
+
+    private void DrawLimnit()
+    {
+        var addX = 0;
+        Gizmos.color = Color.blue;
+        //Horizontal
+        Gizmos.DrawLine(new Vector3(_limitHorizontal.x+ addX, _limitVertical.x, _limitDeep.x ), new Vector3(_limitHorizontal.y+ addX, _limitVertical.x, _limitDeep.x ));
+        Gizmos.DrawLine(new Vector3(_limitHorizontal.x + addX, _limitVertical.y, _limitDeep.x), new Vector3(_limitHorizontal.y + addX, _limitVertical.y, _limitDeep.x));
+
+        Gizmos.DrawLine(new Vector3(_limitHorizontal.x + addX, _limitVertical.y, _limitDeep.y), new Vector3(_limitHorizontal.y + addX, _limitVertical.y, _limitDeep.y));
+
+        Gizmos.DrawLine(new Vector3(_limitHorizontal.x + addX, _limitVertical.x, _limitDeep.y), new Vector3(_limitHorizontal.y + addX, _limitVertical.x, _limitDeep.y));
+
 
         //Deep
-        Gizmos.DrawLine(new Vector3(_limitHorizontal.x, _limitVertical.x, _limitDeep.x), new Vector3(_limitHorizontal.x, _limitVertical.x, _limitDeep.y));
-        Gizmos.DrawLine(new Vector3(_limitHorizontal.y, _limitVertical.x, _limitDeep.x), new Vector3(_limitHorizontal.y, _limitVertical.x, _limitDeep.y));
+        Gizmos.DrawLine(new Vector3(_limitHorizontal.x + addX, _limitVertical.x, _limitDeep.x ), new Vector3(_limitHorizontal.x + addX, _limitVertical.x, _limitDeep.y ));
+        Gizmos.DrawLine(new Vector3(_limitHorizontal.y + addX, _limitVertical.x, _limitDeep.x ), new Vector3(_limitHorizontal.y + addX, _limitVertical.x, _limitDeep.y ));
 
-        Gizmos.DrawLine(new Vector3(_limitHorizontal.x, _limitVertical.y, _limitDeep.x), new Vector3(_limitHorizontal.x, _limitVertical.y, _limitDeep.y));
-        Gizmos.DrawLine(new Vector3(_limitHorizontal.y, _limitVertical.y, _limitDeep.x), new Vector3(_limitHorizontal.y, _limitVertical.y, _limitDeep.y));
+        Gizmos.DrawLine(new Vector3(_limitHorizontal.x + addX, _limitVertical.y, _limitDeep.x ), new Vector3(_limitHorizontal.x + addX, _limitVertical.y, _limitDeep.y ));
+        Gizmos.DrawLine(new Vector3(_limitHorizontal.y + addX, _limitVertical.y, _limitDeep.x ), new Vector3(_limitHorizontal.y + addX, _limitVertical.y, _limitDeep.y ));
 
 
         //vertical
 
 
-        Gizmos.DrawLine(new Vector3(_limitHorizontal.x, _limitVertical.x, _limitDeep.x), new Vector3(_limitHorizontal.x, _limitVertical.y, _limitDeep.x));
-        Gizmos.DrawLine(new Vector3(_limitHorizontal.y, _limitVertical.x, _limitDeep.y), new Vector3(_limitHorizontal.y, _limitVertical.y, _limitDeep.y));
+        Gizmos.DrawLine(new Vector3(_limitHorizontal.x + addX, _limitVertical.x, _limitDeep.x ), new Vector3(_limitHorizontal.x + addX, _limitVertical.y, _limitDeep.x));
+        Gizmos.DrawLine(new Vector3(_limitHorizontal.y + addX, _limitVertical.x, _limitDeep.y ), new Vector3(_limitHorizontal.y + addX, _limitVertical.y, _limitDeep.y));
 
-        Gizmos.DrawLine(new Vector3(_limitHorizontal.y, _limitVertical.x, _limitDeep.x), new Vector3(_limitHorizontal.y, _limitVertical.y, _limitDeep.x));
-        Gizmos.DrawLine(new Vector3(_limitHorizontal.x, _limitVertical.x, _limitDeep.y), new Vector3(_limitHorizontal.x, _limitVertical.y, _limitDeep.y));
+        Gizmos.DrawLine(new Vector3(_limitHorizontal.y + addX, _limitVertical.x, _limitDeep.x ), new Vector3(_limitHorizontal.y + addX, _limitVertical.y, _limitDeep.x));
+        Gizmos.DrawLine(new Vector3(_limitHorizontal.x + addX, _limitVertical.x, _limitDeep.y ), new Vector3(_limitHorizontal.x + addX, _limitVertical.y, _limitDeep.y));
+        Gizmos.DrawLine(transform.position, _camera.transform.position);
+
     }
 
 }
