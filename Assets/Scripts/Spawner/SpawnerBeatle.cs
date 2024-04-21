@@ -81,7 +81,7 @@ public class SpawnerBeatle : MonoBehaviour
             }
         }
 
-        StartCoroutine(EndGame());
+       // StartCoroutine(EndGame());
     }
 
     private void SpawnBeatle(Wave wave, int coutSpawn)
@@ -104,7 +104,6 @@ public class SpawnerBeatle : MonoBehaviour
         while (_currentCoutSpawn > 0)
         {
             yield return _sleep;
-
         }
 
         AllEnemyDead?.Invoke();
@@ -132,6 +131,9 @@ public class SpawnerBeatle : MonoBehaviour
     {
         enemy.Dead -= OnEnemyDead;
         _currentCoutSpawn--;
+
+        if (_currentCoutSpawn <= 0 && _currentIndexWave >= _waves.Count)
+            AllEnemyDead?.Invoke();
     }
 
 }

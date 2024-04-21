@@ -9,6 +9,13 @@ public class ResourceView : MonoBehaviour
     [SerializeField] private float _timeColor = 1f;
     [SerializeField] private ContainerPolymers _polymer;
 
+    private Coroutine _coroutine;
+    Color _currentColor;
+
+    private void Awake()
+    {
+        _currentColor = _label.color;
+    }
 
     private void OnEnable()
     {
@@ -29,15 +36,20 @@ public class ResourceView : MonoBehaviour
 
     private void OnNotAmoutPolymer()
     {
-        StartCoroutine(ApplyColor());
+        if (_coroutine != null)
+        {
+            StopCoroutine(_coroutine);
+            _label.color = _currentColor;
+        }
+        _coroutine = StartCoroutine(ApplyColor());
     }
 
     private IEnumerator ApplyColor()
     {
-        var currentColor = _label.color;
-
         _label.color = _colorNoPolymer;
         yield return new WaitForSeconds(_timeColor);
-        _label.color = currentColor;
+        _label.color = _currentColor;
     }
+
+
 }

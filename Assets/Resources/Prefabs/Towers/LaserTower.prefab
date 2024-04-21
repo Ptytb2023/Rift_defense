@@ -240,7 +240,7 @@ MonoBehaviour:
   _dataDetecteble:
     <MaxSizeDataEnemy>k__BackingField: 5
     <IsllTargetsEnemy>k__BackingField: 0
-  _sekelt: {fileID: 5672293922284226709}
+  _noSkelet: {fileID: 7947205247650305717}
   _collider: {fileID: 5013047170000957732}
   _baseDataTowerAttack:
     <DelayBetweenShots>k__BackingField: 0.2
@@ -264,6 +264,7 @@ MonoBehaviour:
     <Dead>k__BackingField: Dead
     <DelayDespawn>k__BackingField: 3
     <SpeedRotation>k__BackingField: 0
+    <SkeletModel>k__BackingField: {fileID: 5040612000324620847}
     <Head>k__BackingField: {fileID: 7278368667419626511}
   _effectTowerDead: {fileID: 6640054492268683715, guid: 2340871eae8d5a34a911c85fdcc13dd2,
     type: 3}
@@ -543,6 +544,12 @@ PrefabInstance:
 --- !u!4 &7278368667419626511 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ed75673efc16bd241af456fc65762545,
+    type: 3}
+  m_PrefabInstance: {fileID: 7100853628945837028}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7947205247650305717 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: ed75673efc16bd241af456fc65762545,
     type: 3}
   m_PrefabInstance: {fileID: 7100853628945837028}
   m_PrefabAsset: {fileID: 0}
