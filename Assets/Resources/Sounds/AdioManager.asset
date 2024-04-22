@@ -14,20 +14,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _musicSounds:
   - name: Level1
-    clip: {fileID: 8300000, guid: 66f64a719df03964db0a0f19312afa51, type: 3}
+    clip: {fileID: 8300000, guid: 5bfa47b760f6dc84486459bf15ac5b19, type: 3}
     Loop: 1
   - name: Level2
-    clip: {fileID: 8300000, guid: 3f10ba312ad56ad4f9f01417c5c7f230, type: 3}
+    clip: {fileID: 8300000, guid: 950967ca2ea321f4f9ab0f18cc2e1cbf, type: 3}
     Loop: 1
   - name: Level3
-    clip: {fileID: 8300000, guid: 0cc8251e21e2c3b48b972a395a4726ff, type: 3}
+    clip: {fileID: 8300000, guid: ed72636b124b5cd46bea713133f46741, type: 3}
     Loop: 1
   - name: Level4
     clip: {fileID: 8300000, guid: e91d6677d34c72347a6865c5658b0759, type: 3}
     Loop: 1
   - name: Level5
-    clip: {fileID: 8300000, guid: 6a02ec94afccdde43a730ed485ed62c0, type: 3}
+    clip: {fileID: 8300000, guid: bec21739213215b47b1c7816a31d2637, type: 3}
     Loop: 1
   - name: Menu
     clip: {fileID: 8300000, guid: 0cc8251e21e2c3b48b972a395a4726ff, type: 3}
+    Loop: 1
+  - name: Level6
+    clip: {fileID: 8300000, guid: 03df2b6da2617844ca9da4c22a73fbe4, type: 3}
     Loop: 1

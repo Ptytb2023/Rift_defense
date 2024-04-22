@@ -52,6 +52,12 @@ public class AdapterDialogSystem : MonoBehaviour
 
     public void Reset()
     {
+        
+    }
+
+    [ContextMenu(nameof(RessetingSave))]
+    public void RessetingSave()
+    {
         PlayerPrefs.SetInt(nameof(_listenedDialog), 0);
     }
 }

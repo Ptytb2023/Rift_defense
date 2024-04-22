@@ -430,6 +430,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2762572867460805951, guid: ce210fbce97d2e649828b31abd20ef02,
+        type: 3}
+      propertyPath: _nameSound
+      value: Level6
+      objectReference: {fileID: 0}
     - target: {fileID: 4988907108808127254, guid: ce210fbce97d2e649828b31abd20ef02,
         type: 3}
       propertyPath: _drawLimit
