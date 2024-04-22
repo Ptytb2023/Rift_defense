@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: gas-kvas-com-p-ramka-shestiugolnaya-na-prozrachnom-fone-19
   m_EditorClassIdentifier: 
   m_Sprite: {fileID: 21300000, guid: 827131b2231963e46813b1c2dc59cbd3, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
     e01: 0
