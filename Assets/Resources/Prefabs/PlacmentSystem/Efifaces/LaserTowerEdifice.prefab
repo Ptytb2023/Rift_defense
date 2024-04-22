@@ -177,8 +177,7 @@ MonoBehaviour:
   <DataEdiface>k__BackingField:
     <IconForShop>k__BackingField: {fileID: 21300000, guid: 4f8b5924cfb80854e8e9bd8b931426ea,
       type: 3}
-    <Description>k__BackingField: "\u041B\u0430\u0437\u0435\u0440\u043D\u0430\u044F
-      \u0431\u0430\u0448\u043D\u044F"
+    <Description>k__BackingField: "\u041B\u0430\u0437\u0435\u0440"
     <PricesBuy>k__BackingField: 160
     <Edifice>k__BackingField: {fileID: 8227741271333398415}
     <Tower>k__BackingField: {fileID: 6462423249640290042, guid: ae925b43446f409479c434d4c223ed3c,

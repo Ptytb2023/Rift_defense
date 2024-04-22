@@ -4782,6 +4782,16 @@ PrefabInstance:
       propertyPath: m_fontSize
       value: 68.45
       objectReference: {fileID: 0}
+    - target: {fileID: 1881037783855996750, guid: dbe7e5482113bdc44875fab455b07c10,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1881037783855996750, guid: dbe7e5482113bdc44875fab455b07c10,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2193934862196631872, guid: dbe7e5482113bdc44875fab455b07c10,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -6131,7 +6141,7 @@ PrefabInstance:
     - target: {fileID: 4988907108808127254, guid: ce210fbce97d2e649828b31abd20ef02,
         type: 3}
       propertyPath: _rotationAmount
-      value: 30
+      value: 113
       objectReference: {fileID: 0}
     - target: {fileID: 4988907108808127254, guid: ce210fbce97d2e649828b31abd20ef02,
         type: 3}
