@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
 
     [TextArea()]
     [SerializeField] private string[] _text;
-
+    [SerializeField] private string _nameLevel;
 
     private const int indexMenu = 0;
 
@@ -83,14 +83,23 @@ public class GameManager : MonoBehaviour
         }
 
         string message = _text[(int)result];
-
         _uiAsistent.ShowScreenVictory(message, _delayForOneChar);
+        SaveScore();
+    }
+
+    private void SaveScore()
+    {
+        if (PlayerPrefs.GetInt(_nameLevel, 0000) < _polimers.AmountPolymer)
+        {
+            PlayerPrefs.SetInt(_nameLevel, _polimers.AmountPolymer);
+        }
     }
 
     private void Defeat(IEnemy enemy)
     {
         Time.timeScale = 0f;
         _uiAsistent.ShowScreenDefeat();
+        SaveScore();
     }
 
     private void ExitMenu()

@@ -106,7 +106,7 @@ NavMeshSettings:
   m_BuildSettings:
     serializedVersion: 3
     agentTypeID: 0
-    agentRadius: 2
+    agentRadius: 1
     agentHeight: 2
     agentSlope: 45
     agentClimb: 0.4
@@ -114,7 +114,7 @@ NavMeshSettings:
     maxJumpAcrossDistance: 0
     minRegionArea: 2
     manualCellSize: 0
-    cellSize: 0.6666667
+    cellSize: 0.33333334
     manualTileSize: 0
     tileSize: 256
     buildHeightMesh: 0
@@ -16050,6 +16050,11 @@ PrefabInstance:
       objectReference: {fileID: 2115817807}
     - target: {fileID: 3117986131104403311, guid: b06492d1b7a6ab642a290a0acd32e45b,
         type: 3}
+      propertyPath: _nameLevel
+      value: Level5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3117986131104403311, guid: b06492d1b7a6ab642a290a0acd32e45b,
+        type: 3}
       propertyPath: _spawnerBeatle
       value: 
       objectReference: {fileID: 1556451850}
@@ -22400,7 +22405,12 @@ PrefabInstance:
     - target: {fileID: 8172307573192837603, guid: 48ea048d71ad22440b3d5ca5614a87a1,
         type: 3}
       propertyPath: _waves.Array.data[1].<TimeSpawn>k__BackingField
-      value: 60
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 8172307573192837603, guid: 48ea048d71ad22440b3d5ca5614a87a1,
+        type: 3}
+      propertyPath: _waves.Array.data[2].<TimeSpawn>k__BackingField
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 8172307573192837603, guid: 48ea048d71ad22440b3d5ca5614a87a1,
         type: 3}
@@ -22415,17 +22425,17 @@ PrefabInstance:
     - target: {fileID: 8172307573192837603, guid: 48ea048d71ad22440b3d5ca5614a87a1,
         type: 3}
       propertyPath: _waves.Array.data[2].<CoutBeatle>k__BackingField
-      value: 140
+      value: 600
       objectReference: {fileID: 0}
     - target: {fileID: 8172307573192837603, guid: 48ea048d71ad22440b3d5ca5614a87a1,
         type: 3}
       propertyPath: _waves.Array.data[1].<DelayStartSpawn>k__BackingField
-      value: 45
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 8172307573192837603, guid: 48ea048d71ad22440b3d5ca5614a87a1,
         type: 3}
       propertyPath: _waves.Array.data[2].<DelayStartSpawn>k__BackingField
-      value: 30
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8172307573192837603, guid: 48ea048d71ad22440b3d5ca5614a87a1,
         type: 3}
@@ -22440,7 +22450,7 @@ PrefabInstance:
     - target: {fileID: 8172307573192837603, guid: 48ea048d71ad22440b3d5ca5614a87a1,
         type: 3}
       propertyPath: _waves.Array.data[2].<Beatles>k__BackingField.Array.size
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8172307573192837603, guid: 48ea048d71ad22440b3d5ca5614a87a1,
         type: 3}
@@ -22476,7 +22486,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _waves.Array.data[2].<Beatles>k__BackingField.Array.data[1]
       value: 
-      objectReference: {fileID: 1042074203792443867, guid: d9d27d7decb433b4384ae7300b6862a9,
+      objectReference: {fileID: 7865149961495683534, guid: 8c98d864fa1120246b8bb3fe1b4c20c8,
         type: 3}
     - target: {fileID: 8172307573192837603, guid: 48ea048d71ad22440b3d5ca5614a87a1,
         type: 3}
@@ -22875,7 +22885,12 @@ PrefabInstance:
     - target: {fileID: 420152824916016686, guid: dbe7e5482113bdc44875fab455b07c10,
         type: 3}
       propertyPath: m_fontSize
-      value: 31.65
+      value: 59.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 420152824916016686, guid: dbe7e5482113bdc44875fab455b07c10,
+        type: 3}
+      propertyPath: m_fontSizeMin
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 420152824916016686, guid: dbe7e5482113bdc44875fab455b07c10,
         type: 3}
@@ -23227,13 +23242,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8337158382567224733, guid: dbe7e5482113bdc44875fab455b07c10,
         type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1.0238
+      objectReference: {fileID: 0}
+    - target: {fileID: 8337158382567224733, guid: dbe7e5482113bdc44875fab455b07c10,
+        type: 3}
       propertyPath: m_SizeDelta.y
-      value: 274.8622
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8337158382567224733, guid: dbe7e5482113bdc44875fab455b07c10,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 7.3605
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8417139910700153944, guid: dbe7e5482113bdc44875fab455b07c10,
         type: 3}
@@ -23415,6 +23435,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3968492817472830261, guid: 467ea6815ece3e04cac7f15c6877444a,
+        type: 3}
+      propertyPath: _dataHealf.<MaxHealf>k__BackingField
+      value: 1e+10
+      objectReference: {fileID: 0}
     - target: {fileID: 7522893871908385650, guid: 467ea6815ece3e04cac7f15c6877444a,
         type: 3}
       propertyPath: m_LocalPosition.x

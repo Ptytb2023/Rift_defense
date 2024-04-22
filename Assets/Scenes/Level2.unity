@@ -3893,6 +3893,11 @@ PrefabInstance:
       objectReference: {fileID: 766505043}
     - target: {fileID: 3117986131104403311, guid: b06492d1b7a6ab642a290a0acd32e45b,
         type: 3}
+      propertyPath: _nameLevel
+      value: Level2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3117986131104403311, guid: b06492d1b7a6ab642a290a0acd32e45b,
+        type: 3}
       propertyPath: _spawnerBeatle
       value: 
       objectReference: {fileID: 1669736750}
@@ -4807,6 +4812,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 143530402272331758, guid: dbe7e5482113bdc44875fab455b07c10,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 716936242650231140, guid: dbe7e5482113bdc44875fab455b07c10,
         type: 3}
       propertyPath: m_AnchorMax.y
