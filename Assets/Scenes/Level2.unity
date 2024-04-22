@@ -3640,6 +3640,11 @@ PrefabInstance:
       objectReference: {fileID: 1669736750}
     - target: {fileID: 3117986131104403311, guid: b06492d1b7a6ab642a290a0acd32e45b,
         type: 3}
+      propertyPath: _delayForOneChar
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 3117986131104403311, guid: b06492d1b7a6ab642a290a0acd32e45b,
+        type: 3}
       propertyPath: _text.Array.size
       value: 4
       objectReference: {fileID: 0}
@@ -6106,7 +6111,7 @@ PrefabInstance:
     - target: {fileID: 4988907108808127254, guid: ce210fbce97d2e649828b31abd20ef02,
         type: 3}
       propertyPath: _movementSpeed
-      value: 18
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 4988907108808127254, guid: ce210fbce97d2e649828b31abd20ef02,
         type: 3}
@@ -6132,6 +6137,11 @@ PrefabInstance:
         type: 3}
       propertyPath: _limitHorizontal.y
       value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 4988907108808127254, guid: ce210fbce97d2e649828b31abd20ef02,
+        type: 3}
+      propertyPath: _movementFastSpeed
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 8481224360038224714, guid: ce210fbce97d2e649828b31abd20ef02,
         type: 3}

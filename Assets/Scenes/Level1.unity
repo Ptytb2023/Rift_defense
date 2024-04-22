@@ -3298,8 +3298,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 330585545}
   _movementTime: 5
-  _movementSpeed: 18
-  _movementFastSpeed: 50
+  _movementSpeed: 50
+  _movementFastSpeed: 80
   _scrolSpeed: 39.9
   _rotationAmount: 30
   _limitHorizontal: {x: -18.4, y: -7.3}
@@ -12208,6 +12208,11 @@ PrefabInstance:
       propertyPath: _spawnerBeatle
       value: 
       objectReference: {fileID: 1454481628137220961}
+    - target: {fileID: 3117986131104403311, guid: b06492d1b7a6ab642a290a0acd32e45b,
+        type: 3}
+      propertyPath: _delayForOneChar
+      value: 0.02
+      objectReference: {fileID: 0}
     - target: {fileID: 3117986131104403311, guid: b06492d1b7a6ab642a290a0acd32e45b,
         type: 3}
       propertyPath: _text.Array.size

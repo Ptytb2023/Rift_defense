@@ -23605,7 +23605,7 @@ PrefabInstance:
     - target: {fileID: 4988907108808127254, guid: ce210fbce97d2e649828b31abd20ef02,
         type: 3}
       propertyPath: _movementSpeed
-      value: 18
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 4988907108808127254, guid: ce210fbce97d2e649828b31abd20ef02,
         type: 3}
@@ -23631,6 +23631,11 @@ PrefabInstance:
         type: 3}
       propertyPath: _limitHorizontal.y
       value: 97
+      objectReference: {fileID: 0}
+    - target: {fileID: 4988907108808127254, guid: ce210fbce97d2e649828b31abd20ef02,
+        type: 3}
+      propertyPath: _movementFastSpeed
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 8481224360038224714, guid: ce210fbce97d2e649828b31abd20ef02,
         type: 3}
