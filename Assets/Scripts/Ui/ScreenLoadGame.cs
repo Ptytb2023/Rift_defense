@@ -13,7 +13,7 @@ namespace MushroomMadness.UI.LoadScene
         [Space]
         [SerializeField] private SceneLoadManager _sceneLoadManager;
 
-        private const string _loadText = "Loading";
+        private const string _loadText = "Загрузка";
 
 
         private void OnEnable()

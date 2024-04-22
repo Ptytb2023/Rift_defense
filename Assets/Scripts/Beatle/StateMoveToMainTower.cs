@@ -32,7 +32,7 @@ public class StateMoveToMainTower : BaseState
 
     public override void Exit()
     {
-        _movable.StopMove();
+        //_movable.StopMove();
     }
 
 
