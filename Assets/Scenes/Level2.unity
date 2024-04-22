@@ -5666,6 +5666,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spawner
       objectReference: {fileID: 0}
+    - target: {fileID: 1602307885696395742, guid: 48ea048d71ad22440b3d5ca5614a87a1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4342372472126128152, guid: 48ea048d71ad22440b3d5ca5614a87a1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5704,7 +5709,7 @@ PrefabInstance:
     - target: {fileID: 8172307573192837603, guid: 48ea048d71ad22440b3d5ca5614a87a1,
         type: 3}
       propertyPath: _delayStartSpawn
-      value: 15
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 8172307573192837603, guid: 48ea048d71ad22440b3d5ca5614a87a1,
         type: 3}
@@ -5720,6 +5725,11 @@ PrefabInstance:
         type: 3}
       propertyPath: _waves.Array.data[2].<CoutBeatle>k__BackingField
       value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 8172307573192837603, guid: 48ea048d71ad22440b3d5ca5614a87a1,
+        type: 3}
+      propertyPath: _waves.Array.data[0].<DelayStartSpawn>k__BackingField
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8172307573192837603, guid: 48ea048d71ad22440b3d5ca5614a87a1,
         type: 3}

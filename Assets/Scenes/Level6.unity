@@ -7037,12 +7037,12 @@ PrefabInstance:
     - target: {fileID: 8172307573192837603, guid: 48ea048d71ad22440b3d5ca5614a87a1,
         type: 3}
       propertyPath: _waves.Array.data[0].<TimeSpawn>k__BackingField
-      value: 20
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 8172307573192837603, guid: 48ea048d71ad22440b3d5ca5614a87a1,
         type: 3}
       propertyPath: _waves.Array.data[1].<TimeSpawn>k__BackingField
-      value: 30
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 8172307573192837603, guid: 48ea048d71ad22440b3d5ca5614a87a1,
         type: 3}

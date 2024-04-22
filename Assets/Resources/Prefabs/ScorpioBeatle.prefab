@@ -124,8 +124,8 @@ MonoBehaviour:
   <DataHealf>k__BackingField:
     <MaxHealf>k__BackingField: 20
   <DataAttackBeatle>k__BackingField:
-    <Damage>k__BackingField: 5
-    <DelayBetweenAttack>k__BackingField: 1
+    <Damage>k__BackingField: 10
+    <DelayBetweenAttack>k__BackingField: 2.3
     <AttackDistance>k__BackingField: 3
     <DelayBetweenSearch>k__BackingField: 0.2
     <RadiusSearch>k__BackingField: 15
