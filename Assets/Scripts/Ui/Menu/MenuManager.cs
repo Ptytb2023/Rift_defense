@@ -4,7 +4,7 @@ public class MenuManager : MonoBehaviour
 {
     [SerializeField] private GameObject _screenMenu;
     [SerializeField] private GameObject _screenLevels;
-    [SerializeField] private AdapterDialogSystem _adapterDialogSystem;
+    //[SerializeField] private AdapterDialogSystem _adapterDialogSystem;
 
     public static bool OpenLevels = false;
 
@@ -20,9 +20,9 @@ public class MenuManager : MonoBehaviour
         OpenLevels = false;
     }
 
-    [ContextMenu(nameof(ResetSave))]
-    public void ResetSave()
-    {
-        _adapterDialogSystem.Reset();
-    }
+    //[ContextMenu(nameof(ResetSave))]
+    //public void ResetSave()
+    //{
+    //    //_adapterDialogSystem.Reset();
+    //}
 }

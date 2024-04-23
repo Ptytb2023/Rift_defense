@@ -2416,7 +2416,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _button: {fileID: 643737369}
   _screen: {fileID: 1209113213}
-  _diabel: {fileID: 1004202182}
+  _disableObject: {fileID: 1004202182}
 --- !u!114 &643737369
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3816,7 +3816,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _button: {fileID: 1054153977}
   _screen: {fileID: 1490295462}
-  _diabel: {fileID: 1209113213}
+  _disableObject: {fileID: 1209113213}
 --- !u!1 &974091636
 GameObject:
   m_ObjectHideFlags: 0
@@ -4029,7 +4029,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _button: {fileID: 197146266}
   _screen: {fileID: 1004202182}
-  _diabel: {fileID: 1209113213}
+  _disableObject: {fileID: 1209113213}
 --- !u!1 &1004202182
 GameObject:
   m_ObjectHideFlags: 0
@@ -5758,7 +5758,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _screenMenu: {fileID: 1209113213}
   _screenLevels: {fileID: 410680296}
-  _adapterDialogSystem: {fileID: 1490295463}
 --- !u!4 &1366932938
 Transform:
   m_ObjectHideFlags: 0
@@ -5840,7 +5839,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _button: {fileID: 1441763821}
   _screen: {fileID: 1209113213}
-  _diabel: {fileID: 410680296}
+  _disableObject: {fileID: 410680296}
 --- !u!114 &1441763821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7060,7 +7059,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: V 1_0_32
+  m_text: V 1_0_34
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

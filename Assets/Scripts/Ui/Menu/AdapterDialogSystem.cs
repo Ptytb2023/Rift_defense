@@ -7,22 +7,20 @@ public class AdapterDialogSystem : MonoBehaviour
     [SerializeField] private DialogSystem _dialogSystem;
 
 
-    private int _listenedDialog;
+    private static int LisenensDialog;
 
     private void OnEnable()
     {
-        GetSave();
+        //GetSave();
 
-        if (_listenedDialog == 1)
-        {
-            _enabelGameObject.SetActive(true);
-            gameObject.SetActive(false);
-            return;
-        }
+        //if (LisenensDialog == 1)
+        //{
+        //    _enabelGameObject.SetActive(true);
+        //    gameObject.SetActive(false);
+        //    return;
+        //}
 
-        _dialogSystem.gameObject.SetActive(true);
-        _dialogSystem.EndDialog += OnEndDialog;
-        contenerInfo.listenedDialog = true;
+        ShowDialog();
     }
 
     private void OnDisable()
@@ -36,28 +34,30 @@ public class AdapterDialogSystem : MonoBehaviour
 
         gameObject.SetActive(false);
 
-        Save();
+        //Save();
     }
 
-
-    private void GetSave()
+    public void ShowDialog()
     {
-        _listenedDialog = PlayerPrefs.GetInt(nameof(_listenedDialog), 0);
+        _dialogSystem.gameObject.SetActive(true);
+        _dialogSystem.EndDialog += OnEndDialog;
+        contenerInfo.listenedDialog = true;
     }
 
-    private void Save()
-    {
-        PlayerPrefs.SetInt(nameof(_listenedDialog), 1);
-    }
 
-    public void Reset()
-    {
-        
-    }
+    //private void GetSave()
+    //{
+    //    LisenensDialog = PlayerPrefs.GetInt(nameof(LisenensDialog), 0);
+    //}
 
-    [ContextMenu(nameof(RessetingSave))]
-    public void RessetingSave()
-    {
-        PlayerPrefs.SetInt(nameof(_listenedDialog), 0);
-    }
+    //private void Save()
+    //{
+    //    PlayerPrefs.SetInt(nameof(LisenensDialog), 1);
+    //}
+
+    //[ContextMenu(nameof(RessetingSave))]
+    //public void RessetingSave()
+    //{
+    //    PlayerPrefs.SetInt(nameof(LisenensDialog), 0);
+    //}
 }

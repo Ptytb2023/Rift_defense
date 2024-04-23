@@ -18,14 +18,12 @@ public class DialogSystem : MonoBehaviour
 
     public Action EndDialog;
 
-    private void Awake()
-    {
-        _currentIndexLine = 0;
-        _sleep = new WaitForSeconds(_secondSleep);
-    }
 
     private void OnEnable()
     {
+        _currentIndexLine = 0;
+        _sleep = new WaitForSeconds(_secondSleep);
+
         _nextButton.onClick.AddListener(NextMessage);
         NextMessage();
     }

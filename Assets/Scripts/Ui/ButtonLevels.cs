@@ -35,4 +35,10 @@ public class ButtonLevels : MonoBehaviour
     {
        return PlayerPrefs.GetInt(_nameLevel, 0000);
     }
+
+    [ContextMenu(nameof(ResetinScore))]
+    public void ResetinScore()
+    {
+        PlayerPrefs.SetInt(_nameLevel, 0000);
+    }
 }

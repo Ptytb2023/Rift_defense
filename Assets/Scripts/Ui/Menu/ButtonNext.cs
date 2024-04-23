@@ -5,7 +5,7 @@ public class ButtonNext : MonoBehaviour
 {
     [SerializeField] private Button _button;
     [SerializeField] private GameObject _screen;
-    [SerializeField] private GameObject _diabel;
+    [SerializeField] private GameObject _disableObject;
 
     private void OnEnable()
     {
@@ -20,6 +20,6 @@ public class ButtonNext : MonoBehaviour
     private void OnClickButton()
     { 
         _screen.SetActive(true);
-        _diabel.SetActive(false);
+        _disableObject.SetActive(false);
     }
 }
