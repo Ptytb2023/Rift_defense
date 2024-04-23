@@ -35,6 +35,8 @@ namespace RiftDefense.PlacmentSystem.View
         private CreatePlacementState _creatState;
         private GridData _gridData;
 
+
+        public bool IsSelectedButton => _towerShopScreen.ISSelecetButton;
         public DataCursor DataCursor => _dataCursor;
         public DataPreviewSystem DataPreviewSystem => _previewSystemData;
         public PlacmentSystemData PlacmentSystemData => _placmentSystemData;

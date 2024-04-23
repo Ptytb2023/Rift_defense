@@ -146,6 +146,94 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Shop",
+            "id": "05f23960-5c8b-4276-86ec-9949118b617c",
+            "actions": [
+                {
+                    "name": "First",
+                    "type": "Button",
+                    "id": "dda4f3ca-4c3d-476a-b62f-9e4868a6d66b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Second",
+                    "type": "Button",
+                    "id": "ba2964e6-4b29-4a3e-a2bf-1a9fefc17e9f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Third",
+                    "type": "Button",
+                    "id": "ad2478ce-e17a-4e69-9526-66082098b6b6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Fourth",
+                    "type": "Button",
+                    "id": "af5b689f-6f46-48a0-a820-f30d05e5185f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "a2ecaa04-346e-4620-8798-ed8b602e1eb0",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "First",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "35911792-9109-41f0-92e2-16f040a0b60d",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardAndMouse",
+                    "action": "Second",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2e2d4979-2604-458d-9f0b-4428d67eb2e4",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Third",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ca77a144-f9ca-42e9-92f7-ad27a25c1f6c",
+                    "path": "<Keyboard>/4",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Fourth",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

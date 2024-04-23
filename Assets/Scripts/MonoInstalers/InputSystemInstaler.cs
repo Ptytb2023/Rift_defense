@@ -10,5 +10,6 @@ public class InputSystemInstaler : MonoInstaller
         Container.Bind<InputManager>().FromNew().AsSingle().NonLazy();
         Container.BindInterfacesAndSelfTo<InputPlacement>().FromNew().AsSingle().NonLazy();
         Container.BindInterfacesAndSelfTo<InputMenu>().FromNew().AsSingle().NonLazy();
+        Container.Bind<InputShopTower>().FromNew().AsSingle().NonLazy();
     }
 }

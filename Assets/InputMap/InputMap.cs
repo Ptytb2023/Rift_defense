@@ -170,6 +170,94 @@ namespace NewInputSystem
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Shop"",
+            ""id"": ""05f23960-5c8b-4276-86ec-9949118b617c"",
+            ""actions"": [
+                {
+                    ""name"": ""First"",
+                    ""type"": ""Button"",
+                    ""id"": ""dda4f3ca-4c3d-476a-b62f-9e4868a6d66b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Second"",
+                    ""type"": ""Button"",
+                    ""id"": ""ba2964e6-4b29-4a3e-a2bf-1a9fefc17e9f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Third"",
+                    ""type"": ""Button"",
+                    ""id"": ""ad2478ce-e17a-4e69-9526-66082098b6b6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Fourth"",
+                    ""type"": ""Button"",
+                    ""id"": ""af5b689f-6f46-48a0-a820-f30d05e5185f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""a2ecaa04-346e-4620-8798-ed8b602e1eb0"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""First"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""35911792-9109-41f0-92e2-16f040a0b60d"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardAndMouse"",
+                    ""action"": ""Second"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2e2d4979-2604-458d-9f0b-4428d67eb2e4"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Third"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ca77a144-f9ca-42e9-92f7-ad27a25c1f6c"",
+                    ""path"": ""<Keyboard>/4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fourth"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -191,6 +279,12 @@ namespace NewInputSystem
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_PouseClick = m_UI.FindAction("PouseClick", throwIfNotFound: true);
+            // Shop
+            m_Shop = asset.FindActionMap("Shop", throwIfNotFound: true);
+            m_Shop_First = m_Shop.FindAction("First", throwIfNotFound: true);
+            m_Shop_Second = m_Shop.FindAction("Second", throwIfNotFound: true);
+            m_Shop_Third = m_Shop.FindAction("Third", throwIfNotFound: true);
+            m_Shop_Fourth = m_Shop.FindAction("Fourth", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -402,6 +496,76 @@ namespace NewInputSystem
             }
         }
         public UIActions @UI => new UIActions(this);
+
+        // Shop
+        private readonly InputActionMap m_Shop;
+        private List<IShopActions> m_ShopActionsCallbackInterfaces = new List<IShopActions>();
+        private readonly InputAction m_Shop_First;
+        private readonly InputAction m_Shop_Second;
+        private readonly InputAction m_Shop_Third;
+        private readonly InputAction m_Shop_Fourth;
+        public struct ShopActions
+        {
+            private @InputMap m_Wrapper;
+            public ShopActions(@InputMap wrapper) { m_Wrapper = wrapper; }
+            public InputAction @First => m_Wrapper.m_Shop_First;
+            public InputAction @Second => m_Wrapper.m_Shop_Second;
+            public InputAction @Third => m_Wrapper.m_Shop_Third;
+            public InputAction @Fourth => m_Wrapper.m_Shop_Fourth;
+            public InputActionMap Get() { return m_Wrapper.m_Shop; }
+            public void Enable() { Get().Enable(); }
+            public void Disable() { Get().Disable(); }
+            public bool enabled => Get().enabled;
+            public static implicit operator InputActionMap(ShopActions set) { return set.Get(); }
+            public void AddCallbacks(IShopActions instance)
+            {
+                if (instance == null || m_Wrapper.m_ShopActionsCallbackInterfaces.Contains(instance)) return;
+                m_Wrapper.m_ShopActionsCallbackInterfaces.Add(instance);
+                @First.started += instance.OnFirst;
+                @First.performed += instance.OnFirst;
+                @First.canceled += instance.OnFirst;
+                @Second.started += instance.OnSecond;
+                @Second.performed += instance.OnSecond;
+                @Second.canceled += instance.OnSecond;
+                @Third.started += instance.OnThird;
+                @Third.performed += instance.OnThird;
+                @Third.canceled += instance.OnThird;
+                @Fourth.started += instance.OnFourth;
+                @Fourth.performed += instance.OnFourth;
+                @Fourth.canceled += instance.OnFourth;
+            }
+
+            private void UnregisterCallbacks(IShopActions instance)
+            {
+                @First.started -= instance.OnFirst;
+                @First.performed -= instance.OnFirst;
+                @First.canceled -= instance.OnFirst;
+                @Second.started -= instance.OnSecond;
+                @Second.performed -= instance.OnSecond;
+                @Second.canceled -= instance.OnSecond;
+                @Third.started -= instance.OnThird;
+                @Third.performed -= instance.OnThird;
+                @Third.canceled -= instance.OnThird;
+                @Fourth.started -= instance.OnFourth;
+                @Fourth.performed -= instance.OnFourth;
+                @Fourth.canceled -= instance.OnFourth;
+            }
+
+            public void RemoveCallbacks(IShopActions instance)
+            {
+                if (m_Wrapper.m_ShopActionsCallbackInterfaces.Remove(instance))
+                    UnregisterCallbacks(instance);
+            }
+
+            public void SetCallbacks(IShopActions instance)
+            {
+                foreach (var item in m_Wrapper.m_ShopActionsCallbackInterfaces)
+                    UnregisterCallbacks(item);
+                m_Wrapper.m_ShopActionsCallbackInterfaces.Clear();
+                AddCallbacks(instance);
+            }
+        }
+        public ShopActions @Shop => new ShopActions(this);
         private int m_KeyboardAndMouseSchemeIndex = -1;
         public InputControlScheme KeyboardAndMouseScheme
         {
@@ -424,6 +588,13 @@ namespace NewInputSystem
         public interface IUIActions
         {
             void OnPouseClick(InputAction.CallbackContext context);
+        }
+        public interface IShopActions
+        {
+            void OnFirst(InputAction.CallbackContext context);
+            void OnSecond(InputAction.CallbackContext context);
+            void OnThird(InputAction.CallbackContext context);
+            void OnFourth(InputAction.CallbackContext context);
         }
     }
 }

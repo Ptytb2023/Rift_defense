@@ -28,6 +28,7 @@ namespace RiftDefense.PlacmentSystem.Presenter
 
         private Grid _grid => _placmentSystemView.PlacmentSystemData.Grid;
 
+   
        
 
         private void Start()
@@ -55,6 +56,10 @@ namespace RiftDefense.PlacmentSystem.Presenter
             _input.SetActive(true);
             _input.ClickAction += PlaceStructure;
             _input.ClickExit += StopPlacement;
+
+            Vector3Int gridPosition = _cursorPositionPresenter.GetSelectedGridPosition(_grid);
+
+            UpdateState(gridPosition);
         }
 
         private void SetState(TypePlacement type)
@@ -64,6 +69,9 @@ namespace RiftDefense.PlacmentSystem.Presenter
 
         private void PlaceStructure()
         {
+            if (_placmentSystemView.IsSelectedButton)
+                return;
+
             if (_cursorPositionPresenter.ChangedPosition(_grid))
                 return;
 
